@@ -27,12 +27,12 @@ This research makes a very important step towards understanding GANs. It allows 
 
 ### The method:
 
-A generator $$G$$ can be viewed as a mapping from a latent vector $$\textbf{z}$$ to an generated image $$\textbf{x}$$ - $$\textbf{x} = G(\textbf{z})$$ . Our goal is to understand the $$\textbf{r}$$, an internal representation, which is an output from particular layer of the generator $$G$$. We would like to inspect  $$\textbf{r}$$ closely, with respect to objects of the class $$c$$. We know that $$\textbf{r}$$ contains an encoded information about the generation of $$c$$ class objects. Our goal is to understand how is this information encoded? The authors propose, that there is a way to extract those units from $$\textbf{r}$$, which are being responsible for generation of class $$c$$ objects.
+A generator $$G$$ can be viewed as a mapping from a latent vector $$\textbf{z}$$ to an generated image $$\textbf{x} = G(\textbf{z})$$ . Our goal is to understand the $$\textbf{r}$$, an internal representation, which is an output from particular layer of the generator $$G$$. We would like to inspect  $$\textbf{r}$$ closely, with respect to objects of the class $$c$$. We know that $$\textbf{r}$$ contains an encoded information about the generation of those particular objects. Our goal is to understand how is this information encoded? The authors propose, that there is a way to extract those units from $$\textbf{r}$$, which are being responsible for generation of class $$c$$ objects.
 
 $$\textbf{r}_{\mathbb{U},P} = (\textbf{r}_{U,P},\textbf{r}_{\bar{U},P})$$
 
-Here, $$\mathbb{U}=(U,\bar{U})$$ is a set of all units in the particular layer, $$U$$ are units of interest and $$P$$ are pixel locations.
-The question now is, how to perform this separation? The authors propose two steps which give us an understandingof GAN <em>black-box/em>. Those are dissection and intervention.
+Here, $$\mathbb{U}=(U,\bar{U})$$ is a set of all units in the particular layer, $$U$$ are units of interest (causal units) and $$P$$ are pixel locations.
+The question now is, how to perform this separation? The authors propose two steps which give us an understandingof GAN <em>black-box</em>. Those are dissection and intervention.
 
 __Dissection__ - we want to identify the classes, which have an explicit representation in $$\textbf{r}$$, by comparing two images. We obtain the first image by computing $$\textbf{x}, and then running in through a semantic segmentation network. This would return pixel locations $$\textbf{s}_{c(\textbf{x})}$$ corresponding to the class of interest (trees). The second image is being generated in the following way. We take $$\textbf{r}_{u,P}$$, upsample it so it matches the dimension of $$\textbf{s}_{c(\textbf{x})}$$ and then threshold it to have a hard decision which pixels are being "lit" by this particular unit. Finally we calculate spatial agreement between both outputs. By performing this operation for every unit, we should eventually find out, which classes have an explicit representation in the structure of $$\textbf{r}$$.
 
