@@ -10,7 +10,7 @@ This year I had a great pleasure to be involved in a research project, which req
 
 Inspired by this [very modest reddit discussion](https://www.reddit.com/r/MachineLearning/comments/a8th4o/d_what_are_best_papers_regarding_gans_for_2018/), I have decided to make a quick overview of the most interesting publications from 2018 regarding GANs. The list is highly subjective - I have chosen research papers which were not only state-of-the-art, but also cool and highly enjoyable. In this first chapter I will discuss three publications. By the way, if you are interested in older GAN papers, [this article](https://medium.com/nurture-ai/keeping-up-with-the-gans-66e89343b46) may be helpful. One of the papers mentioned by the author even made it to my top list.
 
-1. __GAN Dissection: Visualizing and Understanding Generative Adversarial Networks__ - given the amount of hype around GANs, it is obvious that this technology, sooner or later, would be used commercially. However, because we know so little about their inner mechanism, I think that it remains difficult to create a reliable product. This work takes a huge leap towards the future, where we are able to truly control GANs. Please check out this [great interactive demo](https://gandissect.csail.mit.edu/), the results are stunning!
+1. __GAN Dissection: Visualizing and Understanding Generative Adversarial Networks__ - given the amount of hype around GANs, it is obvious that this technology, sooner or later, would be used commercially. However, because we know so little about their inner mechanism, I think that it remains difficult to create a reliable product. This work takes a huge leap towards the future, where we are able to truly control GANs. Definitely check out their great interactive demo, the results are stunning!
 2. __A Style-Based Generator Architecture for Generative Adversarial Networks__ - NVIDIA research team regularly comes up with trail-blazing concepts (great [image impainting paper from 2018](https://www.youtube.com/watch?v=gg0F5JjKmhA), quite recent demo of using [neural networks for graphics rendering](https://www.youtube.com/watch?time_continue=2&v=ayPqjPekn7g)). This paper is no exception, plus the video which shows their results is simply mesmerising.
 3. __Evolutionary Generative Adversarial Networks__ - this is a really readable and simply clever publication. Evolutionary algorithms together with GAN - this is bound to be cool.
 
@@ -18,13 +18,12 @@ Inspired by this [very modest reddit discussion](https://www.reddit.com/r/Machin
 ## [GAN Dissection: Visualizing and Understanding Generative Adversarial Networks](https://arxiv.org/pdf/1811.10597.pdf)
 
 ### Details
-Submitted on 26 Nov 2018
-[Project Link](https://gandissect.csail.mit.edu/)
+The paper has been submitted on 26 Nov 2018. The authors have created a great [project website with interactive demo](https://gandissect.csail.mit.edu/).
 
 ### Main idea:
 
 GANs have undoubtedly proven how powerful the deep neural networks are. There is something beautiful about the way a machine learns to generate stunning, high resolution images as if it understood the world like we do. But, just like the rest of those wonderful statistical models, their biggest flaw is the lack of interpretability. 
-This research makes a very important step towards understanding GANs. Let’s say that we want to find out, which units in the generator are "responsible" for generation of certain objects which belong to class $$c$$. The authors claim, that we can inspect a layer of the generator and classify its units into two groups: the ones which are indifferent to the generation of $$c$$ objects in the image and the ones which are sensitive to it. The authors search for those particular "class-related" units, by introducing two steps: dissection and intervention. Additionally, this is probably the first work, which provides systematic analysis for understanding of the GANs' internal mechanisms.
+This research makes a very important step towards understanding GANs. It allows us to find out, which units in the generator are "responsible" for generation of certain objects which belong to class $$c$$. The authors claim, that we can inspect a layer of the generator and classify its units into two groups: the ones which cause the generation of $$c$$ objects in the image and the ones which are not responsible for creation of those $$c$$ objects. The authors search for the set of "causal" units for each class by introducing two steps: dissection and intervention. Additionally, this is probably the first work, which provides systematic analysis for understanding of the GANs' internal mechanisms.
 
 ### The method:
 
