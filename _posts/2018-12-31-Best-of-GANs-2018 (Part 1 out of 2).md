@@ -108,6 +108,7 @@ An evolutionary algorithm attempts to evolve a population of generators in a giv
 Those steps involve two concepts which should be discussed in more detail: mutations and a fitness function.
 
 __Mutations__ - those are the changes introduced to the children in the variation step. There are inspired by original GAN training objectives. The authors have distinguished three, the most effective, types of mutations. Those were minmax mutation (which encourages minimization of Jensen-Shannon divergence), heuristic mutation (which adds inverted Kullback-Leibler divergence term) and least-squares mutation (inspired by [LSGAN](https://arxiv.org/abs/1611.04076)).
+
 __Fitness function__ - in evolutionary algorithm a fitness function tells us how close a given child is to achieving the set aim. Here, the fitness function consists of two elements: quality fitness score and diversity fitness score. The former makes sure, that generator comes up with outputs which can fool the discriminator, while the latter pays attention to the diversity of generated samples. 
 So one hand, the offsprings are being taught not only to approximate the original distribution well, but also to remain diverse and avoid the mode collapse trap.
 
@@ -120,7 +121,7 @@ The algorithm has been tested not only on synthetic data, but also against CIFAR
 {:refdef: style="text-align: center;"}
 ![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/2.jpg){:height="100%" width="100%"}
 {: refdef}
-<em>Linear interpolation in latent space - $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset.$$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
+<em>Linear interpolation in latent space $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset. $$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
 
 
 
