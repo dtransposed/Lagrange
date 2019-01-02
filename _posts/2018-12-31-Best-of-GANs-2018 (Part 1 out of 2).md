@@ -81,7 +81,7 @@ The paper has been submitted on 12.12.2018. The authors assure that the code is 
 
 This work proposes an alternative view on GAN framework. More specifically, it draws inspiration from the style-transfer design to create a generator architecture, which can learn the difference between high-level attributes (such as age, identity when trained on human faces or background, camera viewpoint, style for bed images) and stochastic variation (freckles, hair details for human faces or colours, fabrics when trained on bed images) in the generated images. Not only it learns to separate those attributes automatically, but it also allows us to control the synthesis in a very intuitive manner.
 
-<iframe width="280" height="157" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="360" height="315" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <em>Supplementary video with the overview of the results.</em>
 
 ### The method:
@@ -90,7 +90,7 @@ This work proposes an alternative view on GAN framework. More specifically, it d
 ![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/3.png){:height="80%" width="80%"}
 {: refdef}
 
-<em>Traditional GAN architecture (left) vs Style-based generator (right). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermidiate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
+<em>Traditional GAN architecture (left) vs Style-based generator (right). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermediate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
 
 In the classical GAN approach, the generator takes some latent code as an input and outputs an image, which belongs to the distribution it has learned during the training phase. The authors depart from this design by creating a style-based generator, comprised of two elements: 
 1. A fully connected network, which represents the non-linear mapping $$f:\mathcal{Z} \rightarrow \mathcal{W}$$ 
@@ -114,10 +114,12 @@ The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://ar
 <em> Visualising the effects of style mixing. By having an image produced by one latent code (source), we can override a subset of the features of another image (destination). Here, we override layers corresponding to coarse spatial resolutions (low resolution feature maps). This way we influence high-level traits of the destination image.</em>
   
 The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
-The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being "nurtured" with the latent code of the source. The lower the resolution corresponding to the particular layer, the bigger the influence of the source on the destination. This way, we can decide to what extent we want to affect the destination image:
-- coarse spatial resolution ($$4^2 - 8^2$$) - high level aspects (such as hair style, glasses or age)
-- middle styles resolution ($$16^2 - 32^2$$) - smaller scale facial features (hair style details, eyes)
-- fine resolution ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure
+The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution generated image, hard to distinguish from a real one. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being "nurtured" with the latent code of the source. The lower the resolution corresponding to the particular layer, the bigger the influence of the source on the destination. This way, we can decide to what extent we want to affect the destination image:
+- coarse spatial resolution (resolutions $$4^2 - 8^2$$) - high level aspects (such as hair style, glasses or age)
+- middle styles resolution (resolutions$$16^2 - 32^2$$) - smaller scale facial features (hair style details, eyes)
+- fine resolution resolutions ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure
+
+The authors apply their method further to images of cars, bedrooms and even cats, with stunning, albeit often suprising results. I am still puzzled why a network decides to affect the positioning of paws in cat images, but does not care about rotation of wheels in car images...
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/4/10.gif)
@@ -149,7 +151,7 @@ An evolutionary algorithm attempts to evolve a population of generators in a giv
 
 Those steps involve two concepts which should be discussed in more detail: mutations and a fitness function.
 
-__Mutations__ - those are the changes introduced to the children in the variation step. There are inspired by original GAN training objectives. The authors have distinguished three, the most effective, types of mutations. Those were minmax mutation (which encourages minimization of Jensen-Shannon divergence), heuristic mutation (which adds inverted Kullback-Leibler divergence term) and least-squares mutation (inspired by [LSGAN](https://arxiv.org/abs/1611.04076)).
+__Mutations__ - those are the changes introduced to the children in the variation step. There are inspired by original GAN training objectives. The authors have distinguished three, the most effective, types of mutations. Those are minmax mutation (which encourages minimization of Jensen-Shannon divergence), heuristic mutation (which adds inverted Kullback-Leibler divergence term) and least-squares mutation (inspired by [LSGAN](https://arxiv.org/abs/1611.04076)).
 
 __Fitness function__ - in evolutionary algorithm a fitness function tells us how close a given child is to achieving the set aim. Here, the fitness function consists of two elements: quality fitness score and diversity fitness score. The former makes sure, that generator comes up with outputs which can fool the discriminator, while the latter pays attention to the diversity of generated samples. 
 So one hand, the offsprings are being taught not only to approximate the original distribution well, but also to remain diverse and avoid the mode collapse trap.
@@ -165,7 +167,9 @@ The algorithm has been tested not only on synthetic data, but also against CIFAR
 {: refdef}
 <em>Linear interpolation in latent space $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset. $$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
 
-<em>Source of the cover image: https://www.saatchiart.com</em>
 <em>All the figures are taken from the publications I refer to in my blog post<em>
+ 
+<em>Source of the cover image: https://www.saatchiart.com</em>
+
 
 
