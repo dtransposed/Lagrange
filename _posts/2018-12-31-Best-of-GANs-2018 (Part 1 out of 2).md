@@ -99,7 +99,7 @@ The image generated purely by $$\textbf{z}_1$$ is known as the destination. It i
 
 ![alt text](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/ezgif-1-c33c0bda86f7.gif "Example")
 <em> What I find really amazing - this framework can be further applied to different datasets, such as images of cars and bedrooms</em>
-
+<img src="https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/ezgif-1-c33c0bda86f7.gif" width="40" height="40" />
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
 ### Details
