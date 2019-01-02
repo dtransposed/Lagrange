@@ -84,12 +84,6 @@ To sum up, while the explicit noise input may be viewed as a "seed" for the gene
 
 ### Results:
 
-The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://arxiv.org/abs/1710.10196). While they hold on to the majority of the architecture and hyperparameters, the generator is being "upgraded" according to the new design. The most impressive feature of the paper is style mixing. 
-
-{:refdef: style="text-align: center;"}
-![alt text](https://cdn-images-1.medium.com/max/1600/1*BU2GnLJF1AcrkhvbCHdppw.jpeg){:height="100%" width="100%"}
-{: refdef}
-
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
