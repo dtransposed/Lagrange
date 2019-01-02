@@ -27,7 +27,11 @@ This research makes a very important step towards understanding GANs. It allows 
 
 ### The method:
 
-A generator $$G$$ can be viewed as a mapping from a latent vector $$\textbf{z}$$ to an generated image $$\textbf{x} = G(\textbf{z})$$ . Our goal is to understand the $$\textbf{r}$$, an internal representation, which is an output from particular layer of the generator $$G$$. We would like to inspect  $$\textbf{r}$$ closely, with respect to objects of the class $$c$$. We know that $$\textbf{r}$$ contains an encoded information about the generation of those particular objects. Our goal is to understand how is this information encoded internally. The authors claim that there is a way to extract those units from $$\textbf{r}$$, which are being responsible for generation of class $$c$$ objects.
+A generator $$G$$ can be viewed as a mapping from a latent vector $$\textbf{z}$$ to an generated image $$\textbf{x} = G(\textbf{z})$$ . Our goal is to understand the $$\textbf{r}$$, an internal representation, which is an output from particular layer of the generator $$G$$.
+
+$$\textbf{x}=G(\textbf{z})=f(\textbf{r})$$
+
+We would like to inspect  $$\textbf{r}$$ closely, with respect to objects of the class $$c$$. We know that $$\textbf{r}$$ contains an encoded information about the generation of those particular objects. Our goal is to understand how is this information encoded internally. The authors claim that there is a way to extract those units from $$\textbf{r}$$, which are being responsible for generation of class $$c$$ objects.
 
 $$\textbf{r}_{\mathbb{U},P} = (\textbf{r}_{U,P},\textbf{r}_{\bar{U},P})$$
 
