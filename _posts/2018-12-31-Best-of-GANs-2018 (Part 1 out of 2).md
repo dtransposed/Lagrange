@@ -58,31 +58,39 @@ The paper has been submitted on 12.12.2018. The authors assure that the code is 
 
 This work proposes an alternative view on GAN framework. More specifically, it draws inspiration from the style-transfer design to create a generator architecture, which can learn the difference between high-level attributes (such as age, identity when trained on human faces or background, camera viewpoint, style for bed images) and stochastic variation (freckles, hair details for human faces or colours, fabrics when trained on bed images) in the generated images. Not only it learns to separate those attributes automatically, but it also allows us to control the synthesis in a very intuitive manner.
 
-[![](http://img.youtube.com/vi/kSLJriaOumA/1.jpg)](http://www.youtube.com/watch?v=kSLJriaOumA "A Style-Based Generator Architecture for Generative Adversarial Networks")
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <em>Supplementary video with the overview of the results.</em>
 
 ### The method:
+
+{:refdef: style="text-align: center;"}
+![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/3.png){:height="100%" width="100%"}
+{: refdef}
+<em>Traditional GAN architecture (left) vs Style-based generator (left). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermidiate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
 
 In the classical GAN approach, the generator takes some latent code as an input and outputs an image, which belongs to the distribution it has learned during the training phase. The authors depart from this design by creating a style-based generator, comprised of two elements: 
 1. A fully connected network, which represents the non-linear mapping $$f:\mathcal{Z} \rightarrow \mathcal{W}$$ 
 2. A synthesis network $$g$$. 
 
 __Fully connected network__ - By transforming a normalized latent vector $$\textbf{z} \in \mathcal{Z}$$, we obtain an intermediate latent vector $$\textbf{w} = f(\textbf{z})$$. The intermidiate latent space $$\mathcal{W}$$ effectively controls the style of the generator. As a side note, the authors make sure to avoid sampling from areas of low density of $$\mathcal{W}$$. While this may cause loss of variation in $$\textbf{w}$$, it is said to ultimately result in better average image quality. 
-Now, a latent vector $$\textbf{w}$$ sampled from intermidiate latent space is being fed into the block 'A' (learned affine transform) and translated into a style $$\textbf{y} =(\textbf{y}_{s},\textbf{y}_{b})$$. The style is finally injected into the synthesis network through [adaptive instance normalization](https://arxiv.org/abs/1703.06868) (AdaIN) at each convolution layer. The AdaIN operation is defined as:
+Now, a latent vector $$\textbf{w}$$ sampled from intermidiate latent space is being fed into the block "A" (learned affine transform) and translated into a style $$\textbf{y} =(\textbf{y}_{s},\textbf{y}_{b})$$. The style is finally injected into the synthesis network through [adaptive instance normalization](https://arxiv.org/abs/1703.06868) (AdaIN) at each convolution layer. The AdaIN operation is defined as:
 
 $$AdaIN(\textbf{x}_i,\textbf{y})=\textbf{y}_{s,i}\frac{\textbf{x}_i-\mu(\textbf{x}_i)}{\sigma(\textbf{x}_i)}+\textbf{y}_{b,i}$$
 
 __Synthesis network__ - AdaIN operation alters each feature map $$\textbf{x}_{i}$$ by normalizing it, and then scaling and shifting using the components from the style $$\textbf{y}$$. Finally, the feature maps of the generator are also being fed a direct means to generate stochastic details - explicit noise input - in the form of single-channel images containing uncorrelated Gaussian noise.
 
-To sum up, while the explicit noise input may be viewed as a 'seed' for the generation process in the synthesis network, the latent code sampled from $$\mathcal{W}$$ attempts to inject a certain style to an image. I think that the most interesting part of the method is, that we can control how this style may actually affect our image.
-
+To sum up, while the explicit noise input may be viewed as a "seed" for the generation process in the synthesis network, the latent code sampled from $$\mathcal{W}$$ attempts to inject a certain style to an image.
 
 ### Results:
 
 The authors alter the famous [Progressive GAN setup](https://arxiv.org/abs/1710.10196), but they hold on to the majority of the architecture and hyperparameters.
 
 __Style mixing__ - I think that my favourite part of the paper is the description of style mixing operation. The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
+
+{:refdef: style="text-align: center;"}
+![alt text](https://cdn-images-1.medium.com/max/1600/1*BU2GnLJF1AcrkhvbCHdppw.jpeg){:height="100%" width="100%"}
+{: refdef}
+
 The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being <em>nurtured</em> with the latent code of the source. This way, we can decide to what extent we want to affect the destination image. We may want to control the high level aspects (such as hair style, glasses or age), smaller scale facial features (hair style details, eyes) or just change small details such as hair colour, tone of skin complexion or skin structure. This property of the generator is not stunning visually, but also serves as a form of regularizaiton (the network learns that styles are uncorrelated). What I find really amazing are also the results of this operation applied to different datasets, such as images of cars, bedrooms or cats.
 
 Stochastic variation
