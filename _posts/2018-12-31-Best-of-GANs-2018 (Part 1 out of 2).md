@@ -55,7 +55,7 @@ By setting some units to the fixed mean value e.g. for doors, we can make sure t
 The paper has been submitted on 12.12.2018. The authors assure that the code is to be released soon. Additionally, for readers who would like to read more about this method, but do not want to read the paper itself, there has been a [great summary of the paper](https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431) published in a form of a blog post just two days ago.
 
 ### Main idea:
-[![](http://img.youtube.com/vi/kSLJriaOumA/1.jpg)](http://www.youtube.com/watch?v=kSLJriaOumA "A Style-Based Generator Architecture for Generative Adversarial Networks")
+[![](http://img.youtube.com/vi/kSLJriaOumA/1.jpg)](http://www.youtube.com/watch?v=kSLJriaOumA "A Style-Based Generator Architecture for Generative Adversarial Networks"){:height="70%" width="100%"}
 
 This work proposes an alternative view on GAN framework. More specifically, it draws inspiration from the style-transfer design to create a generator architecture, which can learn the difference between high-level attributes (such as age, identity when trained on human faces or background, camera viewpoint, style for bed images) and stochastic variation (freckles, hair details for human faces or colours, fabrics when trained on bed images) in the generated images. Not only it learns to separate those attributes automatically, but it also allows us to control the synthesis in a very intuitive manner.
 
