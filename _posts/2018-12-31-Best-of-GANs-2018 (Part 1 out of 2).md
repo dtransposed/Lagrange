@@ -52,7 +52,7 @@ By setting some units to the fixed mean value e.g. for doors, we can make sure t
 ## [A Style-Based Generator Architecture for Generative Adversarial Networks](https://arxiv.org/pdf/1812.04948.pdf)
 
 ### Details
-The paper has been submitted on 12.12.2018. The authors assure that the code is to be released soon. Additionally, for readers who would like to read more about this method but do not want to read the paper itself, there has been a [great summary of the paper](https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431) published in a form of a blog post just two days ago.
+The paper has been submitted on 12.12.2018. The authors assure that the code is to be released soon. Additionally, for people who would like to read more about this method but do not want to read the paper itself, there has been a [nice summary](https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431) published in a form of a blog post just two days ago.
 
 ### Main idea:
 
@@ -67,7 +67,7 @@ This work proposes an alternative view on GAN framework. More specifically, it d
 ![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/3.png){:height="100%" width="100%"}
 {: refdef}
 
-<em>Traditional GAN architecture (left) vs Style-based generator (left). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermidiate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
+<em>Traditional GAN architecture (left) vs Style-based generator (right). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermidiate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
 
 In the classical GAN approach, the generator takes some latent code as an input and outputs an image, which belongs to the distribution it has learned during the training phase. The authors depart from this design by creating a style-based generator, comprised of two elements: 
 1. A fully connected network, which represents the non-linear mapping $$f:\mathcal{Z} \rightarrow \mathcal{W}$$ 
@@ -84,13 +84,14 @@ To sum up, while the explicit noise input may be viewed as a "seed" for the gene
 
 ### Results:
 
-The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://arxiv.org/abs/1710.10196). While they hold on to the majority of the architecture and hyperparameters, the generator is being "upgraded" according to the new design. The most impressive feature of the paper is style mixing. The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
+The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://arxiv.org/abs/1710.10196). While they hold on to the majority of the architecture and hyperparameters, the generator is being "upgraded" according to the new design. The most impressive feature of the paper is style mixing. 
 
 {:refdef: style="text-align: center;"}
 ![alt text](https://cdn-images-1.medium.com/max/1600/1*BU2GnLJF1AcrkhvbCHdppw.jpeg){:height="100%" width="100%"}
 {: refdef}
 <em> Visualising the effects of style mixing. By having the face produced by one latent code (source), we can override a subset of the style of another one (destination). Here, we override layers corresponding to coarse spatial resolutions (row resolution layers) thus changing high-level features of the destination image.
-
+  
+The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
 The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being <em>nurtured</em> with the latent code of the source. This way, we can decide to what extent we want to affect the destination image. We may want to control the high level aspects (such as hair style, glasses or age), smaller scale facial features (hair style details, eyes) or just change small details such as hair colour, tone of skin complexion or skin structure. This property of the generator is not stunning visually, but also serves as a form of regularizaiton (the network learns that styles are uncorrelated). What I find really amazing are also the results of this operation applied to different datasets, such as images of cars, bedrooms or cats.
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
