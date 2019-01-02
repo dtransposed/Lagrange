@@ -18,7 +18,7 @@ Inspired by this [very modest reddit discussion](https://www.reddit.com/r/Machin
 ## [GAN Dissection: Visualizing and Understanding Generative Adversarial Networks](https://arxiv.org/pdf/1811.10597.pdf)
 
 ### Details
-The paper has been submitted on 26 Nov 2018. The authors have created a great [project website with interactive demo](https://gandissect.csail.mit.edu/).
+The paper has been submitted on 26.11.2018. The authors have created a great [project website with interactive demo](https://gandissect.csail.mit.edu/).
 
 ### Main idea:
 
@@ -85,27 +85,30 @@ disentaglement
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
+### Details
+The paper has been submitted on 1.03.2018.
+
 ### Main idea:
 In the classical setting GANs are being trained by alternately updating a generator and discriminator using back-propagation. This two-player minmax game is being implemented by utilizing the cross-entropy mechanism in the objective function. 
-The authors of E-GAN propose the alternative GAN framework which is based on evolutionary algorithms. They attempt to restate loss function in form of an evolutionary problem. The task of the generator is to undergo constant mutation under the influence of the discriminator. According to the principle of <em>“survival of the fittest”</em>, one hopes that the last generation of generators would <em>“evolve”</em> in such a way, that it learns the correct distribution of training samples.
+The authors of E-GAN propose the alternative GAN framework which is based on evolutionary algorithms. They restate loss function in form of an evolutionary problem. The task of the generator is to undergo constant mutation under the influence of the discriminator. According to the principle of "survival of the fittest", one hopes that the last generation of generators would "evolve" in such a way, that it learns the correct distribution of training samples.
 
 ### The method:
-An evolutionary algorithm attempts to evolve a population of generators in a given environment (here, the discriminator). Each individual from the population represents a possible solution in the parameter space of the generative network. The evolution process boils down to three steps:
 
 {:refdef: style="text-align: center;"}
 ![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/1.jpg){:height="100%" width="100%"}
 {: refdef}
-<em>The original GAN framework vs E-GAN framework.</em>
+<em>The original GAN framework (left) vs E-GAN framework (right). In E-GAN framework a population of generators $$G_{\theta}$$ evolves in a dynamic environment - the descriminator $$D$$. The algorithm involves three phases: variation, evaluation and selection. The best offsprings are kept for next iteration.</em>
 
+An evolutionary algorithm attempts to evolve a population of generators in a given environment (here, the discriminator). Each individual from the population represents a possible solution in the parameter space of the generative network. The evolution process boils down to three steps:
 
 1. Variation: A generator individual $$G_{\theta}$$ produces its children $$G_{\theta_{0}}, G_{\theta_{1}}, G_{\theta_{2}}, ...$$ by modifying itself according to some mutation properties.
 2. Evaluation: Each child is being evaluated using a fitness function, which depends on the current state of the discriminator
-3. Selection: We assess each child and decide if it did good enough on the evaluation. If yes, it is being kept, otherwise we discard it.
+3. Selection: We assess each child and decide if it did good enough in terms of the fitness function. If yes, it is being kept, otherwise we discard it.
 
-I have mentioned two concepts which should be discussed in more detail: mutation properties and a fitness function.
+Those steps involve two concepts which should be discussed in more detail: mutations and a fitness function.
 
 __Mutations__ - those are the changes introduced to the children in the variation step. There are inspired by original GAN training objectives. The authors have distinguished three, the most effective, types of mutations. Those were minmax mutation (which encourages minimization of Jensen-Shannon divergence), heuristic mutation (which adds inverted Kullback-Leibler divergence term) and least-squares mutation (inspired by [LSGAN](https://arxiv.org/abs/1611.04076)).
-__Fitness__ function - in evolutionary algorithm tell us how close a given  child is to achieving the set aim. Here, it is a sum of quality fitness score and diversity fitness score. The former makes sure, that generator comes up with outputs which can fool the discriminator, while the latterpays attention to the diversity of generated samples. 
+__Fitness function__ - in evolutionary algorithm a fitness function tells us how close a given child is to achieving the set aim. Here, the fitness function consists of two elements: quality fitness score and diversity fitness score. The former makes sure, that generator comes up with outputs which can fool the discriminator, while the latter pays attention to the diversity of generated samples. 
 So one hand, the offsprings are being taught not only to approximate the original distribution well, but also to remain diverse and avoid the mode collapse trap.
 
 The authors claim that their approach tackles multiple, well-known problems. E-GANs not only do better in terms of stability and suppressing mode collapse, it also alleviates the burden of careful choice of hyperparameters and architecture (critical for the convergence). 
@@ -117,5 +120,5 @@ The algorithm has been tested not only on synthetic data, but also against CIFAR
 {:refdef: style="text-align: center;"}
 ![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/2.jpg){:height="100%" width="100%"}
 {: refdef}
-<em>Linear interpolating in latent space. The generator has learned distribution of images from CelebA dataset.</em>
+<em>Linear interpolating in latent space - $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset.$$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.while
 And the last observation - it is really interesting, that it is enough to preserve only one child in every selection step to successfully traverse the parameter space towards the optimal solution.
