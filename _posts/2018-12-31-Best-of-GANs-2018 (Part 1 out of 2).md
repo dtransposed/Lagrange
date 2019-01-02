@@ -117,8 +117,5 @@ Finally, the authors claim the E-GAN converges faster that the conventional GAN 
 ### Results:
 The algorithm has been tested not only on synthetic data, but also against CIFAR-10 dataset and Inception score. The authors have modified the popular GAN methods such as [DCGAN](https://arxiv.org/abs/1511.06434) and tested them on real-life datasets. The results indicate, that  E-GAN can be trained to generate diverse, high-quality images from the target data distribution. According to the authors, it is enough to preserve only one child in every selection step to successfully traverse the parameter space towards the optimal solution. I find this property of E-GAN really interesting. Moreover, by scrutinizing the space continuity, we can discover, that E-GAN has indeed learned a meaningful projection from latent noisy space to image space. By interpolating between latent vectors we can obtain generated images which smoothly change semantically meaningful face attributes.
 
-{:refdef: style="text-align: center;"}
-![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/2.jpg){:height="100%" width="100%"}
-{: refdef}
-<em>Linear interpolating in latent space - $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset.$$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
+
 
