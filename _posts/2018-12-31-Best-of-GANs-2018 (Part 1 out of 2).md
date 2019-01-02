@@ -98,7 +98,7 @@ The image generated purely by $$\textbf{z}_1$$ is known as the destination. It i
 - fine resolution ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure.
 
 {:refdef: style="text-align: center;"}
-![alt text](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/ezgif-1-c33c0bda86f7.gif){:height="100%" width="100%"}
+![alt text](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/ezgif-1-c33c0bda86f7.gif){:height="70%" width="70%"}
 {: refdef}
 <em> What I find really amazing - this framework can be further applied to different datasets, such as images of cars and bedrooms</em>
 
