@@ -54,10 +54,11 @@ __Intervention__ - at this point we have identified the relevant classes. Now, w
 
 ### Results:
 
-One reason it is important to understand the internal concepts of a network is that the insights can help us improve the network's behavior.
+The results show that we are on a good track to understand the internal concepts of a network is that the insights can help us improve the network's behavior. Knowing which features of the image come from which part of the neural network is very valuable for interpretation, commercial use and further research.
 
-For example, a GAN will sometimes generate terribly unrealistic images, and the cause of these mistakes has been previously unknown. We have identified that these mistakes can be triggered by specific sets of neurons that cause the visual artifacts.
-By identifying and silencing those neurons, we can improve the the quality of the output of a GAN. 
+For example, this research gives us a tool to remove a specific class of objects from the image.
+
+One problem which could be tackled are visual artifacts in the generated images. Even a well-trained GAN can sometimes generated a terribly unrealistic image and the causes of these mistakes have been previously unknown. Now we may related those mistakes can with sets of neurons that cause the visual artifacts. By identifying and supressing those neurons, one can improve the the quality of the generated images. 
 
 
 By setting some units to the fixed mean value e.g. for doors, we can make sure that the doors will be present somewhere in the image. Naturally, this cannot violate the learned statistics of the distribution (we cannot force doors to appear in the sky). Another limitation comes from the fact, that some objects are so inherently linked to some locations, that it is impossible to remove them from the image. As an example: one cannot simply remove chairs from a conference hall, only reduce their density or size. 
