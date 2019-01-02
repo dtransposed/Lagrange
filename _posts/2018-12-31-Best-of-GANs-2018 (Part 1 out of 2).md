@@ -95,7 +95,7 @@ The novel generator architecture gives the ability to inject different styles to
 The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being "nurtured" with the latent code of the source. The lower the resolution corresponding to the particular layer, the bigger the influence of the source on the destination. This way, we can decide to what extent we want to affect the destination image:
 - coarse spatial resolution ($$4^2 - 8^2$$) - high level aspects (such as hair style, glasses or age)
 - middle styles resolution ($$16^2 - 32^2$$) - smaller scale facial features (hair style details, eyes)
-- fine resolution ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure.
+- fine resolution ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
@@ -138,6 +138,5 @@ The algorithm has been tested not only on synthetic data, but also against CIFAR
 <em>Linear interpolation in latent space $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset. $$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
 
 <em>Source of the cover image: https://www.saatchiart.com</em>
-
 
 
