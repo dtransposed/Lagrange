@@ -89,10 +89,18 @@ The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://ar
 {:refdef: style="text-align: center;"}
 ![alt text](https://cdn-images-1.medium.com/max/1600/1*BU2GnLJF1AcrkhvbCHdppw.jpeg){:height="100%" width="100%"}
 {: refdef}
-<em> Visualising the effects of style mixing. By having the face produced by one latent code (source), we can override a subset of the style of another one (destination). Here, we override layers corresponding to coarse spatial resolutions (row resolution layers) thus changing high-level features of the destination image.
+<em> Visualising the effects of style mixing. By having an image produced by one latent code (source), we can override a subset of the features of another image (destination). Here, we override layers corresponding to coarse spatial resolutions (row resolution feature maps). This way we influence high-level traits of the destination image.
   
 The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
-The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being <em>nurtured</em> with the latent code of the source. This way, we can decide to what extent we want to affect the destination image. We may want to control the high level aspects (such as hair style, glasses or age), smaller scale facial features (hair style details, eyes) or just change small details such as hair colour, tone of skin complexion or skin structure. This property of the generator is not stunning visually, but also serves as a form of regularizaiton (the network learns that styles are uncorrelated). What I find really amazing are also the results of this operation applied to different datasets, such as images of cars, bedrooms or cats.
+The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution image of great quality. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being "nurtured" with the latent code of the source. The lower the resolution corresponding to the particular layer, the bigger the influence of the source on the destination. This way, we can decide to what extent we want to affect the destination image:
+- coarse spatial resolution ($$4^2 - 8^2$$) - high level aspects (such as hair style, glasses or age)
+- middle styles resolution ($$16^2 - 32^2$$) - smaller scale facial features (hair style details, eyes)
+- fine resolution ($$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure.
+
+{:refdef: style="text-align: center;"}
+![alt text](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/ezgif-1-c33c0bda86f7.gif){:height="100%" width="100%"}
+{: refdef}
+<em> What I find really amazing - this framework can be further applied to different datasets, such as images of cars and bedrooms</em>
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
