@@ -39,7 +39,7 @@ Here, $$\mathbb{U}=(U,\bar{U})$$ is a set of all units in the particular layer, 
 The question is, how to perform this separation? The authors propose two steps which are a tool to understand the GAN <em>black-box</em>. Those are dissection and intervention.
 
 {:refdef: style="text-align: center;"}
-![alt text](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/4/6.png)
+![alt text](/assets/4/6.png)
 {: refdef}
 <em> Dissection measures agreement between a unit $$u$$ and a class $$c$$</em>
 
