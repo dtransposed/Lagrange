@@ -63,6 +63,12 @@ This work proposes an alternative view on GAN framework. More specifically, it d
 
 ### The method:
 
+{:refdef: style="text-align: center;"}
+![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/3.png){:height="100%" width="100%"}
+{: refdef}
+
+<em>Traditional GAN architecture (left) vs Style-based generator (left). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermidiate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
+
 In the classical GAN approach, the generator takes some latent code as an input and outputs an image, which belongs to the distribution it has learned during the training phase. The authors depart from this design by creating a style-based generator, comprised of two elements: 
 1. A fully connected network, which represents the non-linear mapping $$f:\mathcal{Z} \rightarrow \mathcal{W}$$ 
 2. A synthesis network $$g$$. 
