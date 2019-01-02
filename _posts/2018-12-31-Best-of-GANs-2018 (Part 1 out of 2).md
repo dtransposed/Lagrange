@@ -81,7 +81,7 @@ The paper has been submitted on 12.12.2018. The authors assure that the code is 
 
 This work proposes an alternative view on GAN framework. More specifically, it draws inspiration from the style-transfer design to create a generator architecture, which can learn the difference between high-level attributes (such as age, identity when trained on human faces or background, camera viewpoint, style for bed images) and stochastic variation (freckles, hair details for human faces or colours, fabrics when trained on bed images) in the generated images. Not only it learns to separate those attributes automatically, but it also allows us to control the synthesis in a very intuitive manner.
 
-<iframe width="360" height="315" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="480" height="315" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <em>Supplementary video with the overview of the results.</em>
 
 ### The method:
