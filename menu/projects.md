@@ -1,11 +1,12 @@
 ---
 layout: page
 title: Projects
-image: imageedit_6_6259696792.jpg
 --- 
+The growing list of my projects and other pieces of work I was involved in.  
 {:refdef: style="text-align: center;"}
-![My Image](/assets/me_blog.jpg){:height="400px" width="400px"}
+![My Image](/assets/e1aa5101d18cc5ed9e9b22670c7794b9_original.jpg.jpg){:height="300px" width="800px"}
 {: refdef}
-Hello, my name is Damian and I am a M.Sc student, currently based in Munich, Germany. After completing my degree in the field of mechanical engineering I have decided to expand my area of interests to machine learning, data science and AI. 
-This website is designed to be my personal testing grounds for various projects, assignments, observations and reflexions.   
-After hours, I am a lifelong learner, fitness enthusiast and self-proclaimed food aficionado.
+
+<em>__2019__</em>
+1. [__Seminar: Recent Advances in 3D Computer Vision__](https://github.com/dtransposed/TUM-3D_CV-Seminar) - Materials for the talk I gave on the research paper "Probabilistic Data Association for Semantic SLAM" by Bowman et al. (2017)
+
