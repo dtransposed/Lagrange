@@ -4,7 +4,7 @@ title: Projects
 --- 
 The growing list of my projects and other pieces of work I was involved in.  
 {:refdef: style="text-align: center;"}
-![My Image](/assets/e1aa5101d18cc5ed9e9b22670c7794b9_original.jpg.jpg){:height="300px" width="800px"}
+![My Image](/assets/e1aa5101d18cc5ed9e9b22670c7794b9_original.jpg){:height="300px" width="800px"}
 {: refdef}
 
 <em>__2019__</em>
