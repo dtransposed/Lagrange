@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The best of GAN papers in the year 2018 part2"
+title: "The best of GAN papers in the year 2018 part 2"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [computer vision, neural networks, generative adversarial networks]
