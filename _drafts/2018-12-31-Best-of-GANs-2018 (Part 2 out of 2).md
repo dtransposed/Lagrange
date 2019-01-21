@@ -6,14 +6,14 @@ categories: blog
 tags: [computer vision, neural networks, generative adversarial networks]
 image: gan1.jpg
 ---
-The cover image by courtesy of [Juli Odomo](https://www.odomojuli.com)
+The cover image by courtesy of [Juli Odomo](https://www.odomojuli.com).
 
-As a follow up to my previous post, where I was briefly discussing three major contributions to the GANs (Generative Adversarial Networks) 
-domain, I am happy to present another three, interesting research papers from 2018. Once again, the order is purely random and the choice
+As a follow up to my previous post, where I discussed three major contributions to GANs (Generative Adversarial Networks) 
+domain, I am happy to present another three interesting research papers from 2018. Once again, the order is purely random and the choice
 very subjective.
 
 1. __Large Scale GAN Training for High Fidelity Natural Image Synthesis__ - DeepMind's BigGAN uses the power of hundreds of cores of a Google TPU v3 Pod to create high-resolution images on a large scale.
-2. __The relativistic discriminator: a key element missing from standard GAN__ - the author has came up on idea how to improve the fundamentals of GANs, by introducting an improved discriminator.
+2. __The relativistic discriminator: a key element missing from standard GAN__ - the author proposes to improve the fundamentals of GANs by introducing an improved discriminator.
 3. __empty__ - 
 
 
@@ -21,46 +21,39 @@ very subjective.
 ## [Large Scale GAN Training for High Fidelity Natural Image Synthesis](https://arxiv.org/pdf/1809.11096.pdf)
 
 ### Details
-The paper has been submitted on 28.09.2018. You can [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Coolab!.
+The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Coolab!.
 
 ### Main idea:
 
-Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress in GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generates images as well as their diversity. Using the example of [ImageNet dataset](http://www.image-net.org/) and using 128 by 128 images as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar $$IS = 166.3$$! How is this possible?
-The authors show how GANs can benefit from training at large scale. Leveraging the available computational power allows for dramaticle boost of networks' performance, while keeping their training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already described in part 1 of my summary (__A Style-Based Generator Architecture for Generative Adversarial Networks__).
+Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress of GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generated images as well as their diversity. Using the example of 128 by 128 images from [ImageNet dataset](http://www.image-net.org/) as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar at $$IS = 166.3$$! How is this possible?
+The authors show how GANs can benefit from training at large scale. Leveraging the immense computational resources allows for dramatic boost of performance, while keeping the training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already discussed in part 1 of my summary (publication __A Style-Based Generator Architecture for Generative Adversarial Networks__).
 
 ### The method:
 
-In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from but using the massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of parameter number with respect to prior art) and larger batches (increase by almost order of magnitude). This approach turns out to be very beneficial:
-1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the descriminator and  thus providing better gradients to the discriminator and gradients.
+In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of parameter number with respect to prior art) and larger batches (increase by almost order of magnitude). This turns out to be very beneficial:
+1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the discriminator and generator benefit from better gradients.
 2. Doubling the width (number of channels) in every layer increases the capacity of the model and thus contributes to much better performance. Interestingly, increasing the depth has negative influence on the performance.
-3. Additional use of class embeddings accelerates the training procedure. Class embeddings mean conditioning the output with respect to the class labels of the generated image.
-4. Finally, the method also benefits from hierarchical latent spaces - injecting the noise vector $$\textbf{z}$$ into multiple layers rather then at the initial layer. This not only improves performance of the network, but also accelerates the training process.
-
+3. Additional use of class embeddings accelerates the training procedure. Class embeddings mean conditioning the output of the generator on dataset's class labels.
+4. Finally, the method also benefits from hierarchical latent spaces - injecting the noise vector $$\textbf{z}$$ into multiple layers rather then solely at the initial layer. This not only improves performance of the network, but also accelerates the training process.
 
 ### Results:
 
-Large scale training allows for superior quality of generated images. However, it comes with its own challenges, such as instability. The authors show, that even though the stability can be enforced through regularization methods (especially on the discriminator), the quality of the networks is bound to suffer. The clever workaround is to relax the constraints on the weights and allow for training collapse at the later stages. Here, we may apply the early stopping technique, to pick the set of weights just before the collapse. Those weights are usually sufficiently good to achieve impressive results.
+Large scale training allows for superior quality of generated images. However, it comes with its own challenges, such as instability. The authors show, that even though the stability can be enforced through regularization methods (especially on the discriminator), the quality of the network is bound to suffer. The clever workaround is to relax the constraints on the weights and allow for training collapse at the later stages. Here, we may apply the early stopping technique to pick the set of weights just before the collapse. Those weights are usually sufficiently good to achieve impressive results.
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/1.png)
 {: refdef}
-<em> One generated image and its nearest neighbors from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
+<em> One generated image and its nearest neighbours from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/2.png)
 {: refdef}
-<em> Great interpolation ability in both class and latent space confirms that the model does not simply memorize data. Is is capable of coming up with its own, credible inventions!</em> 
+<em> Great interpolation ability in both class and latent space confirms that the model does not simply memorize data. It is capable of coming up with its own, incredible inventions!</em> 
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/3.png)
 {: refdef}
-<em> While it may be tempting to cherry-pick the best results, authors of the paper also comment on the failure cases. While easy classes a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive we are to the given class. While small flaws in the landscape image are unlikely to draw our attention, we are very sensitive to "weird" human faces or poses. 
-
-
-
-
-
-
+<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
 
 ## [A Style-Based Generator Architecture for Generative Adversarial Networks](https://arxiv.org/pdf/1812.04948.pdf)
 
