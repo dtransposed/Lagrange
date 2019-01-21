@@ -14,6 +14,7 @@ very subjective.
 
 1. __Large Scale GAN Training for High Fidelity Natural Image Synthesis__ - DeepMind's BigGAN uses the power of hundreds of cores of a Google TPU v3 Pod to create high-resolution images on a large scale.
 2. __The relativistic discriminator: a key element missing from standard GAN__ - the author has came up on idea how to improve the fundamentals of GANs, by introducting an improved discriminator.
+3. __empty__ - 
 
 
 
@@ -24,54 +25,41 @@ The paper has been submitted on 28.09.2018. You can [run BigGAN](https://colab.r
 
 ### Main idea:
 
-GANs have undoubtedly proven how powerful the deep neural networks are. There is something beautiful about the way a machine learns to generate stunning, high resolution images as if it understood the world like we do. But, just like the rest of those wonderful statistical models, their biggest flaw is the lack of interpretability. 
-This research makes a very important step towards understanding GANs. It allows us to find units in the generator that a "responsible" for generation of certain objects, which belong to some class $$c$$. The authors claim, that we can inspect a layer of the generator and find a subset of it's units which cause the generation of $$c$$ objects in the generated image. The authors search for the set of "causal" units for each class by introducing two steps: dissection and intervention. Additionally, this is probably the first work, which provides systematic analysis for understanding of the GANs' internal mechanisms.
+Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress in GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generates images as well as their diversity. Using the example of [ImageNet dataset](http://www.image-net.org/) and using 128 by 128 images as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar $$IS = 166.3$$! How is this possible?
+The authors show how GANs can benefit from training at large scale. Leveraging the available computational power allows for dramaticle boost of networks' performance, while keeping their training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already described in part 1 of my summary (__A Style-Based Generator Architecture for Generative Adversarial Networks__).
 
 ### The method:
 
-A generator $$G$$ can be viewed as a mapping from a latent vector $$\textbf{z}$$ to an generated image $$\textbf{x} = G(\textbf{z})$$ . Our goal is to understand the $$\textbf{r}$$, an internal representation, which is an output from particular layer of the generator $$G$$.
+In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from but using the massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of parameter number with respect to prior art) and larger batches (increase by almost order of magnitude). This approach turns out to be very beneficial:
+1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the descriminator and  thus providing better gradients to the discriminator and gradients.
+2. Doubling the width (number of channels) in every layer increases the capacity of the model and thus contributes to much better performance. Interestingly, increasing the depth has negative influence on the performance.
+3. Additional use of class embeddings accelerates the training procedure. Class embeddings mean conditioning the output with respect to the class labels of the generated image.
+4. Finally, the method also benefits from hierarchical latent spaces - injecting the noise vector $$\textbf{z}$$ into multiple layers rather then at the initial layer. This not only improves performance of the network, but also accelerates the training process.
 
-$$\textbf{x}=G(\textbf{z})=f(\textbf{r})$$
-
-We would like to inspect  $$\textbf{r}$$ closely, with respect to objects of the class $$c$$. We know that $$\textbf{r}$$ contains an encoded information about the generation of those particular objects. Our goal is to understand how is this information encoded internally. The authors claim that there is a way to extract those units from $$\textbf{r}$$, which are being responsible for generation of class $$c$$ objects.
-
-$$\textbf{r}_{\mathbb{U},P} = (\textbf{r}_{U,P},\textbf{r}_{\bar{U},P})$$
-
-Here, $$\mathbb{U}=(U,\bar{U})$$ is a set of all units in the particular layer, $$U$$ are units of interest (causal units) and $$P$$ are pixel locations.
-The question is, how to perform this separation? The authors propose two steps which are a tool to understand the GAN <em>black-box</em>. Those are dissection and intervention.
-
-{:refdef: style="text-align: center;"}
-![alt text](https://gandissect.csail.mit.edu/img/framework-d2.svg)
-{: refdef}
-<em> Dissection measures agreement between a unit $$u$$ and a class $$c$$</em>
-
-__Dissection__ - we want to identify those interesting classes, which have an explicit representation in $$\textbf{r}$$. This is done by basically comparing two images. We obtain the first image by computing $$\textbf{x}$$, and then running in through a semantic segmentation network. This would return pixel locations $$\textbf{s}_{c}(\textbf{x})$$ corresponding to the class of interest (e.g. trees). The second image is being generated by taking $$\textbf{r}_{u,P}$$, upsampling it so it matches the dimension of $$\textbf{s}_c(\textbf{x})$$ and then thresholding it to have a hard decision on which pixels are being "lit" by this particular unit. Finally we calculate spatial agreement between both outputs. The higher the value, the higher the causal effect of a unit $$u$$ on a class $$c$$. By performing this operation for every unit, we should eventually find out, which classes have an explicit representation in the structure of $$\textbf{r}$$.
-
-{:refdef: style="text-align: center;"}
-![alt text](https://gandissect.csail.mit.edu/img/framework-i2.svg)
-{: refdef}
-<em> Intervention measures the causal effect of a set of units U on a class $$c$$</em>
- 
-__Intervention__ - at this point we have identified the relevant classes. Now, we attempt to find the best separation for every class. This means that on one hand we ablate (suppress) unforced units, hoping that the class of interest would disappear from the generated image. On the other hand, we amplify their influence of causal units on the generated image. This way we can learn how much they contribute to the presence of the class of interest $$c$$. Finally, we segment out the class $$c$$ from both images and make a comparison. The less agreement between the semantic maps, the better. This means that on one image we have completely ‘tuned out’ the influence of trees, while the second image contains solely a jungle.
 
 ### Results:
 
+Large scale training allows for superior quality of generated images. However, it comes with its own challenges, such as instability. The authors show, that even though the stability can be enforced through regularization methods (especially on the discriminator), the quality of the networks is bound to suffer. The clever workaround is to relax the constraints on the weights and allow for training collapse at the later stages. Here, we may apply the early stopping technique, to pick the set of weights just before the collapse. Those weights are usually sufficiently good to achieve impressive results.
 
 {:refdef: style="text-align: center;"}
-![alt text](/assets/4/7.png){:height="80%" width="80%"}
+![alt text](/assets/5/1.png)
 {: refdef}
-<em> a) images of churches generated by the Progressive GAN, b) given the pre-trained Progressive GAN we identify the units responsible for generation of class "trees", c) we can either suppress those units to "erase" trees from images..., d) amplify the density of trees in the image</em>
-
-The results show that we are on a good track to understand the internal concepts of a network. Those insights can help us improve the network's behavior. Knowing which features of the image come from which part of the neural network is very valuable for interpretation, commercial use and further research.
+<em> One generated image and its nearest neighbors from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
 
 {:refdef: style="text-align: center;"}
-![alt text](/assets/4/8.png)
+![alt text](/assets/5/2.png)
 {: refdef}
-<em> a) for debugging purposes, we can identify those units which are introducing artifacts... , b) and c) and turn them off to "repair" the GAN </em>
+<em> Great interpolation ability in both class and latent space confirms that the model does not simply memorize data. Is is capable of coming up with its own, credible inventions!</em> 
 
-One problem which could be tackled are visual artifacts in the generated images. Even a well-trained GAN can sometimes generate a terribly unrealistic image and the causes of these mistakes have been previously unknown. Now we may relate those mistakes with sets of neurons that cause the visual artifacts. By identifying and suppressing those units, one can improve the the quality of generated images. 
+{:refdef: style="text-align: center;"}
+![alt text](/assets/5/3.png)
+{: refdef}
+<em> While it may be tempting to cherry-pick the best results, authors of the paper also comment on the failure cases. While easy classes a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive we are to the given class. While small flaws in the landscape image are unlikely to draw our attention, we are very sensitive to "weird" human faces or poses. 
 
-By setting some units to the fixed mean value e.g. for doors, we can make sure that the doors will be present somewhere in the image. Naturally, this cannot violate the learned statistics of the distribution (we cannot force doors to appear in the sky). Another limitation comes from the fact, that some objects are so inherently linked to some locations, that it is impossible to remove them from the image. As an example: one cannot simply remove chairs from a conference hall, only reduce their density or size. 
+
+
+
+
 
 
 ## [A Style-Based Generator Architecture for Generative Adversarial Networks](https://arxiv.org/pdf/1812.04948.pdf)
