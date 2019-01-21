@@ -62,10 +62,9 @@ The paper has been submitted on 12.12.2018. The authors assure that the code is 
 
 ### Main idea:
 
-This work proposes an alternative view on GAN framework. More specifically, it draws inspiration from the style-transfer design to create a generator architecture, which can learn the difference between high-level attributes (such as age, identity when trained on human faces or background, camera viewpoint, style for bed images) and stochastic variation (freckles, hair details for human faces or colours, fabrics when trained on bed images) in the generated images. Not only it learns to separate those attributes automatically, but it also allows us to control the synthesis in a very intuitive manner.
+In standard generative adversarial networks, the discriminator $$D$$ estimates the probability of the input data being real or not. The generator $$G$$ tries to increase the probability that generated data is real. During training, in every iteration, we input two equal-sized batches of data into the discriminator: one batch comes from a real distribution $$\mathbb{P}$$, the other from fake distribution $$\mathbb{Q}$$. 
+This valuable piece of information, that half of the examined data comes from fake distribution is usually not conveyed in the algorithm. Additionally, in standard GAN framework, the generator attempts to make fake images look more real, but there is no notion that the generated images can be actually “more real” then real images. The author claims that those are the missing pieces, which should have been incorporated into standard GAN framework in the first place. Due to those limitations, it is suggested that training the generator should not only increase the probability that fake data is real but also decrease the probability that real data is real. This is also motivated by the IPM-based GANs, which actually benefit from the presence of relativistic discriminator.
 
-<iframe width="480" height="315" src="https://www.youtube.com/embed/kSLJriaOumA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<em>Supplementary video with the overview of the results.</em>
 
 ### The method:
 
