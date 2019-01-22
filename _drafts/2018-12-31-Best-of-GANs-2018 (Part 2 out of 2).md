@@ -83,12 +83,25 @@ sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x_f$ 
 sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{P}}C(x_{f})), & \text{if $x_r$ is fake}.
  \end{cases}$$
 
-This means that whenever the discriminator $$D\hat$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$D\hat$$ receives a image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without introducing quadratic time complexity of the algorythm. 
+This means that whenever the discriminator $$D\hat$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$D\hat$$ receives a image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without introducing quadratic time complexity of the algorithm. 
 
 
 ### Results:
 
-
+{:refdef: style="text-align: center;"}
+![alt text](/assets/5/4.png)
+{: refdef}
+<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r \text{is real|) = \sigma(C(x_r)))$$ 
+and RaD: P(x_r \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f))). $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
+I think that this example gives a very good intuitive understanding of implications coming along with relativistic disciminator.
+{:refdef: style="text-align: center;"}
+![alt text](/assets/5/5.png)
+{: refdef}
+<em>Artificially created cats (128x128 resolution), the output from RaLSGAN. Not only the standard LSGAN produces less realistic images, it  is also much more unstable.
+ 
+I have the impression that this paper is only an introduction to the idea of relativistic discriminator. The experiments indicate, that the approach may help with many problems such as stability, difficulty in creating plausible looking outputs. It may also accelerate the training speed. I really love the fact, that the author has questioned a very fundamental element of the puzzle. It is exciting to see, that even though this paper came out in June, there are already state-of-the-art publications which take advantage of relativistic discriminators. 
+ 
+ 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
 
 ### Details
@@ -100,34 +113,6 @@ The authors of E-GAN propose the alternative GAN framework which is based on evo
 
 ### The method:
 
-{:refdef: style="text-align: center;"}
-![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/1.jpg){:height="100%" width="100%"}
-{: refdef}
-<em>The original GAN framework (left) vs E-GAN framework (right). In E-GAN framework a population of generators $$G_{\theta}$$ evolves in a dynamic environment - the discriminator $$D$$. The algorithm involves three phases: variation, evaluation and selection. The best offsprings are kept for next iteration.</em>
-
-An evolutionary algorithm attempts to evolve a population of generators in a given environment (here, the discriminator). Each individual from the population represents a possible solution in the parameter space of the generative network. The evolution process boils down to three steps:
-
-1. Variation: A generator individual $$G_{\theta}$$ produces its children $$G_{\theta_{0}}, G_{\theta_{1}}, G_{\theta_{2}}, ...$$ by modifying itself according to some mutation properties.
-2. Evaluation: Each child is being evaluated using a fitness function, which depends on the current state of the discriminator
-3. Selection: We assess each child and decide if it did good enough in terms of the fitness function. If yes, it is being kept, otherwise we discard it.
-
-Those steps involve two concepts which should be discussed in more detail: mutations and a fitness function.
-
-__Mutations__ - those are the changes introduced to the children in the variation step. There are inspired by original GAN training objectives. The authors have distinguished three, the most effective, types of mutations. Those are minmax mutation (which encourages minimization of Jensen-Shannon divergence), heuristic mutation (which adds inverted Kullback-Leibler divergence term) and least-squares mutation (inspired by [LSGAN](https://arxiv.org/abs/1611.04076)).
-
-__Fitness function__ - in evolutionary algorithm a fitness function tells us how close a given child is to achieving the set aim. Here, the fitness function consists of two elements: quality fitness score and diversity fitness score. The former makes sure, that generator comes up with outputs which can fool the discriminator, while the latter pays attention to the diversity of generated samples. 
-So one hand, the offsprings are being taught not only to approximate the original distribution well, but also to remain diverse and avoid the mode collapse trap.
-
-The authors claim that their approach tackles multiple, well-known problems. E-GANs not only do better in terms of stability and suppressing mode collapse, it also alleviates the burden of careful choice of hyperparameters and architecture (critical for the convergence). 
-Finally, the authors claim the E-GAN converges faster that the conventional GAN framework.
-
-### Results:
-The algorithm has been tested not only on synthetic data, but also against CIFAR-10 dataset and Inception score. The authors have modified the popular GAN methods such as [DCGAN](https://arxiv.org/abs/1511.06434) and tested them on real-life datasets. The results indicate, that  E-GAN can be trained to generate diverse, high-quality images from the target data distribution. According to the authors, it is enough to preserve only one child in every selection step to successfully traverse the parameter space towards the optimal solution. I find this property of E-GAN really interesting. Moreover, by scrutinizing the space continuity, we can discover, that E-GAN has indeed learned a meaningful projection from latent noisy space to image space. By interpolating between latent vectors we can obtain generated images which smoothly change semantically meaningful face attributes.
-
-{:refdef: style="text-align: center;"}
-![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/2.jpg){:height="100%" width="100%"}
-{: refdef}
-<em>Linear interpolation in latent space $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset. $$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
 
 <em>All the figures are taken from the publications I refer to in my blog post<em>
  
