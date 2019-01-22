@@ -55,58 +55,38 @@ Large scale training allows for superior quality of generated images. However, i
 {: refdef}
 <em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
 
-## [A Style-Based Generator Architecture for Generative Adversarial Networks](https://arxiv.org/pdf/1812.04948.pdf)
+## [The relativistic discriminator: a key element missing from standard GAN](https://arxiv.org/pdf/1807.00734.pdf)
 
 ### Details
-The paper has been submitted on 12.12.2018. The authors assure that the code is to be released soon. Additionally, for people who would like to read more about this method but do not want to read the paper itself, there has been a [nice summary](https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431) published in a form of a blog post just two days ago.
+The paper has been submitted on 02.06.2018. The reason why I am impressed by this work is because it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention] (https://ajolicoeur.wordpress.com/relativisticgan/), publish well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and spark an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
 
 ### Main idea:
 
 In standard generative adversarial networks, the discriminator $$D$$ estimates the probability of the input data being real or not. The generator $$G$$ tries to increase the probability that generated data is real. During training, in every iteration, we input two equal-sized batches of data into the discriminator: one batch comes from a real distribution $$\mathbb{P}$$, the other from fake distribution $$\mathbb{Q}$$. 
-This valuable piece of information, that half of the examined data comes from fake distribution is usually not conveyed in the algorithm. Additionally, in standard GAN framework, the generator attempts to make fake images look more real, but there is no notion that the generated images can be actually “more real” then real images. The author claims that those are the missing pieces, which should have been incorporated into standard GAN framework in the first place. Due to those limitations, it is suggested that training the generator should not only increase the probability that fake data is real but also decrease the probability that real data is real. This is also motivated by the IPM-based GANs, which actually benefit from the presence of relativistic discriminator.
+This valuable piece of information, that half of the examined data comes from fake distribution is usually not conveyed in the algorithm. Additionally, in standard GAN framework, the generator attempts to make fake images look more real, but there is no notion that the generated images can be actually “more real” then real images. The author claims that those are the missing pieces, which should have been incorporated into standard GAN framework in the first place. Due to those limitations, it is suggested that training the generator should not only increase the probability that fake data is real but also decrease the probability that real data is real. This observation is also motivated by the IPM-based GANs, which actually benefit from the presence of relativistic discriminator.
 
 
 ### The method:
 
-{:refdef: style="text-align: center;"}
-![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/4/3.png){:height="80%" width="80%"}
-{: refdef}
+In order to shift from standard GAN into “relativistic” GAN, we need to modify the discriminator. A very simple example of a Relativistic GAN (RGAN) can be conceptualized in a following way:
 
-<em>Traditional GAN architecture (left) vs Style-based generator (right). In the new framework we have two network components: mapping network $$f$$ and synthesis network $$g$$. The former maps a latent code to an intermediate latent space $$\mathcal{W}$$, which encodes the information about the style. The latter takes the generated style and gaussian noise to create new images. Block "A" is a learned affine transform, while "B" applies learned per-channel scaling factors to the noise input. </em>
+In __standard formulation__, the discriminator is a function $$D(x) = \sigma(C(x))$$. $$x$$ is an image (real or fake), $$C(x)$$ is a function which assigns a score to the input image (evaluates how realistic $$x$$ is) and $$\sigma$$ translates the score into a probability between zero to one. If discriminator receives an image which looks fake, it would assign a very low score and thus low probability e.g. $$D(x) = \sigma(-10)=0$$. On the contrary, real-looking input gives us high score and high probability e.g. $$D(x) = \sigma(5)=1$$.
 
-In the classical GAN approach, the generator takes some latent code as an input and outputs an image, which belongs to the distribution it has learned during the training phase. The authors depart from this design by creating a style-based generator, comprised of two elements: 
-1. A fully connected network, which represents the non-linear mapping $$f:\mathcal{Z} \rightarrow \mathcal{W}$$ 
-2. A synthesis network $$g$$. 
+Now, in __relativistic GAN__, the discriminator estimates the probability that the given real data $$x_r$$ is more realistic then a randomly sampled fake data $$x_f$$:
 
-__Fully connected network__ - By transforming a normalized latent vector $$\textbf{z} \in \mathcal{Z}$$, we obtain an intermediate latent vector $$\textbf{w} = f(\textbf{z})$$. The intermediate latent space $$\mathcal{W}$$ effectively controls the style of the generator. As a side note, the authors make sure to avoid sampling from areas of low density of $$\mathcal{W}$$. While this may cause loss of variation in $$\textbf{w}$$, it is said to ultimately result in better average image quality. 
-Now, a latent vector $$\textbf{w}$$ sampled from intermediate latent space is being fed into the block "A" (learned affine transform) and translated into a style $$\textbf{y} =(\textbf{y}_{s},\textbf{y}_{b})$$. The style is finally injected into the synthesis network through [adaptive instance normalization](https://arxiv.org/abs/1703.06868) (AdaIN) at each convolution layer. The AdaIN operation is defined as:
+$$D(\widetilde{x}) = \sigma(C(x_r)-C(x_f))$$
 
-$$AdaIN(\textbf{x}_i,\textbf{y})=\textbf{y}_{s,i}\frac{\textbf{x}_i-\mu(\textbf{x}_i)}{\sigma(\textbf{x}_i)}+\textbf{y}_{b,i}$$
+To make the relativistic discriminator act more globally and avoid randomness when sampling pairs, the author builds up on this concept to create a Relativistic average Discriminator (RaD). 
 
-__Synthesis network__ - AdaIN operation alters each feature map $$\textbf{x}_{i}$$ by normalizing it, and then scaling and shifting using the components from the style $$\textbf{y}$$. Finally, the feature maps of the generator are also being fed a direct means to generate stochastic details - explicit noise input - in the form of single-channel images containing uncorrelated Gaussian noise.
+$$\bar{D}(x)=\begin{cases}
+sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x_f$ is real}\\
+sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{P}}C(x_{f})), & \text{if $x_r$ is fake}.
+ \end{cases}$$
 
-To sum up, while the explicit noise input may be viewed as a "seed" for the generation process in the synthesis network, the latent code sampled from $$\mathcal{W}$$ attempts to inject a certain style to an image.
+This means that whenever the discriminator $$D\hat$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$D\hat$$ receives a image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without introducing quadratic time complexity of the algorythm. 
+
 
 ### Results:
-The authors revisit NVIDIA's architecture from 2017 [Progressive GAN](https://arxiv.org/abs/1710.10196). While they hold on to the majority of the architecture and hyperparameters, the generator is being "upgraded" according to the new design. The most impressive feature of the paper is style mixing. 
-
-{:refdef: style="text-align: center;"}
-![alt text](https://cdn-images-1.medium.com/max/1600/1*BU2GnLJF1AcrkhvbCHdppw.jpeg){:height="100%" width="100%"}
-{: refdef}
-<em> Visualising the effects of style mixing. By having an image produced by one latent code (source), we can override a subset of the features of another image (destination). Here, we override layers corresponding to coarse spatial resolutions (low resolution feature maps). This way we influence high-level traits of the destination image.</em>
-  
-The novel generator architecture gives the ability to inject different styles to the same image at various layers of the synthesis network. During the training, we run two latent codes $$\textbf{z}_{1}$$ and $$\textbf{z}_2$$ through the mapping network and receive corresponding $$\textbf{w}_1$$ and $$\textbf{w}_2$$ vectors.
-The image generated purely by $$\textbf{z}_1$$ is known as the destination. It is a high-resolution generated image, practically impossible to distinguish from a real distribution. The image generated only by injecting $$\textbf{z}_2$$ is being called a source. Now, during the generation of the destination image using $$\textbf{z}_1$$, at some layers we may inject the $$\textbf{z}_2$$ code. This action overrides a subset of styles present in the destination with those of the source. The influence of the source on the destination is controlled by the location of layers which are being "nurtured" with the latent code of the source. The lower the resolution corresponding to the particular layer, the bigger the influence of the source on the destination. This way, we can decide to what extent we want to affect the destination image:
-- coarse spatial resolution (resolutions $$4^2 - 8^2$$) - high level aspects (such as hair style, glasses or age)
-- middle styles resolution (resolutions$$16^2 - 32^2$$) - smaller scale facial features (hair style details, eyes)
-- fine resolution resolutions (resolutions $$64^2 - 1024^2$$) - just change small details such as hair colour, tone of skin complexion or skin structure
-
-The authors apply their method further to images of cars, bedrooms and even cats, with stunning, albeit often surprising results. I am still puzzled why a network decides to affect the positioning of paws in cat images, but does not care about rotation of wheels in car images...
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/4/10.gif)
-{: refdef}
-<em> What I find really amazing - this framework can be further applied to different datasets, such as images of cars and bedrooms</em>
 
 
 ## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
