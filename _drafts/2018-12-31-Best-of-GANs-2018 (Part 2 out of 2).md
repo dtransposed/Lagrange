@@ -14,7 +14,7 @@ very subjective.
 
 1. __Large Scale GAN Training for High Fidelity Natural Image Synthesis__ - DeepMind's BigGAN uses the power of hundreds of cores of a Google TPU v3 Pod to create high-resolution images on a large scale.
 2. __The relativistic discriminator: a key element missing from standard GAN__ - the author proposes to improve the fundamentals of GANs by introducing an improved discriminator.
-3. __empty__ - 
+3. __ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks__ - the [Super-Resolution GAN (SR-GAN)](https://arxiv.org/pdf/1609.04802.pdf) from 2017 was one the most important work when it comes to networks which map low-resolution images to their high-resolution equivalents. This work improves SR-GAN using several interesting tricks. It may seen that this is just incremental improvement, but the actual paper turns out to be really cool.
 
 
 
@@ -99,13 +99,13 @@ I think that this example gives a very good intuitive understanding of implicati
 {: refdef}
 <em>Artificially created cats (128x128 resolution), the output from RaLSGAN. Not only the standard LSGAN produces less realistic images, it  is also much more unstable.
  
-I have the impression that this paper is only an introduction to the idea of relativistic discriminator. The experiments indicate, that the approach may help with many problems such as stability, difficulty in creating plausible looking outputs. It may also accelerate the training speed. I really love the fact, that the author has questioned a very fundamental element of the puzzle. It is exciting to see, that even though this paper came out in June, there are already state-of-the-art publications which take advantage of relativistic discriminators. 
+I have the impression that this paper is only an introduction to the idea of relativistic discriminator. The experiments indicate, that the approach may help with many problems such as stability, difficulty in creating plausible looking outputs. It may also accelerate the training speed. I really love the fact, that the author has questioned a very fundamental element of the puzzle. It is exciting to see, that even though this paper came out in June, there are already state-of-the-art publications which take advantage of relativistic discriminators. This brings us to the last position of our list...
  
  
-## [Evolutionary Generative Adversarial Networks](https://arxiv.org/abs/1803.00657)
+## [ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks](https://arxiv.org/pdf/1809.00219.pdf)
 
 ### Details
-The paper has been submitted on 1.03.2018.
+The paper has been submitted on 17.09.2018.
 
 ### Main idea:
 In the classical setting GANs are being trained by alternately updating a generator and discriminator using back-propagation. This two-player minmax game is being implemented by utilizing the cross-entropy mechanism in the objective function. 
