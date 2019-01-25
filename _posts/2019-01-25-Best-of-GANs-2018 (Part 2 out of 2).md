@@ -53,12 +53,12 @@ Large scale training allows for superior quality of generated images. However, i
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/3.png)
 {: refdef}
-<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive are our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
+<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive our eyes are to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
 
 ## [The relativistic discriminator: a key element missing from standard GAN](https://arxiv.org/pdf/1807.00734.pdf)
 
 ### Details
-The paper has been submitted on 02.06.2018. One of the reasons why this research is impressive is the fact, that it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention] (https://ajolicoeur.wordpress.com/relativisticgan), publishing well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and starting an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
+The paper has been submitted on 02.06.2018. One of the reasons why this research is impressive is the fact, that it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention](https://ajolicoeur.wordpress.com/relativisticgan/), publishing well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and starting an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
 
 ### Main idea:
 
@@ -90,9 +90,10 @@ This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image,
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/4.png)
 {: refdef}
-<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r text{is real}) = \sigma(C(x_r)))$$ 
-and RaD: $$P(x_r \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
-I think that this example gives a very good intuitive understanding of the relativistic disciminator.</em>
+<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r~ \text{is real}) = \sigma(C(x_r)))$$ 
+and RaD: $$P(x_r~\text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. 
+$$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
+I think that this example gives a very good intuitive understanding of the relativistic discriminator.</em>
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/5.png)
 {: refdef}
