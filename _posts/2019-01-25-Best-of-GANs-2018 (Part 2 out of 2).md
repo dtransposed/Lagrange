@@ -31,14 +31,14 @@ The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://
 <em> One generated image and its nearest neighbours from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
 
 Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress of GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generated images as well as their diversity. Using the example of 128x128 images from [ImageNet dataset](http://www.image-net.org/) as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar at $$IS = 166.3$$! How is this possible?
-The authors show how GANs can benefit from training at large scale. Leveraging the immense computational resources allows for dramatic boost of performance, while keeping the training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already discussed in part 1 of my summary (publication __A Style-Based Generator Architecture for Generative Adversarial Networks__).
+The authors show how GANs can benefit from training at large scale. Leveraging the immense computational resources allows for dramatic boost of performance, while keeping the training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already discussed in part 1 of my summary (__A Style-Based Generator Architecture for Generative Adversarial Networks__).
 
 ### The method:
 
 In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of network parameters with respect to prior art) and larger batches (increase by almost an order of magnitude). This turns out to be very beneficial:
 1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the discriminator and generator benefit from better gradients.
 2. Doubling the width (number of channels) in every layer increases the capacity of the model and thus contributes to much better performance. Interestingly, increasing the depth has negative influence on the performance.
-3. Additional use of class embeddings accelerates the training procedure. Class embeddings mean conditioning the output of the generator on dataset's class labels.
+3. Additional use of class embeddings accelerates the training procedure. Using class embeddings means conditioning the output of the generator on dataset's class labels.
 4. Finally, the method also benefits from hierarchical latent spaces - injecting the noise vector $$\textbf{z}$$ into multiple layers rather then solely at the initial layer. This not only improves performance of the network, but also accelerates the training process.
 
 ### Results:
@@ -69,7 +69,7 @@ This valuable piece of information, that half of the examined data comes from fa
 
 In order to shift from standard GAN into “relativistic” GAN, we need to modify the discriminator. A very simple example of a Relativistic GAN (RGAN) can be conceptualized in a following way:
 
-In __standard formulation__, the discriminator is a function 
+In __standard formulation__, the discriminator may be a function 
 
 $$D(x) = \sigma(C(x))$$
 
@@ -85,8 +85,8 @@ $$D(\widetilde{x}) = \sigma(C(x_r)-C(x_f))$$
 Where $$\widetilde{x} = (x_r,x_f)$$. To make the relativistic discriminator act more globally and avoid randomness when sampling pairs, the author builds up on this concept to create a __Relativistic average Discriminator__ (RaD). 
 
 $$\bar{D}(x)=\begin{cases}
-sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x_f$ is real}\\
-sigma(C(x)-\mathop{\mathbb{E}}_{x_{r}\sim\mathbb{P}}C(x_{r})), & \text{if $x_r$ is fake}.
+sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x$ is real}\\
+sigma(C(x)-\mathop{\mathbb{E}}_{x_{r}\sim\mathbb{P}}C(x_{r})), & \text{if $x$ is fake}.
  \end{cases}$$
 
 This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$\bar{D}(x)$$ receives a fake image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without enforcing quadratic time complexity on the algorithm. 
@@ -98,11 +98,16 @@ This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image,
 ![alt text](/assets/5/4.png)
 {: refdef}
 <em>The diagram shows an example of the discriminator’s output in standard GAN: 
+ 
 $$P(x_r~ \text{is real}) = \sigma(C(x_r)))$$ 
+
 and RaD: 
+
 $$P(x_r~\text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. 
+ 
 $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
 I think that this example gives a very good intuitive understanding of the relativistic discriminator.</em>
+
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/5.png)
 {: refdef}
@@ -148,7 +153,7 @@ The ESRGAN takes SRGAN and employs several clever tricks to improve the quality 
 __Introducing major changes to the network architecture__ - while the generator in the original SRGAN was using residual blocks, the ESRGAN additionally benefits from dense connections (as proposed by the authors of [DenseNet](https://arxiv.org/abs/1608.06993)). This not only allows for increased depth of the network, but also enforces more complex structure. This way the network can learn finer details. Additionally, ESRGAN does not use batch normalization. Learning how normalize the data distribution between layers is a general practice in many Deep Neural Networks. However, in case of SR algorithms (especially the ones which use GANs), it tends to introduce unpleasant artifacts and limits the generalization ability. Removing batch normalization improves the stability and reduces computational cost (less parameters to learn).
 
 
-__Replacing an ordinary discriminator with the relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
+__Replacing an ordinary discriminator with relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
 
 __Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_{LR})$$  and the ground truth image $$x_{HR}$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\phi(G(x_{LR}))$$ and $$\phi(x_{HR})$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
 
@@ -181,7 +186,7 @@ The experiments are similar to the ones conducted on SRGAN. The goal is to scale
 
 The authors have tested their network at the PIRM-SR challenge, where the ESRGAN has won the first place with the best perceptual index.
 
-Those were my __six favourite research papers__, which have married GANs and Computer Vision. If you would like to add or change something on this list, I would love to hear about your candidates! Have a great 2019 everybody!
+Those were my __six favourite research papers__, which have marry GANs and Computer Vision. If you would like to add or change something on this list, I would love to hear about your candidates! Have a great 2019 everybody!
 
 <em>All the figures are taken from the publications, which are being discussed in my blog post<em>
  
