@@ -58,7 +58,7 @@ Large scale training allows for superior quality of generated images. However, i
 ## [The relativistic discriminator: a key element missing from standard GAN](https://arxiv.org/pdf/1807.00734.pdf)
 
 ### Details
-The paper has been submitted on 02.06.2018. One of the reasons why this research is impressive is the fact, that it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention] (https://ajolicoeur.wordpress.com/relativisticgan/), publish well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and spark an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
+The paper has been submitted on 02.06.2018. One of the reasons why this research is impressive is the fact, that it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention] (https://ajolicoeur.wordpress.com/relativisticgan), publishing well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and starting an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
 
 ### Main idea:
 
@@ -71,18 +71,18 @@ In order to shift from standard GAN into “relativistic” GAN, we need to modi
 
 In __standard formulation__, the discriminator is a function $$D(x) = \sigma(C(x))$$. $$x$$ is an image (real or fake), $$C(x)$$ is a function which assigns a score to the input image (evaluates how realistic $$x$$ is) and $$\sigma$$ translates the score into a probability between zero to one. If discriminator receives an image which looks fake, it would assign a very low score and thus low probability e.g. $$D(x) = \sigma(-10)=0$$. On the contrary, real-looking input gives us high score and high probability e.g. $$D(x) = \sigma(5)=1$$.
 
-Now, in __relativistic GAN__, the discriminator estimates the probability that the given real data $$x_r$$ is more realistic then a randomly sampled fake data $$x_f$$:
+Now, in __relativistic GAN__, the discriminator estimates the probability that the real data $$x_r$$ is more realistic then a randomly sampled fake data $$x_f$$:
 
 $$D(\widetilde{x}) = \sigma(C(x_r)-C(x_f))$$
 
-To make the relativistic discriminator act more globally and avoid randomness when sampling pairs, the author builds up on this concept to create a __Relativistic average Discriminator__ (RaD). 
+Where $$\widetilde{x} = (x_r,x_f)$$. To make the relativistic discriminator act more globally and avoid randomness when sampling pairs, the author builds up on this concept to create a __Relativistic average Discriminator__ (RaD). 
 
 $$\bar{D}(x)=\begin{cases}
 sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x_f$ is real}\\
-sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{P}}C(x_{f})), & \text{if $x_r$ is fake}.
+sigma(C(x)-\mathop{\mathbb{E}}_{x_{r}\sim\mathbb{P}}C(x_{r})), & \text{if $x_r$ is fake}.
  \end{cases}$$
 
-This means that whenever the discriminator $$D\hat$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$D\hat$$ receives a fake image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without enforcing quadratic time complexity on the algorithm. 
+This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$\bar{D}(x)$$ receives a fake image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without enforcing quadratic time complexity on the algorithm. 
 
 
 ### Results:
