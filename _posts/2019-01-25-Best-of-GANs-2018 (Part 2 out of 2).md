@@ -4,7 +4,7 @@ title: "The best of GAN papers in the year 2018 part 2"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [computer vision, neural networks, generative adversarial networks]
-image: gan2.jpg
+image: gan2.png
 ---
 The cover image by courtesy of [Juli Odomo](https://www.odomojuli.com).
 
