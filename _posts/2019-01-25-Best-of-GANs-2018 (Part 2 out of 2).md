@@ -25,6 +25,11 @@ The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://
 
 ### Main idea:
 
+{:refdef: style="text-align: center;"}
+![alt text](/assets/5/1.png)
+{: refdef}
+<em> One generated image and its nearest neighbours from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
+
 Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress of GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generated images as well as their diversity. Using the example of 128x128 images from [ImageNet dataset](http://www.image-net.org/) as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar at $$IS = 166.3$$! How is this possible?
 The authors show how GANs can benefit from training at large scale. Leveraging the immense computational resources allows for dramatic boost of performance, while keeping the training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already discussed in part 1 of my summary (publication __A Style-Based Generator Architecture for Generative Adversarial Networks__).
 
@@ -39,11 +44,6 @@ In contrast to other papers I evaluated, the significance of this research does 
 ### Results:
 
 Large scale training allows for superior quality of generated images. However, it comes with its own challenges, such as instability. The authors show, that even though the stability can be enforced through regularization methods (especially on the discriminator), the quality of the network is bound to suffer. The clever workaround is to relax the constraints on the weights and allow for training to collapse at the later stages. Then, we may apply the early stopping technique to pick the set of weights just before the collapse. Those weights are usually sufficiently good to achieve impressive results.
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/1.png)
-{: refdef}
-<em> One generated image and its nearest neighbours from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/2.png)
@@ -69,7 +69,14 @@ This valuable piece of information, that half of the examined data comes from fa
 
 In order to shift from standard GAN into “relativistic” GAN, we need to modify the discriminator. A very simple example of a Relativistic GAN (RGAN) can be conceptualized in a following way:
 
-In __standard formulation__, the discriminator is a function $$D(x) = \sigma(C(x))$$. $$x$$ is an image (real or fake), $$C(x)$$ is a function which assigns a score to the input image (evaluates how realistic $$x$$ is) and $$\sigma$$ translates the score into a probability between zero to one. If discriminator receives an image which looks fake, it would assign a very low score and thus low probability e.g. $$D(x) = \sigma(-10)=0$$. On the contrary, real-looking input gives us high score and high probability e.g. $$D(x) = \sigma(5)=1$$.
+In __standard formulation__, the discriminator is a function 
+
+$$D(x) = \sigma(C(x))$$
+
+$$x$$ is an image (real or fake), $$C(x)$$ is a function which assigns a score to the input image (evaluates how realistic $$x$$ is) and $$\sigma$$ translates the score into a probability between zero to one. If discriminator receives an image which looks fake, it would assign a very low score and thus low probability, for example: 
+$$D(x) = \sigma(-10)=0$$
+On the contrary, real-looking input gives us high score and high probability, for example: 
+$$D(x) = \sigma(5)=1$$
 
 Now, in __relativistic GAN__, the discriminator estimates the probability that the real data $$x_r$$ is more realistic then a randomly sampled fake data $$x_f$$:
 
@@ -90,8 +97,10 @@ This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image,
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/4.png)
 {: refdef}
-<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r~ \text{is real}) = \sigma(C(x_r)))$$ 
-and RaD: $$P(x_r~\text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. 
+<em>The diagram shows an example of the discriminator’s output in standard GAN: 
+$$P(x_r~ \text{is real}) = \sigma(C(x_r)))$$ 
+and RaD: 
+$$P(x_r~\text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. 
 $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
 I think that this example gives a very good intuitive understanding of the relativistic discriminator.</em>
 {:refdef: style="text-align: center;"}
@@ -109,14 +118,14 @@ The paper has been submitted on 17.09.2018. The code is available publicly [on g
 
 ### Main idea:
 
-The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network was to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network was to __minimize perceptual loss__. This helps in capturing texture details and high frequency content. 
-As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network produces high quality HR representation of the LR input. 
-One year later, the SRGAN method (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced number of artifacts. This has been achieved through several clever tricks.
-
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/6.png)
 {: refdef}
 <em>Output from SRGAN versus output from ESRGAN, with ground truth as reference. The generated HR image is four times larger than the LR input. The ESRGAN outperforms its predecessor in sharpness and details.</em>
+
+The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network was to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network was to __minimize perceptual loss__. This helps in capturing texture details and high frequency content. 
+As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network produces high quality HR representation of the LR input. 
+One year later, the SRGAN method (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced number of artifacts. This has been achieved through several clever tricks.
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/7.png)
@@ -141,7 +150,7 @@ __Introducing major changes to the network architecture__ - while the generator 
 
 __Replacing an ordinary discriminator with the relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
 
-__Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_{LR})$$  and the ground truth image $$x_{HR}$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\theta(G(x_{LR}))$$ and $$\theta(x_{HR})$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
+__Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_{LR})$$  and the ground truth image $$x_{HR}$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\phi(G(x_{LR}))$$ and $$\phi(x_{HR})$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/10.png)
