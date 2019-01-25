@@ -90,15 +90,15 @@ This means that whenever the discriminator $$\bar{D}(x)$$ receives a real image,
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/4.png)
 {: refdef}
-<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r \text{is real|) = \sigma(C(x_r)))$$ 
-and RaD: P(x_r \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f))). $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
+<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r text{is real}) = \sigma(C(x_r)))$$ 
+and RaD: $$P(x_r \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
 I think that this example gives a very good intuitive understanding of the relativistic disciminator.</em>
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/5.png)
 {: refdef}
 <em>Artificially created cats (128x128 resolution), the output from RaLSGAN. Not only the standard LSGAN produces less realistic images, it is also much more unstable.</em>
  
-I have the impression that this paper may start a new trend - using relativistic discriminator in different GAN problems. The experiments indicate, that the approach may help with many problems such as stability or inferior image quality. It may also accelerate the networks' training speed. I really love the fact, that the author has questioned a very fundamental element of the GAN architecture. It is exciting to see that there are already state-of-the-art publications which use advantage of relativistic discriminators (even though this paper came out in June). An example of such an architecture is...
+I have the impression that this paper may start a new trend - using relativistic discriminator in different GAN problems. The experiments indicate, that the approach may help with many problems such as stability or inferior image quality. It may also accelerate the networks' training speed. I really love the fact, that the author has questioned a very fundamental element of the GAN architecture. It is exciting to see that there are already state-of-the-art publications which take advantage of relativistic discriminators (even though this paper came out in June). An example of such an architecture is...
  
  
 ## [ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks](https://arxiv.org/pdf/1809.00219.pdf)
