@@ -109,7 +109,7 @@ The paper has been submitted on 17.09.2018. The code is available publicly [on g
 ### Main idea:
 
 The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network was to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network was to __minimize perceptual loss__. This helps in capturing texture details and high frequency content. 
-As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network has learned to produce high quality HR representation of the LR input. 
+As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network produces high quality HR representation of the LR input. 
 One year later, the SRGAN method (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced number of artifacts. This has been achieved through several clever tricks.
 
 {:refdef: style="text-align: center;"}
@@ -120,7 +120,7 @@ One year later, the SRGAN method (created by the scientists from Twitter), has b
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/7.png)
 {: refdef}
-<em>SRGAN is based on the ResNet architecture. Even though ESRGAN has similar design, it introduces some changes to Basic Blocks -shifts  from Residual Blocks to Residual in Residual Dense Blocks (RRDB)-for better performance.</em>
+<em>SRGAN is based on the ResNet architecture. Even though ESRGAN has similar design, it introduces some changes to Basic Blocks - shifts  from Residual Blocks to Residual in Residual Dense Blocks (RRDB) - for better performance.</em>
 
 ### The method:
 
@@ -140,17 +140,17 @@ __Introducing major changes to the network architecture__ - while the generator 
 
 __Replacing an ordinary discriminator with the relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
 
+__Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_{LR})$$  and the ground truth image $$x_{HR}$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\theta(G(x_{LR}))$$ and $$\theta(x_{HR})$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
+
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/10.png)
 {: refdef}
 <em>As we go deeper, the layers after activation tend to give us much less information. This results in weak supervision and inferior performance. Therefore, it is more beneficial to use pre-activation feature maps.</em> 
 
-__Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_LR)$$  and the ground truth image $$x_HR$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\theta(G(x_LR))$$ and $$\theta(x_HR)$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
-
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/11.png)
 {: refdef}
-<em>Interestingly, post-activation feature maps also cause inconsistent reconstructed brightness compared with the GT image.</em> 
+<em>Additionally, post-activation feature maps also cause inconsistent reconstructed brightness compared with the GT image.</em> 
 
 __Network interpolation__ - as I have mentioned before, there are two goals which the algorithm tries to achieve. This is not only perceptual similarity between generated image and ground truth, but also lowest possible PSNR. This why initially the network is being trained to minimize PSNR (using L1 loss). Then, the pre-trained network is being used to initialize the generator. This not only allows to avoid undesired local minima for the generator, but also provides the discriminator with quite good super-resolved images from the start. 
 The authors state that the best results can be obtained through interpolation between the weights of the initial network (after PSNR optimization) and final network (after GAN training). This allows to control the PSNR versus perceptual similarity trade-off.
@@ -170,6 +170,8 @@ The experiments are similar to the ones conducted on SRGAN. The goal is to scale
 <em>Interpolating between two contradictory goals: minimizing PSNR or maximizing perceptual similarity</em> 
 
 The authors have tested their network at the PIRM-SR challenge, where the ESRGAN has won the first place with the best perceptual index.
+
+Those were my __six favourite research papers__, which have married GANs and Computer Vision. If you would like to add or change something on this list, I would love to hear about your candidates! Have a great 2019 everybody!
 
 <em>All the figures are taken from the publications, which are being discussed in my blog post<em>
  
