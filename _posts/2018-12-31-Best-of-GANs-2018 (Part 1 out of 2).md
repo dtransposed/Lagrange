@@ -167,7 +167,7 @@ The algorithm has been tested not only on synthetic data, but also against CIFAR
 {: refdef}
 <em>Linear interpolation in latent space $$G((1-\alpha)\textbf{z}_1+\alpha\textbf{z}_2)$$. The generator has learned distribution of images from CelebA dataset. $$\alpha = 0.0$$ corresponds to generating an image from vector $$\textbf{z}_1$$, while $$\alpha = 1.0$$ means that the image came from vector $$\textbf{z}_2$$. By altering alpha, we can interpolate in latent space with excellent results.</em>
 
-<em>All the figures are taken from the publications I refer to in my blog post<em>
+<em>All the figures are taken from the publications, which are being discussed in my blog post</em>
  
 <em>Source of the cover image: https://www.saatchiart.com</em>
 
