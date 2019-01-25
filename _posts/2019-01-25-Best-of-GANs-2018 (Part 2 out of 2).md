@@ -8,20 +8,20 @@ image: gan2.jpg
 ---
 The cover image by courtesy of [Juli Odomo](https://www.odomojuli.com).
 
-As a follow up to my previous post, where I discussed three major contributions to GANs (Generative Adversarial Networks) 
+As a follow-up to my previous post, where I discussed three major contributions to GANs (Generative Adversarial Networks) 
 domain, I am happy to present another three interesting research papers from 2018. Once again, the order is purely random and the choice
 very subjective.
 
 1. __Large Scale GAN Training for High Fidelity Natural Image Synthesis__ - DeepMind's BigGAN uses the power of hundreds of cores of a Google TPU v3 Pod to create high-resolution images on a large scale.
 2. __The relativistic discriminator: a key element missing from standard GAN__ - the author proposes to improve the fundamentals of GANs by introducing an improved discriminator.
-3. __ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks__ - the [Super-Resolution GAN (SR-GAN)](https://arxiv.org/pdf/1609.04802.pdf) from 2017 was one the best networks which map low-resolution images to their high-resolution equivalents. This work improves SRGAN through several interesting tricks. Some may say that this is just incremental improvement, but the implemented ideas are really clever!
+3. __ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks__ - the [Super-Resolution GAN (SRGAN)](https://arxiv.org/pdf/1609.04802.pdf) from 2017 was one the best networks which map low-resolution images to their high-resolution equivalents. This work improves SRGAN through several interesting tricks. Some may say that this is just incremental improvement, but the implemented ideas are really clever!
 
 
 
 ## [Large Scale GAN Training for High Fidelity Natural Image Synthesis](https://arxiv.org/pdf/1809.11096.pdf)
 
 ### Details
-The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Coolab!.
+The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Collab.
 
 ### Main idea:
 
@@ -53,7 +53,7 @@ Large scale training allows for superior quality of generated images. However, i
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/3.png)
 {: refdef}
-<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
+<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive are our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
 
 ## [The relativistic discriminator: a key element missing from standard GAN](https://arxiv.org/pdf/1807.00734.pdf)
 
