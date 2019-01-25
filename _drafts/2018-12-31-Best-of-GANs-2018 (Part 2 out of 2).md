@@ -21,7 +21,7 @@ very subjective.
 ## [Large Scale GAN Training for High Fidelity Natural Image Synthesis](https://arxiv.org/pdf/1809.11096.pdf)
 
 ### Details
-The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Coolab!.
+The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Collab!.
 
 ### Main idea:
 
@@ -104,13 +104,13 @@ I have the impression that this paper may start a new trend - using relativistic
 ## [ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks](https://arxiv.org/pdf/1809.00219.pdf)
 
 ### Details
-The paper has been submitted on 17.09.2018. The code is available publicly [on the github](https://github.com/xinntao/ESRGAN). Fun fact: several people have used ESRGAN to refresh the graphics of some old games e.g [Morrowind](https://www.youtube.com/watch?v=PupePmY9OA8&t=184s), [Doom 2](https://www.youtube.com/watch?v=u9S8lnGqKkg&t=64s) or [Return to Castle Wolfenstein](https://www.youtube.com/watch?v=uyRfptKJutU).
+The paper has been submitted on 17.09.2018. The code is available publicly [on github](https://github.com/xinntao/ESRGAN). Fun fact: several people have used ESRGAN to improve textures in some old games e.g [Morrowind](https://www.youtube.com/watch?v=PupePmY9OA8&t=184s), [Doom 2](https://www.youtube.com/watch?v=u9S8lnGqKkg&t=64s) or [Return to Castle Wolfenstein](https://www.youtube.com/watch?v=uyRfptKJutU).
 
 ### Main idea:
 
-The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing Peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network is to __minimize perceptual loss__, which helps in capturing texture details and high frequency content. 
-As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of those two goals, the network has learned to produce high quality HR representation of the LR input. 
-One year later, the SRGAN architecture (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced the number of artifacts. This can be achieved through several clever tricks.
+The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network was to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network was to __minimize perceptual loss__. This helps in capturing texture details and high frequency content. 
+As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network has learned to produce high quality HR representation of the LR input. 
+One year later, the SRGAN method (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced number of artifacts. This has been achieved through several clever tricks.
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/6.png)
@@ -120,12 +120,12 @@ One year later, the SRGAN architecture (created by the scientists from Twitter),
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/5/7.png)
 {: refdef}
-<em>SRGAN is based on the ResNet architecture. Even though ESRGAN has similar design, it introduces some changes to Basic Blocks (shifts  from Residual Blocks to Residual in Residual Dense Blocks (RRDB)) for better performance.</em>
+<em>SRGAN is based on the ResNet architecture. Even though ESRGAN has similar design, it introduces some changes to Basic Blocks -shifts  from Residual Blocks to Residual in Residual Dense Blocks (RRDB)-for better performance.</em>
 
 ### The method:
 
 The ESRGAN takes SRGAN and employs several clever tricks to improve the quality of the generated images. Those four improvements are:
-1. Introducing major changes to the generator's architecture (switching from Residual Blocks to RRDB, removing batch normalization).
+1. Introducing changes to the generator's architecture (switching from Residual Blocks to RRDB, removing batch normalization).
 2. Replacing an ordinary discriminator with the relativistic discriminator (as described in the previously discussed paper).
 3. Regarding perceptual loss, using feature maps before activation, rather then post-activation.
 4. Pre-training the network to first optimize for PSNR and then fine tune it with the GAN.
@@ -135,7 +135,7 @@ The ESRGAN takes SRGAN and employs several clever tricks to improve the quality 
 {: refdef}
 <em>First, we remove batch normalization from the network. Secondly, we introduce RRDB which combines multi-level residual network and dense connections. This gives the network higher capacity to capture information.</em> 
 
-__Introducing major changes to the network architecture__ - while the generator in the original SRGAN was using residual blocks, the ESRGAN also benefits from dense connections (as proposed by the authors of [DenseNet](https://arxiv.org/abs/1608.06993)). This not only allows for increased depth of the network, but also enforces more complex structure which allows the network to learn finer details. Additionally, ESRGAN does not use batch normalization. Learning how normalize the data distribution between layers is a general practice in many Deep Neural Networks. However, in case of SR algorithms (especially the ones which use GANs), it tends to introduce unpleasant artifacts and limits the generalization ability. Removing batch normalization improves the stability and reduces computational cost (less parameters to learn).
+__Introducing major changes to the network architecture__ - while the generator in the original SRGAN was using residual blocks, the ESRGAN additionally benefits from dense connections (as proposed by the authors of [DenseNet](https://arxiv.org/abs/1608.06993)). This not only allows for increased depth of the network, but also enforces more complex structure. This way the network can learn finer details. Additionally, ESRGAN does not use batch normalization. Learning how normalize the data distribution between layers is a general practice in many Deep Neural Networks. However, in case of SR algorithms (especially the ones which use GANs), it tends to introduce unpleasant artifacts and limits the generalization ability. Removing batch normalization improves the stability and reduces computational cost (less parameters to learn).
 
 
 __Replacing an ordinary discriminator with the relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
@@ -152,8 +152,8 @@ __Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual
 {: refdef}
 <em>Interestingly, post-activation feature maps also cause inconsistent reconstructed brightness compared with the GT image.</em> 
 
-__Network interpolation__ - as I have mentioned before, there are two goals which the algorithms tries to achieve. This is not only perceptual similarity between generated image and ground truth, but also lowest possible PSNR. This why initially the network is being trained to minimize PSNR (using L1 loss). Then, the pre-trained network is being used to initialize the generator. This not only allows to avoid undesired local minima for the generator, but also provides the discriminator with quite good super-resolved images. 
-The authors state that the best network can be obtained by interpolation between the weights of the initial network (after PSNR optimization) and final network (after GAN training). This allows to control the PSNR versus perceptual similarity trade-off.
+__Network interpolation__ - as I have mentioned before, there are two goals which the algorithm tries to achieve. This is not only perceptual similarity between generated image and ground truth, but also lowest possible PSNR. This why initially the network is being trained to minimize PSNR (using L1 loss). Then, the pre-trained network is being used to initialize the generator. This not only allows to avoid undesired local minima for the generator, but also provides the discriminator with quite good super-resolved images from the start. 
+The authors state that the best results can be obtained through interpolation between the weights of the initial network (after PSNR optimization) and final network (after GAN training). This allows to control the PSNR versus perceptual similarity trade-off.
 
 ### Results:
 
@@ -171,7 +171,7 @@ The experiments are similar to the ones conducted on SRGAN. The goal is to scale
 
 The authors have tested their network at the PIRM-SR challenge, where the ESRGAN has won the first place with the best perceptual index.
 
-<em>All the figures are taken from the publications I refer to in my blog post<em>
+<em>All the figures are taken from the publications, which I refer to in my blog post<em>
  
 
 
