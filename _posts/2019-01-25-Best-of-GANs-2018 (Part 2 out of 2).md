@@ -103,7 +103,7 @@ $$P(x_r~ \text{is real}) = \sigma(C(x_r)))$$
 
 and RaD: 
 
-$$P(x_r~ \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$. 
+$$P(x_r~ \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f)))$$
  
 $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
 I think that this example gives a very good intuitive understanding of the relativistic discriminator.</em>
