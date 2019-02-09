@@ -1,33 +1,41 @@
 ---
 layout: post
-title: "The best of GAN papers in the year 2018 part 2"
+title: "Project - Reinforcement Learning with Unity 3D: G.E.A.R"
 author: "Damian Bogunowicz"
 categories: blog
-tags: [computer vision, neural networks, generative adversarial networks]
+tags: [computer vision, neural networks, robotics, reinforcement learning, unity]
 image: gan2.jpg
 ---
-The cover image by courtesy of [Juli Odomo](https://www.odomojuli.com).
 
-As a follow up to my previous post, where I discussed three major contributions to GANs (Generative Adversarial Networks) 
-domain, I am happy to present another three interesting research papers from 2018. Once again, the order is purely random and the choice
-very subjective.
-
-1. __Large Scale GAN Training for High Fidelity Natural Image Synthesis__ - DeepMind's BigGAN uses the power of hundreds of cores of a Google TPU v3 Pod to create high-resolution images on a large scale.
-2. __The relativistic discriminator: a key element missing from standard GAN__ - the author proposes to improve the fundamentals of GANs by introducing an improved discriminator.
-3. __ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks__ - the [Super-Resolution GAN (SR-GAN)](https://arxiv.org/pdf/1609.04802.pdf) from 2017 was one the best networks which map low-resolution images to their high-resolution equivalents. This work improves SRGAN through several interesting tricks. Some may say that this is just incremental improvement, but the implemented ideas are really clever!
+Over the course of the last several months I was working on a great project organized by the [Chair for Computer Aided Medical Procedures & Augmented Reality](http://campar.in.tum.de/WebHome). As a result, we have developed a prototype of an autonomous, intelligent agent for garbage collection. The idea has been born during one day workshop organized by the supervisers from the Technical University of Munich: Mahdi Saleh, Patrick Ruhrkamp and Benny ... . Since then, together with my team we have used our knowledge from the fields of Computer Vision, Deep Reinforcement Learning and Game Developement to create a functional protytype simulation of our robot, G.E.A.R - Garbage Evaporating Autonomous Robot. This blog post will present the details of our project. Naturally, if you would like to tinker with the G.E.A.R or contribute further to are project, we have set a relevant repository: 
 
 
+## Table of Contents
 
-## [Large Scale GAN Training for High Fidelity Natural Image Synthesis](https://arxiv.org/pdf/1809.11096.pdf)
+1. Project overview
+	1. Motivation
+	2. Environment and Goals
+	3. PCA Framework of the Agent
+ 4. Actions
+ 5. Rewards
+2. The solution
+	1. Transition model
+	2. Initial state
+	3. Sensor model
+	4. Results
+	5. Alternative possible solutions
+	6. The code in Python
+3. 
+ presentation
 
-### Details
-The paper has been submitted on 28.09.2018. You can easily [run BigGAN](https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/biggan_generation_with_tf_hub.ipynb) using Google Collab!.
 
-### Main idea:
+### Project overview
 
-Even though the progress in the domain of GANs is impressive, image generation using Deep Neural Networks remains difficult. Despite the great interest in this field, I believe that there is a lot of untapped potential when it comes to generating images. One of the ways to track the progress of GANs and measure their quality is [Inception Score](https://arxiv.org/abs/1606.03498) (IS). This metric considers both quality of generated images as well as their diversity. Using the example of 128x128 images from [ImageNet dataset](http://www.image-net.org/) as our baseline, the real images from the dataset achieve $$IS = 233$$. While the state-of-the-art was estimated at $$IS = 52.5$$, BigGAN has set the bar at $$IS = 166.3$$! How is this possible?
-The authors show how GANs can benefit from training at large scale. Leveraging the immense computational resources allows for dramatic boost of performance, while keeping the training process relatively stable. This allows for creation of high resolution images (512x512) of unparalleled quality. Among many clever solutions to instability problem, this paper also introduces the truncation trick, which I have already discussed in part 1 of my summary (publication __A Style-Based Generator Architecture for Generative Adversarial Networks__).
+## Motivation:
 
+No matter where you are from, the first things which comes to mind when you hear about Munich, the capital city of Bavaria is Oktoberfest. The famous beer celebration is deeply rooted in the Bavarian culture. The scale of the event is impressive: the amount of people which visits Munich in autumn every year to celebrate, the litres of beer drank by the visitors and the sum of euros exchanging hands during the Oktoberfest can be hardely compared to any other event in the world. Thus, we can agree, that there is a financial incentive to be a part of this huge endeavour. But as a researcher and engineer my task is to solve (meaningful) problems and I could spot one instantly.
+
+Oktoberfest is indeed exciting and fun for us as participants, but we rarely focus on things, which happen outside of our perception. One of those things are the massive amounts of garbage generated during each day of Oktoberfest. At 10pm, when the visitors leave the <em> Wiesn </em>(the area where the Oktoberfest takes place), the army of sanitation workers need to clean up after the plutoon of drunk guests. So far, this process is pretty much done by humans 
 ### The method:
 
 In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of network parameters with respect to prior art) and larger batches (increase by almost an order of magnitude). This turns out to be very beneficial:
