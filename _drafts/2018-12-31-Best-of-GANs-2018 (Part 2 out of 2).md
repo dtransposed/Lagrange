@@ -14,8 +14,9 @@ Over the course of the last several months I was working on a great project orga
 
 1. Project overview
 	1. Motivation
-	2. Environment, Punishment and Rewards
-	3. PCA Framework of the Agent
+	2. Agent and Environment
+	3. Perception, Cognition, Intelligence
+	4. 
  4. Actions
  5. Rewards
 2. The solution
@@ -37,13 +38,28 @@ No matter where you are from, the first things which comes to mind when you hear
 
 Oktoberfest is indeed exciting and fun for us as participants, but we rarely focus on things, which happen outside of our perception. One of those things are the massive amounts of garbage generated during each day of Oktoberfest. At 10pm, when the visitors leave the <em> Wiesn </em>(the area where the Oktoberfest takes place), the army of sanitation workers need to clean up after the plutoon of drunk guests. So far, this process is pretty much done by humans.
 
-### Environment, Punishment and Rewards:
+### Agent and Environment:
 
 The setup for the agent is a room with a Bavarian theme. The goal of a robot is to explore the environment and learn the proper policy, which we enforce on it (indirectly), through a set of rewards and punishments. 
 
 The goal of the robot is:
 - to approach and gather the collectibles (stale loaves of bread, red plastic cups and white sausages)
 - not to collide with static objects (chairs and tables), slamming against the wall or collecting wooden trays (they belong to the owner of a Bavarian tent and should not be collected by the robot for future disposal).
+
+The robot itself is modelled as a cube, which can roam around the room and collect relevant objects. It action vector contains three elements, which are responsible for: 
+- translational motion (forward, backward, or stay in place)
+- rotation (turn left, right or refuse to rotate)
+- grabbing state (activate or not)
+
+While the first two actions are intuitively understandable, I should explain what "grabbing state" is. Since the creation of actual mechanism for garbage collection would not only be very time-consuming but also troublesome (Unity is not as accurate as CAD software when it comes to modelling the physics of rigid bodies), we have decided to use a certain heuristic. Every time the robot collects and object, two requirements must be fulfilled:
+1. The object must be close to the front part of the robot (confined within the green volume)
+2. The robot must decide to activate "a grabber". When the grabbing state is being activated, the color of the robot changes from white to red. 
+
+This heuristic not only allows us to model the behaviour of an agent without an actual mechanical implementation of a grabber, but also visually assess and debug the behaviour of G.E.A.R.
+
+### Perception, Cognition, Intelligence
+
+According to the Perception, Cognition, Intelligence we can ... . In case of G.E.A.R, the perception is handled by the RealSense camera. This sensor collects RGB frames as well as depth camera obtained by triangulation of stereo frames.
 
 According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals span from -1 to 0 (punishments) and from 1 to 0 (rewards).
 
