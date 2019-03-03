@@ -14,7 +14,7 @@ Over the course of the last several months I was working on a great project orga
 
 1. Project overview
 	1. Motivation
-	2. Environment and Goals
+	2. Environment, Punishment and Rewards
 	3. PCA Framework of the Agent
  4. Actions
  5. Rewards
@@ -29,14 +29,44 @@ Over the course of the last several months I was working on a great project orga
  presentation
 
 
-### Project overview
+## Project overview
 
-## Motivation:
+### Motivation:
 
 No matter where you are from, the first things which comes to mind when you hear about Munich, the capital city of Bavaria is Oktoberfest. The famous beer celebration is deeply rooted in the Bavarian culture. The scale of the event is impressive: the amount of people which visits Munich in autumn every year to celebrate, the litres of beer drank by the visitors and the sum of euros exchanging hands during the Oktoberfest can be hardely compared to any other event in the world. Thus, we can agree, that there is a financial incentive to be a part of this huge endeavour. But as a researcher and engineer my task is to solve (meaningful) problems and I could spot one instantly.
 
-Oktoberfest is indeed exciting and fun for us as participants, but we rarely focus on things, which happen outside of our perception. One of those things are the massive amounts of garbage generated during each day of Oktoberfest. At 10pm, when the visitors leave the <em> Wiesn </em>(the area where the Oktoberfest takes place), the army of sanitation workers need to clean up after the plutoon of drunk guests. So far, this process is pretty much done by humans 
-### The method:
+Oktoberfest is indeed exciting and fun for us as participants, but we rarely focus on things, which happen outside of our perception. One of those things are the massive amounts of garbage generated during each day of Oktoberfest. At 10pm, when the visitors leave the <em> Wiesn </em>(the area where the Oktoberfest takes place), the army of sanitation workers need to clean up after the plutoon of drunk guests. So far, this process is pretty much done by humans.
+
+### Environment, Punishment and Rewards:
+
+The setup for the agent is a room with a Bavarian theme. The goal of a robot is to explore the environment and learn the proper policy, which we enforce on it (indirectly), through a set of rewards and punishments. 
+
+The goal of the robot is:
+- to approach and gather the collectibles (stale loaves of bread, red plastic cups and white sausages)
+- not to collide with static objects (chairs and tables), slamming against the wall or collecting wooden trays (they belong to the owner of a Bavarian tent and should not be collected by the robot for future disposal).
+
+According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals span from -1 to 0 (punishments) and from 1 to 0 (rewards).
+
+The proper assignment of punishment and rewards and defining the values is challenging. During the project we have learned two important lessons. Those may not be applicable for any RL project, but should be kept in mind for engineers who struggle with the similar challange as ours:
+
+__First, Guide the agent towards the goal first and
+
+__Curriculum learning is great when the Idea is to train with the more easier classes or task initially, and when the model has started to learn those tasks, we can gradually insert more and more complexity into the training data. 
+
+In the end, we have finished the training with following set of rewards and punishments enforced on the agent:
+
+Action           | Signal (Punishment or Reward)         | Comment              |
+--------------------- | :-------------------: | :-------------------- |
+Gathering the collectible                 | +++ | The main goal is to collect the garbage    | 
+Moving foreward | lorem ipsum dolor sit | + | Typically assigned in locomotion tasks|
+Punishment per step | - | So that agent has an incentive to finish the task quickly |
+Activating the grabing mechanism | - | In real world, activating the grabber mechanism would be ridicolously energy inefficient | 
+Colliding with an obstacle | -- | The initial punishment was low, so the robot learns not to avoid the furniture to manouver between table legs etc. | 
+Slamming against a wall | -- | In rare cases robot can touch the wall, e.g. to pick an object beside it | 
+Collecting a wooden tray | --- | The robot needs to learn not to collect non-collectible items | 
+
+Additionally, there are many useful [tips and tricks regarding the training procedure](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Best-Practices.md) suggested by the authors of ML-Agents Toolkit.
+
 
 In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of network parameters with respect to prior art) and larger batches (increase by almost an order of magnitude). This turns out to be very beneficial:
 1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the discriminator and generator benefit from better gradients.
