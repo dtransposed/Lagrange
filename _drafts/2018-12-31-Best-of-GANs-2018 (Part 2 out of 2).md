@@ -16,14 +16,16 @@ Over the course of the last several months I was working on a great project orga
 	1. Motivation
 	2. Agent and Environment
 	3. Perception, Cognition, Intelligence
-	4. 
- 4. Actions
- 5. Rewards
-2. The solution
-	1. Transition model
-	2. Initial state
-	3. Sensor model
-	4. Results
+	4. Punishments and Rewards
+2. Software and Algorithms
+	1. Unity 3D and ML-Agents
+	2. Semantic Segmentation
+	3. Algorithms for Agent's Brain
+3. Presentation of Solutions:
+	1. PPO
+	2. PPO with Segmentation Network
+	3. Behavioral Cloning
+	4. Heuristic
 	5. Alternative possible solutions
 	6. The code in Python
 3. 
