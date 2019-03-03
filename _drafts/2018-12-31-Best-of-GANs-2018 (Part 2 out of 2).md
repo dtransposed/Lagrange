@@ -57,13 +57,13 @@ In the end, we have finished the training with following set of rewards and puni
 
 Action           | Signal (Punishment or Reward)         | Comment              |
 --------------------- | :-------------------: | :-------------------- |
-Gathering the collectible                 | +++ | The main goal is to collect the garbage    | 
-Moving foreward | lorem ipsum dolor sit | + | Typically assigned in locomotion tasks|
-Punishment per step | - | So that agent has an incentive to finish the task quickly |
-Activating the grabing mechanism | - | In real world, activating the grabber mechanism would be ridicolously energy inefficient | 
-Colliding with an obstacle | -- | The initial punishment was low, so the robot learns not to avoid the furniture to manouver between table legs etc. | 
-Slamming against a wall | -- | In rare cases robot can touch the wall, e.g. to pick an object beside it | 
-Collecting a wooden tray | --- | The robot needs to learn not to collect non-collectible items | 
+Gathering the collectible                 |$$+++$$ | The main goal is to collect the garbage    | 
+Moving foreward | lorem ipsum dolor sit | $$+$$ | Typically assigned in locomotion tasks|
+Punishment per step | $$-$$ | So that agent has an incentive to finish the task quickly |
+Activating the grabing mechanism | $$-$$ | In real world, activating the grabber mechanism would be ridicolously energy inefficient | 
+Colliding with an obstacle | $$--$$ | The initial punishment was low, so the robot learns not to avoid the furniture to manouver between table legs etc. | 
+Slamming against a wall | $$--$$ | In rare cases robot can touch the wall, e.g. to pick an object beside it | 
+Collecting a wooden tray | $$---$$ | The robot needs to learn not to collect non-collectible items | 
 
 Additionally, there are many useful [tips and tricks regarding the training procedure](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Best-Practices.md) suggested by the authors of ML-Agents Toolkit.
 
