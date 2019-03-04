@@ -27,8 +27,6 @@ This blog post presents the details of our project. Naturally, if you would like
 	2. PPO with Segmentation Network
 	3. Behavioral Cloning
 	4. Heuristic
-	5. Alternative possible solutions
-	6. The code in Python
 3. 
  presentation
 
@@ -46,7 +44,7 @@ Oktoberfest is indeed exciting and fun for the participants. However, we tend to
 ::::GIF SWARM::::
 <em> A swarm of synchronized, automnomous robots is capable of outperforming a human workers by far.</em>
 
-Our first step is to simulate the robot by using Unity 3D game engine.
+Our first step is to simulate the robot by using Unity 3D game engine. We additionally use the Unity Machine Learning Agents Toolkit (ML-Agents) plugin that enables game scenes to serve as environments for training intelligent agents. This allows the user to train agents using reinforcement learning, imitation learning, neuroevolution, or other machine learning methods through a simple-to-use Python API. 
 
 ### Agent and Environment:
 
@@ -75,28 +73,15 @@ This heuristic not only allows us to model the behaviour of an agent without an 
 
 An intelligent system can be abstracted as an interplay of three systems : perception, cognition and intelligence. In case of G.E.A.R, the __perception__ is handled by the Intel RealSense camera. In every timestep, we simulate the input from the sensor by providing the robot with two pieces of information: an RGB frame as well as depth map. Now __cognition__ comes into play. The RBG input is transformed into semantic segmentation maps which assign a class to every object in the image. This way robot knows what is a semantic meaning of each pixel of the RBG frame. Then the depth and semantic segmentation maps are fused together and analyzed by the set of neural networks - the brain of the robot. Finally, the brain outputs an decision about robot's __action__. 
 
-## Software and Algorithms
-
-### Semantic Segmentation
-
-The robot itself does not know which object should be collected and which should be avoided. This information is obtained from Semantic Segmentation network, which maps the RBG image to a semantic segmentation maps. For the purpose of the project, we have created a dataset of 3007 pairs of images -RBG frames (input) and matching RGB images, where pixel colors correspond to the class of the object (ground truth obtained from from Unity 3D custom shader). We have used [Semantic Segmentation Suite](https://github.com/GeorgeSeif/Semantic-Segmentation-Suite) to quickly train the [SegNet](https://arxiv.org/pdf/1511.00561.pdf)(Badrinarayan et al., 2015) model using our data. Even though SegNet is far from state of the art, given it's simple structure (easy to debug and modify), relatively uncomplicated domain of the problem (artificial images, simple lightning conditions, repeatable environment) and additional requirements (as little overhead as possible), turned out to be a good choice.
-
-### Algorithms for Agent's Brain
-
-As mentioned before, the central part of robot's cognition is the brain. This is the part responsible for the agent's decision: given the current state of the world and my policy, which action should I take? To answer this questions, we have decided to employ several approaches:
-
-__Proximal Policy Optimization__ - 
-
-__Behavioral Cloning__
-
+### Punishments and Rewards
 
 According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals span from -1 to 0 (punishments) and from 1 to 0 (rewards).
 
 The proper assignment of punishment and rewards and defining the values is challenging. During the project we have learned two important lessons. Those may not be applicable for any RL project, but should be kept in mind for engineers who struggle with the similar challange as ours:
 
-__First, Guide the agent towards the goal first and
+__First, Guide the agent towards the goal first and__
 
-__Curriculum learning is great when the Idea is to train with the more easier classes or task initially, and when the model has started to learn those tasks, we can gradually insert more and more complexity into the training data. 
+__Curriculum learning is great when the Idea is to train with the more easier classes or task initially, and when the model has started to learn those tasks, we can gradually insert more and more complexity into the training data.__
 
 In the end, we have finished the training with following set of rewards and punishments enforced on the agent:
 
@@ -111,6 +96,51 @@ Slamming against a wall | $$--$$ | In rare cases robot can touch the wall, e.g. 
 Collecting a wooden tray | $$---$$ | The robot needs to learn not to collect non-collectible items | 
 
 Additionally, there are many useful [tips and tricks regarding the training procedure](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Best-Practices.md) suggested by the authors of ML-Agents Toolkit.
+
+## Software and Algorithms
+
+### Semantic Segmentation
+The robot itself does not know which object should be collected and which should be avoided. This information is obtained from Semantic Segmentation network, which maps the RBG image to a semantic segmentation maps. For the purpose of the project, we have created a dataset of 3007 pairs of images -RBG frames (input) and matching RGB images, where pixel colors correspond to the class of the object (ground truth obtained from from Unity 3D custom shader). We have used [Semantic Segmentation Suite](https://github.com/GeorgeSeif/Semantic-Segmentation-Suite) to quickly train the [SegNet](https://arxiv.org/pdf/1511.00561.pdf)(Badrinarayan et al., 2015) model using our data. Even though SegNet is far from state of the art, given it's simple structure (easy to debug and modify), relatively uncomplicated domain of the problem (artificial images, simple lightning conditions, repeatable environment) and additional requirements (as little overhead as possible), turned out to be a good choice.
+
+### Algorithms for Agent's Brain
+
+As mentioned before, the central part of robot's cognition is the brain. This is the part responsible for the agent's decision: given the current state of the world and my policy, which action should I take? To answer this questions, we have decided to employ several approaches:
+
+__Proximal Policy Optimization__ - PPO is current state-of-the-art family of policy gradient methods for reinforcement learning developed by OpenAI. It, which alternates  between  sampling  data  through  interaction  with  the  environment,  and  optimizing  a
+“surrogate” objective function using stochastic gradient ascent. MORE DETAIL
+
+__Behavioral Cloning from Observation__ - Humans often learn how to perform tasks via imitation: they observe others perform a task, and then very quickly infer the appropriate actions to take based on their observations. While extending this paradigm to autonomous agents is a well-studied problem in general, there are two particular aspects that have largely been overlooked: (1) that the learning is done from observation only (i.e., without explicit action information), and (2) that the learning is typically done very quickly. In this work, we propose a two-phase, autonomous imitation learning technique called behavioral cloning from observation (BCO), that aims to provide improved performance with respect to both of these aspects. First, we allow the agent to acquire experience in a self-supervised fashion. This experience is used to develop a model which is then utilized to learn a particular task by observing an expert perform that task without the knowledge of the specific actions taken. We experimentally compare BCO to imitation learning methods, including the state-of-the-art, generative adversarial imitation learning (GAIL) technique, and we show comparable task performance in several different simulation domains while exhibiting increased learning speed after expert trajectories become available. 
+
+Moreover, we have created our own __Heuristic Approach__, which...
+
+## Presentation of Solutions:
+
+### PPO
+
+Our first approach involves training an agent using PPO algorithm. Here, the semantic segmentation information does not come from an external neural network. The semantic information is being generated using a shader in Unity, which segments the objects using Tags. This means that the agent receives reliable, noise-free information about objects' classes during training. We additionally utilize two more modifications offered by Unity ML-Agents: 
+
+- __Memory-enhanced agents using Recurrent Neural Networks__ - this allows the agent not only to act on the current RGBA input, but also "to remember" the last $$n$$ inputs and include this additional information into its reasoning wile making decisions. We have observed that this has improved the ability of G.E.A.R to prioritize its actions. E.g. the agent may sometimes ignore a single garbage when it recognizes that there is an opportunity to collect two other items instead (higher reward), but eventually it returns to collect the omitted garbage.
+
+- __Using curiosity__ - this allows the agent not only to act on the current RGBA input, but also "to remember" the last $$n$$ inputs and include this additional information into its reasoning wile making decisions. We have observed that this has improved the ability of G.E.A.R to prioritize its actions. E.g. the agent may sometimes ignore a single garbage when it recognizes that there is an opportunity to collect two other items instead (higher reward), but eventually it returns to collect the omitted garbage.
+
+It took us couple of days of curriculum training to train agent using PPO. We have observed that setting the punishments initially to high, encourages the agent to simply run in circles. This can be avoided by initially allowing the agent to learn what gives it the biggest reward. Once the robot understands what it is being encouraged to do, we can impose further restraints in form of punishments to fine tune the behaviour of G.E.A.R.
+
+
+### PPO with Segmentation Network
+
+
+
+
+use_recurrent: true
+    sequence_length: 64
+    memory_size: 128
+    use_curiosity: true
+	2. PPO with Segmentation Network
+	3. Behavioral Cloning
+	4. Heuristic
+
+
+
 
 
 In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of network parameters with respect to prior art) and larger batches (increase by almost an order of magnitude). This turns out to be very beneficial:
