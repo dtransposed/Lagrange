@@ -150,20 +150,20 @@ In real-life application, we could not use the custom shader in Unity 3D. That i
 {: refdef}
 <em> The decision-making behind our heuristic.</em> 
 
-While planning the project, we have established that the robot's behaviour in essence consists of two task: approaching the collectible objects and deciding if the garbage should be collected or not. So far, our agent has managed to figure out both assignments on its own. But just for fun (and maybe to accelerate the training process), we can "hard-code" the second objective - deciding if the garbage should be collected or not? The decision about activating the grabbing mechanism is just an output of a simple function, which takes into consideration two factors:
+While planning the project, we have established that the robot's behaviour consists in essence of two task: approaching the collectible objects and deciding if the garbage should be collected or not. So far, our agent has managed to figure out both assignments on its own. But just for fun (or maybe to accelerate the training process), we can "hard-code" the second objective - deciding if the garbage should be collected or not. The decision about activating the grabbing mechanism is just an output of a simple function, which takes into consideration two factors:
 
-1. The class of the object in front of us (defined by semantic segmentation map)
-2. The distance of this object from our robot (provided in depth map)
+1. The class of the object in front of us (defined by the semantic segmentation map)
+2. The distance of the object from our robot (provided by the depth map)
 
 This function can be easily hard-coded in the following way:
-- From the current depth map filter out only those pixels which belong to the "collectible" class (overlaying a binary mask over the depth map).
+- From the current depth map, filter out only those pixels which belong to the "collectible" class (overlaying a binary mask over the depth map).
 - Check if the pixel with the highest value is greater than some set threshold.
 - If yes: the collectible object is close enough to G.E.A.R and therefore we might collect it!
 
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/6/heuristic)
 {: refdef}
-<em> Heuristic algorithm in action!</em> 
+<em> Heuristic algorithm in action! On one hand, requires less training and is excellent at recognizing true positives. On the other hand, once a true positive is found, the agent collects it without considering that it may also unintentionally collect a non-collectible item...</em> 
 
 
 
