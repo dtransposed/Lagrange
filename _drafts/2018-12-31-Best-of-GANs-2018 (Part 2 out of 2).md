@@ -88,24 +88,24 @@ An intelligent system can be abstracted as an interplay between three systems: p
 
 ### Punishments and Rewards
 
-According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals are expressed as values spanning from -1 to 0 (punishments) and from 0 to 1 (rewards).
+According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals are expressed as floats spanning from -1 to 0 (punishments) and from 0 to 1 (rewards).
 
 The proper assignment of punishments and rewards and defining the values is challenging. During the project we have learned two important lessons. Those may not be applicable for any RL project, but should be kept in mind for engineers who struggle with the similar tasks as ours:
 
-__First, try to get the good-enough policy quickly__ - we have noticed, that it is advisable to first train the agent to give high rewards for the main goal, while giving only small (or no) signals regarding secondary goals. This way we can quickly achieve a decent, general policy. This can be can be refined later by fine-tuning the punishments and rewards afterwards. This way we avoid being stuck in local minima.
+__First, try to get the good-enough policy quickly__ - we have noticed, that it is advisable to first train the agent to give high rewards for the main goal, while giving only small (or no) feedback signals regarding secondary goals. This way we can quickly achieve a decent, general policy. This can be can be refined by fine-tuning the punishments and rewards scheme later. This way we avoid being stuck in local minima early on.
 
-__Curriculum learning is great when the problem is complex__ - it is shown by [Bengio at al. 2009](http://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf) that when facing a complex task, one should start with easier subtasks and gradually increase the difficulty level of the assingments. This can be easily implemented in Unity ML-Agents and allows for very efficient model creation.
+__Curriculum learning is great when the problem is complex__ - it is shown by [Bengio at al. 2009](http://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf) that when want to learn a complex task, we should start with easier subtasks and gradually increase the difficulty level of the assignments. This can be easily implemented in Unity ML-Agents and allowed us to solve the learning task, by breaking down the project into two subgoals: __roaming the environment in search of garbage__ and __deciding when to activate the grabbing state__.
 
 In the end, we have finished the training with following set of rewards and punishments enforced on the agent:
 
 Action           | Signal (Punishment or Reward)         | Comment              |
 --------------------- | :-------------------: | :-------------------- |
 Gathering the collectible                 |$$+++$$ | The main goal is to collect the garbage    | 
-Moving foreward | $$+$$ | Typically assigned in locomotion tasks|
-Punishment per step | $$-$$ | So that agent has an incentive to finish the task quickly |
-Activating the grabing mechanism | $$-$$ | In real world, activating the grabber mechanism would be ridicolously energy inefficient | 
-Colliding with an obstacle | $$--$$ | The initial punishment was low, so the robot learns not to avoid the furniture to manouver between table legs etc. | 
-Slamming against a wall | $$--$$ | In rare cases robot can touch the wall, e.g. to pick an object beside it | 
+Moving forward | $$+$$ | Typically assigned in locomotion tasks|
+Punishment per step | $$-$$ | So that the agent has an incentive to finish the task quickly |
+Activating the grabbing mechanism | $$-$$ | In the real world, activating the grabber mechanism when unnecessary would be ridiculously energy inefficient | 
+Colliding with an obstacle | $$--$$ | The initial punishment was low, so the robot learns not to stricly avoid the furniture so it can manoeuvre between table legs etc. | 
+Slamming against a wall | $$--$$ | In rare cases robot can touch the wall, e.g. to pick an object positioned beside it | 
 Collecting a wooden tray | $$---$$ | The robot needs to learn not to collect non-collectible items | 
 
 Additionally, there are many useful [tips and tricks regarding the training procedure](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Best-Practices.md) suggested by the authors of ML-Agents Toolkit.
@@ -113,39 +113,54 @@ Additionally, there are many useful [tips and tricks regarding the training proc
 ## Software and Algorithms
 
 ### Semantic Segmentation
-The robot itself does not know which object should be collected and which should be avoided. This information is obtained from Semantic Segmentation network, which maps the RBG image to a semantic segmentation maps. For the purpose of the project, we have created a dataset of 3007 pairs of images -RBG frames (input) and matching RGB images, where pixel colors correspond to the class of the object (ground truth obtained from from Unity 3D custom shader). We have used [Semantic Segmentation Suite](https://github.com/GeorgeSeif/Semantic-Segmentation-Suite) to quickly train the [SegNet](https://arxiv.org/pdf/1511.00561.pdf)(Badrinarayan et al., 2015) model using our data. Even though SegNet is far from state of the art, given it's simple structure (easy to debug and modify), relatively uncomplicated domain of the problem (artificial images, simple lightning conditions, repeatable environment) and additional requirements (as little overhead as possible), turned out to be a good choice.
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/segnet.png)
+{:refdef}
+<em> Graphical visualization of the perception, cognition and action cycle of G.E.A.R</em>
+
+The robot itself does not know which object should be collected and which should be avoided. This information is obtained from Semantic Segmentation network, which maps the RBG image to a semantic segmentation maps. For the purpose of the project, we have created a dataset of 3007 pairs of images - RBG frames (input) and matching semantic segmentation maps (ground truth obtained from Unity 3D custom shader). We have used [Semantic Segmentation Suite](https://github.com/GeorgeSeif/Semantic-Segmentation-Suite) to quickly train the [SegNet](https://arxiv.org/pdf/1511.00561.pdf)(Badrinarayan et al., 2015) model using our data. Even though SegNet is far from state of the art, given its simple structure (easy to debug and modify), relatively uncomplicated domain of the problem (artificial images, simple lightning conditions, repeatable environment) and additional requirements (as little project overhead as possible) it turned out to be a good choice.
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/final1.gif)
+{:refdef}
+<em> Graphical visualization of the perception, cognition and action cycle of G.E.A.R</em>
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/final2.gif)
+{:refdef}
+<em> Graphical visualization of the perception, cognition and action cycle of G.E.A.R</em>
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/final3.gif)
+{:refdef}
+<em> Graphical visualization of the perception, cognition and action cycle of G.E.A.R</em>
 
 ### Algorithms for Agent's Brain
 
 As mentioned before, the central part of robot's cognition is the brain. This is the part responsible for the agent's decision: given the current state of the world and my policy, which action should I take? To answer this questions, we have decided to employ several approaches:
 
 __Proximal Policy Optimization__ - PPO is current state-of-the-art family of policy gradient methods for reinforcement learning developed by OpenAI. It, which alternates  between  sampling  data  through  interaction  with  the  environment,  and  optimizing  a
-“surrogate” objective function using stochastic gradient ascent. MORE DETAIL
+“surrogate” objective function using stochastic gradient ascent.
 
-__Behavioral Cloning from Observation__ - Humans often learn how to perform tasks via imitation: they observe others perform a task, and then very quickly infer the appropriate actions to take based on their observations. While extending this paradigm to autonomous agents is a well-studied problem in general, there are two particular aspects that have largely been overlooked: (1) that the learning is done from observation only (i.e., without explicit action information), and (2) that the learning is typically done very quickly. In this work, we propose a two-phase, autonomous imitation learning technique called behavioral cloning from observation (BCO), that aims to provide improved performance with respect to both of these aspects. First, we allow the agent to acquire experience in a self-supervised fashion. This experience is used to develop a model which is then utilized to learn a particular task by observing an expert perform that task without the knowledge of the specific actions taken. We experimentally compare BCO to imitation learning methods, including the state-of-the-art, generative adversarial imitation learning (GAIL) technique, and we show comparable task performance in several different simulation domains while exhibiting increased learning speed after expert trajectories become available. 
+__Behavioral Cloning from Observation__ - this approach frames our problem as supervised learning task. We "play the game" for half an hour in order for agent to clone our behaviour. Given this ground truth, the agent learns the rough goal policy.
 
-Moreover, we have created our own __Heuristic Approach__, which...
+Moreover, we have created our own __Heuristic Approach__, which will be explained in the next chapter.
 
 ## Presentation of Solutions:
 
 ### PPO
 
-Our first approach involves training an agent using PPO algorithm. Here, the semantic segmentation information does not come from an external neural network. The semantic information is being generated using a shader in Unity, which segments the objects using Tags. This means that the agent receives reliable, noise-free information about objects' classes during training. We additionally utilize two more modifications offered by Unity ML-Agents: 
+Our first approach involves training an agent using PPO algorithm. Here, the semantic segmentation information does not come from an external neural network. It is being generated using a shader in Unity, which segments the objects using tags. This means that the agent receives reliable, noise-free information about objects' classes during training quickly. We additionally utilize two more modifications offered by Unity ML-Agents: 
 
-- __Memory-enhanced agents using Recurrent Neural Networks__ - this allows the agent not only to act on the current RGBA input, but also "to remember" the last $$n$$ inputs and include this additional information into its reasoning wile making decisions. We have observed that this has improved the ability of G.E.A.R to prioritize its actions. E.g. the agent may sometimes ignore a single garbage when it recognizes that there is an opportunity to collect two other items instead (higher reward), but eventually it returns to collect the omitted garbage.
+- __Memory-enhanced agents using Recurrent Neural Networks__ - this allows the agent not only to act on the current RGBD input, but also "to remember" the last $$n$$ inputs and include this additional information into its reasoning while making decisions. We have observed that this has improved the ability of G.E.A.R to prioritize its actions. E.g. the agent may sometimes ignore a single garbage item when it recognizes that there is an opportunity to collect two other items instead (higher reward), but eventually it returns to collect the omitted garbage.
 
-- __Using curiosity__ - this allows the agent not only to act on the current RGBA input, but also "to remember" the last $$n$$ inputs and include this additional information into its reasoning wile making decisions. We have observed that this has improved the ability of G.E.A.R to prioritize its actions. E.g. the agent may sometimes ignore a single garbage when it recognizes that there is an opportunity to collect two other items instead (higher reward), but eventually it returns to collect the omitted garbage.
+- __Using curiosity__ - when we face a problem, where the extrinsic signals are very sparse, the agent does not have enough information to figure out the correct policy. We may endow the agent with a sense of curiosity, which gives the robot an internal reward every time it  discovers something surprising and unconventional with regard to its current knowledge. It is hard to say what was the influence of curiosity in our case, but we have noticed that there were several timepoints where the internal reward spiked during training and significantly improved the current policy of an agent. 
 
-It took us couple of days of curriculum training to train agent using PPO. We have observed that setting the punishments initially to high, encourages the agent to simply run in circles. This can be avoided by initially allowing the agent to learn what gives it the biggest reward. Once the robot understands what it is being encouraged to do, we can impose further restraints in form of punishments to fine tune the behaviour of G.E.A.R.
+It took us couple of days of curriculum training to train agent using PPO. We have observed that setting the punishments initially to high, encourages the agent to simply run in circles. This can be avoided by initially allowing the agent to figure out the main goal. Once the robot understands what it is being encouraged to do, we can impose further restraints in form of punishments to fine tune the behaviour of G.E.A.R.
 
-use_recurrent: true
-    sequence_length: 64
-    memory_size: 128
-    use_curiosity: true
-	2. PPO with Segmentation Network
-	3. Behavioral Cloning
-	4. Heuristic
-	
+<iframe width="480" height="315" src="https://www.youtube.com/embed/7YO3rsb3TwQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<em> The learning process of the agent. We can see that after 24h hours of training G.E.A.R became excellent at it's job.</em> 
 	
 
 ### PPO with Segmentation Network
