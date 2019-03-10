@@ -41,36 +41,50 @@ Oktoberfest is indeed exciting and fun for the participants. However, we tend to
 {:refdef: style="text-align: center;"}
 ![alt text](/assets/6/multiagents.gif)
 {:refdef}
-<em> A swarm of synchronized, autonomous robots is capable of outperforming a human workers by far.</em>
+<em> A swarm of synchronized, autonomous robots is surely capable of outperforming a human workers.</em>
 
 Our first step is to simulate the robot by using Unity 3D game engine. We additionally use the Unity Machine Learning Agents Toolkit (ML-Agents) plug-in that enables game scenes to serve as environments for training intelligent agents. This allows the user to train algorithms using reinforcement learning, imitation learning, neuroevolution, or other machine learning methods through a simple-to-use Python API. 
 
 ### Agent and Environment:
 
-The setup for the agent is a Bavarian-themed room with. The goal of a robot is to explore the environment and learn the proper reasoning (policy), which we may enforce on it indirectly through a set of rewards and punishments. 
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/scene.png)
+{:refdef}
+
+The setup for the agent is a Bavarian-themed room. The goal of a robot is to explore the environment and learn the proper reasoning (policy), which we may enforce on it indirectly through a set of rewards and punishments. 
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/collect-avoid.png)
+{:refdef}
 
 The goal of the robot is:
 - to approach and gather the collectibles (stale loaves of bread, red plastic cups and white sausages).
 - not to collide with static objects (chairs and tables), slamming against the wall or collecting wooden trays (they belong to the owner of a Bavarian tent and should not be collected by the robot for future disposal).
 
 The robot itself is modelled as a cube, which can roam around the room and collect relevant objects. It's action vector contains three elements, which are responsible for: 
-- translational motion (move forward, backward, or stay in place)
-- rotation (turn left, right or refuse to rotate)
-- grabbing state (activate or not)
+- __translational motion__ (move forward, backward, or stay in place)
+- __rotation__ (turn left, right or refuse to rotate)
+- __grabbing state__ (activate or not)
 
-While the first two actions are pretty straightforward, one could ask what what "grabbing state" is. Since the creation of an actual mechanism for garbage collection would not only be very time-consuming but also troublesome (Unity 3D is not as accurate as CAD software when it comes to modelling the physics of rigid bodies), we have decided to use a certain heuristic to simulate the collecting of an garbage. Every time the robot decides to collect an object, two requirements must be fulfilled:
+While the first two actions are pretty straightforward, one could ask what "grabbing state" is. Since the creation of an actual mechanism for garbage collection would not only be very time-consuming but also troublesome (Unity 3D is not as accurate as CAD software when it comes to modelling the physics of rigid bodies), we have decided to use a certain heuristic to simulate the collection of a garbage item. Every time the robot decides to collect an object, two requirements must be fulfilled:
 1. The object must be close to the front part of the robot (confined within the green volume)
 2. The robot must decide to activate "a grabber". When the grabbing state is activated, the color of the robot changes from white to red. 
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/greenvol.png)
+{:refdef}
+<em> The object, if it is to be collected, must be confined within the volume in front of the G.E.A.R (green edges).</em>
 
 This heuristic not only allows us to model the behaviour of an agent without an actual mechanical implementation of a grabber, but also allows to observe the reasoning of the agent and debug the behaviour of G.E.A.R.
 
 ### Perception, Cognition, Action
 
-::::IMAGE PCA::::
-
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/pca.png)
+{:refdef}
 <em> Graphical visualization of the perception, cognition and action cycle of G.E.A.R</em>
 
-An intelligent system can be abstracted as an interplay of three systems : perception, cognition and intelligence. In case of G.E.A.R, the __perception__ is handled by the Intel RealSense camera. In every timestep, we simulate the input from the sensor by providing the robot with two pieces of information: an RGB frame as well as depth map. Now __cognition__ comes into play. The RBG input is transformed into semantic segmentation maps which assign a class to every object in the image. This way robot knows what is a semantic meaning of each pixel of the RBG frame. Then the depth and semantic segmentation maps are fused together and analyzed by the set of neural networks - the brain of the robot. Finally, the brain outputs an decision about robot's __action__. 
+An intelligent system can be abstracted as an interplay between three systems: perception, cognition and intelligence. In case of G.E.A.R, the __perception__ is handled by an Intel RealSense camera. In every timestep, we simulate the input from the sensor by providing the robot with two pieces of information: an RGB frame as well as depth map. Now __cognition__ comes into play. The RBG input is transformed into semantic segmentation maps which assign a class to every object in the image. This way the robot knows what is a semantic meaning of each pixel of the RBG frame. Then the depth and semantic segmentation maps are fused together and analysed by the set of neural networks - the brain of the robot. Finally, the brain outputs a decision about robot's __action__. 
 
 ### Punishments and Rewards
 
