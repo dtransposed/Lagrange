@@ -88,13 +88,13 @@ An intelligent system can be abstracted as an interplay between three systems: p
 
 ### Punishments and Rewards
 
-According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals span from -1 to 0 (punishments) and from 1 to 0 (rewards).
+According to the Reinforcement Learning paradigm, the robot should be able to learn the proper policy through interaction with the environment and collection of feedback signals. For our agent, those signals are expressed as values spanning from -1 to 0 (punishments) and from 0 to 1 (rewards).
 
-The proper assignment of punishment and rewards and defining the values is challenging. During the project we have learned two important lessons. Those may not be applicable for any RL project, but should be kept in mind for engineers who struggle with the similar challange as ours:
+The proper assignment of punishments and rewards and defining the values is challenging. During the project we have learned two important lessons. Those may not be applicable for any RL project, but should be kept in mind for engineers who struggle with the similar tasks as ours:
 
-__First, Guide the agent towards the goal first and__
+__First, try to get the good-enough policy quickly__ - we have noticed, that it is advisable to first train the agent to give high rewards for the main goal, while giving only small (or no) signals regarding secondary goals. This way we can quickly achieve a decent, general policy. This can be can be refined later by fine-tuning the punishments and rewards afterwards. This way we avoid being stuck in local minima.
 
-__Curriculum learning is great when the Idea is to train with the more easier classes or task initially, and when the model has started to learn those tasks, we can gradually insert more and more complexity into the training data.__
+__Curriculum learning is great when the problem is complex__ - it is shown by [Bengio at al. 2009](http://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf) that when facing a complex task, one should start with easier subtasks and gradually increase the difficulty level of the assingments. This can be easily implemented in Unity ML-Agents and allows for very efficient model creation.
 
 In the end, we have finished the training with following set of rewards and punishments enforced on the agent:
 
