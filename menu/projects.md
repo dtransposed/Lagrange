@@ -11,3 +11,4 @@ The growing list of my projects and other pieces of work I was involved in.
 <em>__2019__</em>
 1. [__Seminar: Recent Advances in 3D Computer Vision__](https://github.com/dtransposed/TUM-3D_CV-Seminar) - materials for the talk which I gave during the seminar. My topic was the research paper "Probabilistic Data Association for Semantic SLAM" by Bowman et al. (2017).
 2. [__Solutions to Cracking The Coding Interview questions__](https://github.com/dtransposed/Cracking-The-Coding-Interview) - my take on programming tasks from the book (Python language). 
+3. [__Project - Reinforcement Learning with Unity 3D: G.E.A.R__](https://dtransposed.github.io/blog/GEAR) - design and development of an autonomous garbage collector agent.
