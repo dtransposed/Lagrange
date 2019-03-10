@@ -169,9 +169,14 @@ In real-life application, we could not use the custom shader in Unity 3D. That i
 - __Train the model with SegNet in train time__ - this makes the training extremely time inefficient. Every input frame needs to be segmented by the SegNet which is computationally expensive for our humble laptops. Additionally, the brain of the agent suffers from the SegNet's imperfect output. On the other hand, this approach makes the implementation of SegNet in Python API quite straightforward.
 - __Train the model using custom shader and plug in the SegNet during test time__ - this is more time-efficient solution, because SegNet is being used only at inference time. It also allows to train the brain of the agent using noise-free segmented images from the custom shader. Sadly, this requires much more work with Python API, to integrate SegNet post-factum.
 
-
+<iframe width="480" height="315" src="https://www.youtube.com/embed/pr3DfmuhnfM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 <em> Inference using PPO model with Segmentation Network. Not only is the algorithm much slower (we have several milliseconds delay using the best computer we good get our hands on), but the behaviour of the agent is not entirely correct (SegNet's output is not as accurate as the images produced by the custom shader in Unity).</em> 
+
+### Behavioural Cloning
+
+In this approach agent learns directly from human player. This has several implications: we can train a decent agent in half an hour or so, but it will never be better then a human. This may be a great approach to create an agent which should be just good, not excellent in some task (e.g video games, where AI should be weak enough so we can enjoy the game), but not good enough for our purpose.
+
 
 ### Heuristic
 
@@ -190,18 +195,10 @@ This function can be easily hard-coded in the following way:
 - Check if the pixel with the highest value is greater than some set threshold.
 - If yes: the collectible object is close enough to G.E.A.R and therefore we might collect it!
 
-{:refdef: style="text-align: center;"}
-![alt text](/assets/6/heuristic)
-{: refdef}
+<iframe width="480" height="315" src="https://www.youtube.com/embed/vDUq3du3f2Q" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <em> Heuristic algorithm in action! On one hand, requires less training and is excellent at recognizing true positives. On the other hand, once a true positive is found, the agent collects it without considering that it may also unintentionally collect a non-collectible item...</em> 
 
-
-
-
-
 ## Summary and Possible Improvements
-
-
 
 We have created a simulation of an autonomous robot G.E.A.R in our custom-made environment using several different approaches. 
 Still, in order to turn the prototype into an actual product, which can deliver business value, there are some improvements which should introduced:
