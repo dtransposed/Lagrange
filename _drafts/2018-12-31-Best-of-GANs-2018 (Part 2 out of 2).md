@@ -123,12 +123,6 @@ Our first approach involves training an agent using PPO algorithm. Here, the sem
 
 It took us couple of days of curriculum training to train agent using PPO. We have observed that setting the punishments initially to high, encourages the agent to simply run in circles. This can be avoided by initially allowing the agent to learn what gives it the biggest reward. Once the robot understands what it is being encouraged to do, we can impose further restraints in form of punishments to fine tune the behaviour of G.E.A.R.
 
-
-### PPO with Segmentation Network
-
-
-
-
 use_recurrent: true
     sequence_length: 64
     memory_size: 128
@@ -136,6 +130,42 @@ use_recurrent: true
 	2. PPO with Segmentation Network
 	3. Behavioral Cloning
 	4. Heuristic
+	
+	
+
+### PPO with Segmentation Network
+
+In real-life application, we could not use the custom shader in Unity 3D. That is why we have to train our own model for semantic segmentation. When the model is ready, there are two possibilities to embed the SegNet into the Python API: 
+- __Train the model with SegNet in train time__ - this makes the training extremely time inefficient. Every input frame needs to be segmented by the SegNet which is computationally expensive for our humble laptops. Additionally, the brain of the agent suffers from the SegNet's imperfect output. On the other hand, this approach makes the implementation of SegNet in Python API quite straightforward.
+- __Train the model using custom shader and plug in the SegNet during test time__ - this is more time-efficient solution, because SegNet is being used only at inference time. It also allows to train the brain of the agent using noise-free segmented images from the custom shader. Sadly, this requires much more work with Python API, to integrate SegNet post-factum.
+
+
+
+<em> Inference using PPO model with Segmentation Network. Not only is the algorithm much slower (we have several milliseconds delay using the best computer we good get our hands on), but the behaviour of the agent is not entirely correct (SegNet's output is not as accurate as the images produced by the custom shader in Unity).</em> 
+
+### Heuristic
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/heuristic.gif)
+{: refdef}
+<em> The decision-making behind our heuristic.</em> 
+
+While planning the project, we have established that the robot's behaviour in essence consists of two task: approaching the collectible objects and deciding if the garbage should be collected or not. So far, our agent has managed to figure out both assignments on its own. But just for fun (and maybe to accelerate the training process), we can "hard-code" the second objective - deciding if the garbage should be collected or not? The decision about activating the grabbing mechanism is just an output of a simple function, which takes into consideration two factors:
+
+1. The class of the object in front of us (defined by semantic segmentation map)
+2. The distance of this object from our robot (provided in depth map)
+
+This function can be easily hard-coded in the following way:
+- From the current depth map filter out only those pixels which belong to the "collectible" class (overlaying a binary mask over the depth map).
+- Check if the pixel with the highest value is greater than some set threshold.
+- If yes: the collectible object is close enough to G.E.A.R and therefore we might collect it!
+
+{:refdef: style="text-align: center;"}
+![alt text](/assets/6/heuristic)
+{: refdef}
+<em> Heuristic algorithm in action!</em> 
+
+
 
 
 
