@@ -27,9 +27,7 @@ This blog post presents the details of our project. Naturally, if you would like
 	2. PPO with Segmentation Network
 	3. Behavioral Cloning
 	4. Heuristic
-3. 
- presentation
-
+4. Summary and Possible Improvements
 
 ## Project overview
 
@@ -141,148 +139,27 @@ use_recurrent: true
 
 
 
-
-
-In contrast to other papers I evaluated, the significance of this research does not come from any significant modification to the GAN framework. Here, the major contribution comes from using massive amounts of computational power available (courtesy of Google) to make the training more powerful. This involves using larger models (4-fold increase of network parameters with respect to prior art) and larger batches (increase by almost an order of magnitude). This turns out to be very beneficial:
-1. Using large batch sizes (2048 images in one batch) allows every batch to cover more modes. This way the discriminator and generator benefit from better gradients.
-2. Doubling the width (number of channels) in every layer increases the capacity of the model and thus contributes to much better performance. Interestingly, increasing the depth has negative influence on the performance.
-3. Additional use of class embeddings accelerates the training procedure. Class embeddings mean conditioning the output of the generator on dataset's class labels.
-4. Finally, the method also benefits from hierarchical latent spaces - injecting the noise vector $$\textbf{z}$$ into multiple layers rather then solely at the initial layer. This not only improves performance of the network, but also accelerates the training process.
-
-### Results:
-
-Large scale training allows for superior quality of generated images. However, it comes with its own challenges, such as instability. The authors show, that even though the stability can be enforced through regularization methods (especially on the discriminator), the quality of the network is bound to suffer. The clever workaround is to relax the constraints on the weights and allow for training to collapse at the later stages. Then, we may apply the early stopping technique to pick the set of weights just before the collapse. Those weights are usually sufficiently good to achieve impressive results.
+## Summary and Possible Improvements
 
 {:refdef: style="text-align: center;"}
-![alt text](/assets/5/1.png)
+![alt text](/assets/6/overview_fleet.mp4)
 {: refdef}
-<em> One generated image and its nearest neighbours from ImageNet dataset. Which image is artificially generated? The burger in the top left corner...</em> 
+<em> The future of autonomous garbage collection - a fleet of G.E.A.R's working cooperatively</em> 
+
+We have created a simulation of an autonomous robot G.E.A.R in our custom-made environment using several different approaches. 
+Still, in order to turn the prototype into an actual product, which can deliver business value, there are some improvements which should introduced:
+
+__Install the actual mechanism for garbage collection__ - as mentioned before, the mechanical design of the robot should be simulated in detail. This means installing a "shovel" which could seamlessly push the garbage into the "belly" of a robot. As a result, we should also design a clever and efficient way to dispose the set of items once the robot's container becomes full.
+
+__Deploy the algorithm on a machine which can handle real-time semantic segmentation__ - the inference time of the semantic segmentation model turned out to be too slow for real-time simulation. This comes mainly from the limited computing power of our laptops. We could easily improve it not only be using professional, industry-grade graphic cards, but possibely rewriting the code using C++ or (in more extreme cases) introducing weights quantization.
+
+__Transfer the knowledge from simulation to a real robot with RealSense camera__ - the final part of the endeavour would be deployment of the robot in the physical environment. This would mean fine-tuning algorithms by running the robot in the real world. To my best knowledge, the use of Reinforcement Learning in robotics is still in experimental stage. One of the recent undertakings, which translates the results of the RL robot simulation into physical agents is the [ANYmal](https://www.anybotics.com/) project. We could use similar approaches to move from Unity 3D engine to the actual world. It would be really exciting to explore how G.E.A.R would do in the complex, real-life domain!
 
 {:refdef: style="text-align: center;"}
-![alt text](/assets/5/2.png)
+![alt text](/assets/6/presentation.gif)
 {: refdef}
-<em> Great interpolation ability in both class and latent space confirms that the model does not simply memorize data. It is capable of coming up with its own, incredible inventions!</em> 
+<em> G.E.A.R team presenting the project at the Centre for Translational Cancer Research at Me, together with my team-mates during the final presentation at the TUM Clinic. </em> 
 
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/3.png)
-{: refdef}
-<em> While it may be tempting to cherry-pick the best results, the authors of the paper also comment on the failure cases. While easy classes such as a) allow for seamless image generation, difficult classes b) are tough for the generator to reproduce. There are many factors which influence this phenomenon e.g. how well the class is represented in the dataset or how sensitive our eyes to particular objects. While small flaws in the landscape image are unlikely to draw our attention, we are very vigilant towards "weird" human faces or poses. </em>
-
-## [The relativistic discriminator: a key element missing from standard GAN](https://arxiv.org/pdf/1807.00734.pdf)
-
-### Details
-The paper has been submitted on 02.06.2018. One of the reasons why this research is impressive is the fact, that it seems that the whole job was done by one person. The author thought about everything - writing a short blog post about [her invention] (https://ajolicoeur.wordpress.com/relativisticgan/), publish well documented [source code](https://github.com/AlexiaJM/RelativisticGAN) and spark an interesting [discussion on reddit](https://www.reddit.com/r/MachineLearning/comments/8vr9am/r_the_relativistic_discriminator_a_key_element/).
-
-### Main idea:
-
-In standard generative adversarial networks, the discriminator $$D$$ estimates the probability of the input data being real or not. The generator $$G$$ tries to increase the probability that generated data is real. During training, in every iteration, we input two equal-sized batches of data into the discriminator: one batch comes from a real distribution $$\mathbb{P}$$, the other from fake distribution $$\mathbb{Q}$$. 
-This valuable piece of information, that half of the examined data comes from fake distribution is usually not conveyed in the algorithm. Additionally, in standard GAN framework, the generator attempts to make fake images look more real, but there is no notion that the generated images can be actually “more real” then real images. The author claims that those are the missing pieces, which should have been incorporated into standard GAN framework in the first place. Due to those limitations, it is suggested that training the generator should not only increase the probability that fake data is real but also decrease the probability that real data is real. This observation is also motivated by the IPM-based GANs, which actually benefit from the presence of relativistic discriminator.
-
-### The method:
-
-In order to shift from standard GAN into “relativistic” GAN, we need to modify the discriminator. A very simple example of a Relativistic GAN (RGAN) can be conceptualized in a following way:
-
-In __standard formulation__, the discriminator is a function $$D(x) = \sigma(C(x))$$. $$x$$ is an image (real or fake), $$C(x)$$ is a function which assigns a score to the input image (evaluates how realistic $$x$$ is) and $$\sigma$$ translates the score into a probability between zero to one. If discriminator receives an image which looks fake, it would assign a very low score and thus low probability e.g. $$D(x) = \sigma(-10)=0$$. On the contrary, real-looking input gives us high score and high probability e.g. $$D(x) = \sigma(5)=1$$.
-
-Now, in __relativistic GAN__, the discriminator estimates the probability that the given real data $$x_r$$ is more realistic then a randomly sampled fake data $$x_f$$:
-
-$$D(\widetilde{x}) = \sigma(C(x_r)-C(x_f))$$
-
-To make the relativistic discriminator act more globally and avoid randomness when sampling pairs, the author builds up on this concept to create a __Relativistic average Discriminator__ (RaD). 
-
-$$\bar{D}(x)=\begin{cases}
-sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{Q}}C(x_{f})), & \text{if $x_f$ is real}\\
-sigma(C(x)-\mathop{\mathbb{E}}_{x_{f}\sim\mathbb{P}}C(x_{f})), & \text{if $x_r$ is fake}.
- \end{cases}$$
-
-This means that whenever the discriminator $$D\hat$$ receives a real image, it evaluates how is this image more realistic that the average fake image from the batch in this iteration. Analogously, $$D\hat$$ receives a fake image, it is being compared to an average of all real images in a batch. This formulation of relativistic discriminator allows us to indirectly compare all possible combinations of real and fake data in the minibatch, without enforcing quadratic time complexity on the algorithm. 
-
-
-### Results:
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/4.png)
-{: refdef}
-<em>The diagram shows an example of the discriminator’s output in standard GAN: $$P(x_r \text{is real|) = \sigma(C(x_r)))$$ 
-and RaD: P(x_r \text{is real}|C(x_f)) = \sigma(C(x_r) − C(x_f))). $$x_f$$ are dogs images while $$x_r$$ are pictures of bread.
-I think that this example gives a very good intuitive understanding of the relativistic disciminator.</em>
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/5.png)
-{: refdef}
-<em>Artificially created cats (128x128 resolution), the output from RaLSGAN. Not only the standard LSGAN produces less realistic images, it is also much more unstable.</em>
- 
-I have the impression that this paper may start a new trend - using relativistic discriminator in different GAN problems. The experiments indicate, that the approach may help with many problems such as stability or inferior image quality. It may also accelerate the networks' training speed. I really love the fact, that the author has questioned a very fundamental element of the GAN architecture. It is exciting to see that there are already state-of-the-art publications which use advantage of relativistic discriminators (even though this paper came out in June). An example of such an architecture is...
- 
- 
-## [ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks](https://arxiv.org/pdf/1809.00219.pdf)
-
-### Details
-The paper has been submitted on 17.09.2018. The code is available publicly [on github](https://github.com/xinntao/ESRGAN). Fun fact: several people have used ESRGAN to improve textures in some old games e.g [Morrowind](https://www.youtube.com/watch?v=PupePmY9OA8&t=184s), [Doom 2](https://www.youtube.com/watch?v=u9S8lnGqKkg&t=64s) or [Return to Castle Wolfenstein](https://www.youtube.com/watch?v=uyRfptKJutU).
-
-### Main idea:
-
-The SRGAN was 2017's state of the art invention in the domain of super-resolution (SR) algorithms. It's task was to take a low resolution (LR) image and output its high resolution (HR) representation. The first optimization target of the network was to __minimize the mean squared error (MSE)__ between recovered HR image and the ground truth. This is equivalent to maximizing peak signal-to-noise ratio (PSNR), which is a common measure used to evaluate SR algorithms. However, this favours overly smooth textures. That is why the second goal of the network was to __minimize perceptual loss__. This helps in capturing texture details and high frequency content. 
-As the result, the network has learned to find a sweet spot between those two contradictory goals. By forcing the GAN to keep track of goals, the network has learned to produce high quality HR representation of the LR input. 
-One year later, the SRGAN method (created by the scientists from Twitter), has been improved by Chinese and Singaporean researchers. The new network can create even more realistic textures with reduced number of artifacts. This has been achieved through several clever tricks.
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/6.png)
-{: refdef}
-<em>Output from SRGAN versus output from ESRGAN, with ground truth as reference. The generated HR image is four times larger than the LR input. The ESRGAN outperforms its predecessor in sharpness and details.</em>
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/7.png)
-{: refdef}
-<em>SRGAN is based on the ResNet architecture. Even though ESRGAN has similar design, it introduces some changes to Basic Blocks -shifts  from Residual Blocks to Residual in Residual Dense Blocks (RRDB)-for better performance.</em>
-
-### The method:
-
-The ESRGAN takes SRGAN and employs several clever tricks to improve the quality of the generated images. Those four improvements are:
-1. Introducing changes to the generator's architecture (switching from Residual Blocks to RRDB, removing batch normalization).
-2. Replacing an ordinary discriminator with the relativistic discriminator (as described in the previously discussed paper).
-3. Regarding perceptual loss, using feature maps before activation, rather then post-activation.
-4. Pre-training the network to first optimize for PSNR and then fine tune it with the GAN.
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/8.png)
-{: refdef}
-<em>First, we remove batch normalization from the network. Secondly, we introduce RRDB which combines multi-level residual network and dense connections. This gives the network higher capacity to capture information.</em> 
-
-__Introducing major changes to the network architecture__ - while the generator in the original SRGAN was using residual blocks, the ESRGAN additionally benefits from dense connections (as proposed by the authors of [DenseNet](https://arxiv.org/abs/1608.06993)). This not only allows for increased depth of the network, but also enforces more complex structure. This way the network can learn finer details. Additionally, ESRGAN does not use batch normalization. Learning how normalize the data distribution between layers is a general practice in many Deep Neural Networks. However, in case of SR algorithms (especially the ones which use GANs), it tends to introduce unpleasant artifacts and limits the generalization ability. Removing batch normalization improves the stability and reduces computational cost (less parameters to learn).
-
-
-__Replacing an ordinary discriminator with the relativistic disciminator__ - it is really interesting that the idea of relativistic discriminator has been already employed by the community shortly after the paper has been published. Using the Relativistic average Discriminator allows the network not only to receive gradients from generated data, but also from the real data. This improves the quality of edges and textures.
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/10.png)
-{: refdef}
-<em>As we go deeper, the layers after activation tend to give us much less information. This results in weak supervision and inferior performance. Therefore, it is more beneficial to use pre-activation feature maps.</em> 
-
-__Revisit perceptual loss__ - the perceptual loss attempts to compare perceptual similarity between the reconstructed image $$G(x_LR)$$  and the ground truth image $$x_HR$$. By running both inputs through the pre-trained VGG network, we receive their representation in form of feature maps after j-th convolution and activation $$\theta(G(x_LR))$$ and $$\theta(x_HR)$$. One of the tasks of the SRGAN was to minimize the difference between those representations. This is still the case in ESRGAN. However, we take the representation after j-th convolution but __before activation__. 
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/11.png)
-{: refdef}
-<em>Interestingly, post-activation feature maps also cause inconsistent reconstructed brightness compared with the GT image.</em> 
-
-__Network interpolation__ - as I have mentioned before, there are two goals which the algorithm tries to achieve. This is not only perceptual similarity between generated image and ground truth, but also lowest possible PSNR. This why initially the network is being trained to minimize PSNR (using L1 loss). Then, the pre-trained network is being used to initialize the generator. This not only allows to avoid undesired local minima for the generator, but also provides the discriminator with quite good super-resolved images from the start. 
-The authors state that the best results can be obtained through interpolation between the weights of the initial network (after PSNR optimization) and final network (after GAN training). This allows to control the PSNR versus perceptual similarity trade-off.
-
-### Results:
-
-The experiments are similar to the ones conducted on SRGAN. The goal is to scale the LR image by the factor of 4 and obtain a good quality SR image of size 128x128.
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/12.png)
-{: refdef}
-<em>At the moment, ESRGAN is the state of the art technique for super-resolution.</em> 
-
-{:refdef: style="text-align: center;"}
-![alt text](/assets/5/13.png)
-{: refdef}
-<em>Interpolating between two contradictory goals: minimizing PSNR or maximizing perceptual similarity</em> 
-
-The authors have tested their network at the PIRM-SR challenge, where the ESRGAN has won the first place with the best perceptual index.
 
 <em>All the figures are taken from the publications, which I refer to in my blog post<em>
 www.dw.com
