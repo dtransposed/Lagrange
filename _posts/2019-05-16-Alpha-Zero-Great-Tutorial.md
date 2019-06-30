@@ -11,7 +11,7 @@ image: alpha-zero-one.png
 
 
 
-
+http://www.depthfirstlearning.com/2018/AlphaGoZero
 
 
 
@@ -122,87 +122,62 @@ Next experiment involves running the algorithm 1000 times and computing the perc
 
 ##  MCST & UCT
 
-Monte Carlo Search Tree (MCST)  is a heuristic search algorithm which helps to make optimal choices in decision processes (e.g games). This means it can be theoretically applied to any domain that can be described as a (state, action) tuple.
+Monte Carlo Search Tree (MCST)  is a heuristic search algorithm  to make optimal choices in decision processes (yes you have guessed, also games). Hence, theoretically it can be applied to any domain that can be described as a (state, action) tuple.
 
 In principle, the MCST algorithm consists of four steps:
 
-1. Selection: the algorithm starts at the root node R (initial state of the game) and traverses the decision tree (so it revisits the previously "seen" states ) according to the current policy until it reaches some leaf node L. If node L:
+1. __Selection__: the algorithm starts at the root node R (initial state of the game) and traverses the decision tree (so it revisits the previously "seen" states ) according to the current policy until it reaches a leaf node L. If node L:
 
-   ​	a) is a terminal node (final state of the game) - skip to step 4.
+   ​	a) is a terminal node (final state of the game) - jump to to step 4.
 
-   ​	b) otherwise, node L has some previously unexplored children - continue with step 2.
+   ​	b) is not terminal, then it is bound to have some previously unexplored children - continue with step 2.
 
-2. Expansion: If node L is not terminal, we expand one of the child nodes of L - let's call this child node C.
+2. __Expansion__: We expand one of the child nodes of L - let's call this child node C.
 
-3. Rollout: Starting from node C, we let the algorithm simply continue playing on it's own according to some policy (e.g random policy) until we reach a terminal node.
+3. __Rollout__: Starting from node C, we let the algorithm simply continue playing on it's own according to some policy (e.g random policy) until we reach a terminal node.
 
-4. Once we reach a terminal node, we write down the final score. Then, all the nodes visited in this iteration (starting with C, through all the nodes involved in selection step, up to the root node R) are updated. This means we update their value and number of times each of the nodes has been visited.
+4. __Update__: Once we reach a terminal node, the game score is returned. We propagate it (add it to the current node value) through all the nodes visited in this iteration (starting with C, through all the nodes involved in selection step, up to the root node R). We do not only update the node value, but also the number of times each of the nodes has been visited.http://www.depthfirstlearning.com/2018/AlphaGoZero
 
-UCT (Upper Confidence Bound for Search Trees) combines the concept of MCST and UCB. This means introducing a small change to the rudimentary tree search: in selection phase, for every parent node the algorithm evaluates its child nodes using UCB formulation:
+Hold on. Since each node keeps the information about it's value and number of times it has been visited, we may use UCB to choose the optimal action for every state. The UCT (Upper Confidence Bound for Search Trees) combines the concept of MCST and UCB. This means introducing a small change to the rudimentary tree search: in selection phase, for every parent node the algorithm evaluates its child nodes using UCB formulation:
 
 
 $$
 UCT (j) =\bar{X}_j + C\sqrt{\log(n_p)/(n_j)}
 $$
 
+Where $$\bar{X}_j$$ is an average value of the node (total score divided by the number of times the node has been visited), $$C_p$$ is some positive constant (responsible for exploration-exploitation trade-off), $$n_p$$ is the number of times the parent node has been visited and $$n_j$$ is the number of times the node $$j$$ has been visited. 
 
-Where $$\bar{X}_j$$ is an average value of the node, $$C_p$$ is some positive constant (responsible for exploration-exploitation trade-off), $$n_p$$ is the number of times the parent node has been visited and $$n_j$$ is the number of times the node $$j$$ has been visited.
+The algorithm requires very little prior knowledge about the game (apart from the legal moves and game score for terminal states), effectively focuses the search towards the most valuable branches and can be tuned, so that we may find a good trade-off between the algorithm speed and iterations. This is quite important since MCST in general is pretty slow for large combinatorial spaces.
 
-The child node with higher UCB score gets selected. 
+If you would like to implement UCT from the scratch I can highly recommend the code presented in MCST research hub (link below). The authors have provided code in Python and Java and a template to create your own small games that can be "cracked" using UCT.
 
-Once we reach the desired number of iteration, 
+I have modified their code and created an A.I opponent for 4x4 tic tac toe. Every time the adversary is prompted to make a move, it runs 1000 UCT iterations in order to find the best move. I must admit that the opponent is quite difficult to beat. During the gameplay I am being sucessfully blocked by the adversary. Additionally one can quickly notice, that the A.I comes up with simple, effective strategies.
 
-In general MCTS would be preferred over other tree search methods because of its:
+<img src="/assets/7/example.gif"/>
+
+<em> My sample 4x4 tic tac toe game against the UCT-based opponent. </em> 
+
+The source code can be found in the github repo.
+
+## Sources:
+
+### UCB:
+
+[Sutton & Barto book: Sections 2.1 - 2.7](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf) - excellent introduction to multi-armed bandit approaches.
+
+[Blog post by Lilian Weng](https://lilianweng.github.io/lil-log/2018/01/23/the-multi-armed-bandit-problem-and-its-solutions.html#ucb1) - short and concise introduction to basic algorithms used in multi-armed bandit.
+
+[Blog post by Jeremy Kun](https://jeremykun.com/2013/10/28/optimism-in-the-face-of-uncertainty-the-ucb1-algorithm/) - a bit more detailed  (but super interesting) analysis of UCB.
 
 
 
-Sources:
+### MCST: 
 
-[MCTS research hub](http://mcts.ai/about/index.html) - excellent starting point for getting familiar with the algorithm
+[MCTS research hub](http://mcts.ai/about/index.html) - excellent starting point for getting familiar with the algorithm.
 
-[UCT video tutorial by John Levine](https://www.youtube.com/watch?v=UXW2yZndl7U) - short and clear explanation of the algorithm, together with a worked example. 
+[UCT video tutorial by John Levine](https://www.youtube.com/watch?v=UXW2yZndl7U) - short and clear explanation of MCST, together with a worked example. 
 
-
-
-UCT (Upper Confidence bounds applied to Trees)
-
-https://www.youtube.com/watch?v=UXW2yZndl7U
-
-David Silver's UCB video:
-...
-https://lilianweng.github.io/lil-log/2018/01/23/the-multi-armed-bandit-problem-and-its-solutions.html#ucb1
-Inspiration:
 http://www.depthfirstlearning.com/2018/AlphaGoZero
 
-Learning minmax
-
-<https://www.youtube.com/watch?v=fInYh90YMJU>
 
 
-
-Shortly about MC:
-
-[http://jhamrick.github.io/quals/planning%20and%20decision%20making/2015/12/16/Browne2012.html](http://jhamrick.github.io/quals/planning and decision making/2015/12/16/Browne2012.html)
-
-Polak UCB
-
-<https://github.com/dloranc/reinforcement-learning-an-introduction/blob/master/01_multi_arm_bandits/05_ucb.py>
-
-quick alpha zero:
-
-<https://tmoer.github.io/AlphaZero/>
-
-<https://jeremykun.com/2013/10/28/optimism-in-the-face-of-uncertainty-the-ucb1-algorithm/>
-
-
-
-Sources:
-
-Creating AlphaZero:
-https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-using-python-and-keras-7f664945c188
-
-AlphaZero Cheatsheet:
-https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0
-
-AlphaZero Stanford:
-https://web.stanford.edu/~surag/posts/alphazero.html
