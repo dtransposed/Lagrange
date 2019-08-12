@@ -10,9 +10,9 @@ image: attention.jpg
 
 Action recognition is the task of inferring various actions from video clips. This feels like a natural extension of image classification task to multiple frames. The final decision on the class membership is being made by fusing the information from all the processed frames. Reasoning about a video remains a challenging task because of high computational cost (it takes more resources to processes three-dimensional data structures than 2D tensors), difficulty of capturing spatio-temporal context across frames (especially problematic when the position of a camera changes rapidly) or the difficulty of obtaining a useful, specialized dataset (it is much easier and cheaper to collect vast amounts of independent images then image sequences). 
 
-<img src="/assets/8/2006.gif" width="480">
 
-<img src="/assets/8/3000.gif" width="480">
+
+<img src="/assets/8/3000.gif" width="380"> <img src="/assets/8/2006.gif" width="380">
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
 
