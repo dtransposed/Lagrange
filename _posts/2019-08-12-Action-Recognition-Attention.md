@@ -8,7 +8,7 @@ image: attention.jpg
 
 ---
 
-<img src="/assets/8/2006.gif"/>
+<img src="/assets/8/2006.gif"/ width="200">
 
 <img src="/assets/8/3000.gif"/>
 
