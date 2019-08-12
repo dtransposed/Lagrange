@@ -119,12 +119,14 @@ For the purpose of my implementation, for every video in the dataset I extract e
 
 ### Implementation details
 
-It takes just few epochs to train both ALSTM and ConvALSTM. For regularization I use dropout in all fully connected layers, early stopping and weight decay. Even though I get satisfying results, there are many ways to improve the model: performing a thorough hyper-parameter tuning (time consuming process which I have decided to skip). I think that the model would especially benefit from the optimal numbers of units in multi-layer perceptrons (ALSTM) or kernels in convolutional layers (ConvALSTM), as well as parameters of LSTM/ConvALSTM. Finally, the output to the ConvALSTM is a tensor of size $$F \dot F \dot U$$. Before it is consumed by fully connected layer it needs to be flattened. The resulting size of the vector is quite large. It would be a good idea to feed it to some convolutional layers first before using the fully connected network.
+It takes just few epochs to train both ALSTM and ConvALSTM. For regularization I use dropout in all fully connected layers, early stopping and weight decay. Even though I get satisfying results, there are many ways to improve the model: performing a thorough hyper-parameter tuning (time consuming process which I have decided to skip). I think that the model would especially benefit from the optimal numbers of units in dense layers (ALSTM) or kernels in convolutional layers (ConvALSTM), as well as parameters of LSTM/ConvALSTM. Finally, the output to the ConvALSTM is a tensor of size $$F \times F \times U$$. Before it is consumed by fully connected layer it needs to be flattened. The resulting size of the vector is quite large. It would be a good idea to feed it to some convolutional layers first before using the fully connected network.
 
 The ALSTM contains an additional component in its loss, the attention regularization (Xu et al. 2015). This forces the model to look at each region of the frame at some point in time, so that:
+
 $$
 \sum_{t=1}^{T}c_{t,i}\approx 1 \space where \space c_t = \frac{e^{s_{t,i}}}{\sum_{j=1}^{K^2} e^{s_{t,j}}}
 $$
+
 The regularization $$\lambda$$ term decides whether the model explores different gaze locations or not. I have found out that $$\lambda=0.5$$ is adequate for my ALSTM.
 
 To visualize an attention map $$c_i$$, I take its representation, a $$7 \times 7 $$ matrix, and upsample to $$800 \times 800 $$ grid. I smooth it using Gaussian filter and keep only those values higher then the $$80^{th}$$ percentile of the image pixels. 
@@ -140,10 +142,10 @@ To visualize an attention map $$c_i$$, I take its representation, a $$7 \times 7
 | $$\lambda$$ | attention regularization term                                | 0.5         | $$-$$     |
 | $$\omega$$  | weight decay parameter                                       | 0         | $$-$$     |
 | $$-$$       | accuracy of the model (test set)                             | $$56.0$$% | $$52.5$$% |
+<em> Description of models' parameters </em>
 
 ### Results
-
-It is interesting to see how well the network attends to meaningful patches of a video frame. Even though ALSTM achieves higher accuracy then ConvALSTM, the latter does much better job when it comes to calculating attention heatmaps.
+It is interesting to see how well the network attends to meaningful patches of a video frame. Even though ALSTM achieves higher accuracy then ConvALSTM, the latter does much better job when it comes to attention heatmap generation.
 
 #### Successful predictions 
 
@@ -153,11 +155,11 @@ It is interesting to see how well the network attends to meaningful patches of a
 
 <img src="/assets/8/2004.gif" width="300"> <img src="/assets/8/2005.gif" width="300">
 
-<em> Several videos together with their ground truth label, predicted label (with the confidence degree). 1) Correct prediction of "kiss class" with network attending to lips of kissing people. 2)  Correct prediction of "pushup" with network attending to the body of the man. 3) Correct prediction of "ride_bike" with network attending to the bike. Note that when the bike is not seen anymore, the network is confused. It produces wrong predictions and is not sure where to "look at". 4) Correct prediction of "brush_hair" with network attending to hand with brush.</em> 
+<em> Several videos along with their ground truth label, predicted label (with the confidence degree). 1) Correct prediction of "kiss class" with network attending to faces of kissing people. 2)  Correct prediction of "pushup" with network attending to the body of the man. 3) Correct prediction of "ride_bike" with network attending to the bike. Note that when the bike is not seen anymore, the network is confused. It produces wrong predictions and is not sure where to "look at". 4) Correct prediction of "brush_hair" with network attending to hand with brush.</em> 
 
 ##### ConvALSTM
 
-<img src="/assets/8/3001.gif" width="300">
+<img src="/assets/8/3001.gif" width="300"><img src="/assets/8/final.gif" width="300">
 
 <img src="/assets/8/3002.gif" width="300"> <img src="/assets/8/3004.gif" width="300">
 
@@ -173,7 +175,7 @@ It is interesting to see how well the network attends to meaningful patches of a
 
 ##### ConvALSTM
 
-<img src="/assets/8/3003.gif" width="300"> <img src="/assets/8/3005" width="300.gif">
+<img src="/assets/8/3003.gif" width="300"> <img src="/assets/8/3005.gif" width="300">
 
 <em> 1) The network decides to partially classify "situp" video as "brush_hair". This may be due to unusual camera location - model sees hands touching the hair after all. 2)  The basketball hoop is misleading the classifier, so it partially predicts wrong (albeit quite close) labels to ground truth "dribble". Note how the network attends to the hand visible in first several frames.  </em>
 
