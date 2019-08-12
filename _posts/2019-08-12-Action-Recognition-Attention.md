@@ -38,11 +38,11 @@ The purpose of this blog post is to present how the visual attention can be used
 
 The surge of deep learning research in the domain of __action recognition__ came around year 2014. That's when the problem has been successfully tackled from two angles. Karpathy et al. 2014 [^2] used convolutional neural networks (CNNs) to extract information from consecutive video frames and then fused those representations to reason about the class of the whole sequence. Soon Simmoyan and Zisserman 2014 [^3] came up with different solution - a network which analyzes two input streams independently: one stream reasons about the spatial context (video frames) while the second uses temporal information (extracted optical flow). Finally both pieces of information are combined so the network can compute class score. Another work introduced by Du Tran et al. 2014[^4] uses 3D convolutional kernels on spatiotemporal cube. Lastly, one of the most popular approaches was proposed by Donahue et al. 2014 [^5] . Here, the encoder-decoder architecture takes each single frame of the sequence, encodes it using a CNN and feeds its representation to an Long-Short Term Memory (LSTM) block. This way we "compress" the image using feature extractor and then learn the temporal dependencies between frames using recurrent neural network. 
 
-<img src="/assets/8/fencing.gif" width="200">
+<img src="/assets/8/fencing.gif" width="300">
 
-<img src="/assets/8/cycling.gif" width="200">
+<img src="/assets/8/cycling.gif" width="300">
 
-<img src="/assets/8/walking.gif" width="200">
+<img src="/assets/8/walking.gif" width="300">
 
 <em> Several examples of videos from HMDB-51 dataset. Each video belongs to one of the 51 classes: "fencing" (top), "ride_bike" (middle), "walk" (down).</em> 
 
@@ -140,23 +140,17 @@ It is interesting to see how well the network attends to meaningful patches of a
 
 #####  ALSTM
 
-<img src="/assets/8/2002"/>
+<img src="/assets/8/2002.gif" width="300"> <img src="/assets/8/2003.gif" width="300">
 
-<img src="/assets/8/2003"/>
-
-<img src="/assets/8/2004"/>
-
-<img src="/assets/8/2005"/>
+<img src="/assets/8/2004.gif" width="300"> <img src="/assets/8/2005.gif" width="300">
 
 <em> Several videos together with their ground truth label, predicted label (with the confidence degree). 1) Correct prediction of "kiss class" with network attending to lips of kissing people. 2)  Correct prediction of "pushup" with network attending to the body of the man. 3) Correct prediction of "ride_bike" with network attending to the bike. Note that when the bike is not seen anymore, the network is confused. It produces wrong predictions and is not sure where to "look at". 4) Correct prediction of "brush_hair" with network attending to hand with brush.</em> 
 
 ##### ConvALSTM
 
-<img src="/assets/8/3001"/>
+<img src="/assets/8/3001.gif" width="300">
 
-<img src="/assets/8/3002"/>
-
-<img src="/assets/8/3004"/>
+<img src="/assets/8/3002.gif" width="300"> <img src="/assets/8/3004.gif" width="300">
 
 <em> 1) The network accurately predicts the label "climb" and the location of the climber. 2) Model follows the horserider with such precision, that the attention heatmaps can be used for tracking! 3) Correct classification of "smoking" class. Note that network tracks the cigarette and smoke.  </em>
 
@@ -164,17 +158,13 @@ It is interesting to see how well the network attends to meaningful patches of a
 
 ##### ConvALSTM
 
-<img src="/assets/8/2001.gif"/>
-
-<img src="/assets/8/2000.gif"/>
+<img src="/assets/8/2000.gif" width="300"> <img src="/assets/8/2001.gif" width="300" >
 
 <em> While the girl is sitting, the network prioritizes this action over the ground truth. She also briefly puts a barett in her mouth - the network classifies those frame as "eating". The jumping goalkeeper is thought to be doing flic flac and somersault. Additionally, the network associates large, grassy fields with a game of golf.</em> 
 
 ##### ConvALSTM
 
-<img src="/assets/8/3003"/>
-
-<img src="/assets/8/3005"/>
+<img src="/assets/8/3003.gif" width="300"> <img src="/assets/8/3005" width="300.gif">
 
 <em> 1) The network decides to partially classify "situp" video as "brush_hair". This may be due to unusual camera location - model sees hands touching the hair after all. 2)  The basketball hoop is misleading the classifier, so it partially predicts wrong (albeit quite close) labels to ground truth "dribble". Note how the network attends to the hand visible in first several frames.  </em>
 
