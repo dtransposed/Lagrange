@@ -100,6 +100,9 @@ As mentioned before, the work Z. Li et al. introduces three new ideas regarding 
 1. __Removing the cell state and hidden state initialization block__. While the authors of ALSTM did follow the initialization strategy for faster convergence, it seems that the network does fine without this component. This means that we only need to initialize the hidden state as a tensor of zeros every time the first frame of the given video enters the pipeline.
 2. __Keeping the network (almost) entirely convolutional__. Treating images as an 2D grid rather then a vector helps to  preserve a spatial correlation (in this regard the convolutions are much better then inner products), leverages local receptive field and allows weight sharing. Therefore we substitute all fully connected layers for convolutional kernels (except for the last classification layer) and use convolutional LSTM instead of the standard one. Thus the hidden state is not a vector anymore, but a 3-D tensor.
 
+<img src="/assets/8/convalstm.jpg">
+<em> The detailed presentation of the improved network's architecture </em> 
+
 ## Implementation Details, Results and Evaluation
 
 ### HMDB-51 Dataset Processing
@@ -110,7 +113,7 @@ For the purpose of my implementation, for every video in the dataset I extract e
 
 ### Implementation details
 
-It takes just few epochs to train both ALSTM and ConvALSTM. For regularization I use dropout in all fully connected layers, early stopping and weight decay. Even though I get satisfying results, there are many ways to improve the model: performing a thorough hyper-parameter tuning (time consuming process which I have decided to skip). I think that the model would especially benefit from the optimal numbers of units in multi-layer perceptrons (ALSTM) or kernels in convolutional layers (ConvALSTM), as well as parameters of LSTM/ConvALSTM. Finally, the output to the ConvALSTM is a tensor of size $$F \dot F \dot U$$. Before it is consumed by fully connected layer it is being flattened and the resulting size of the vector is quite large. It would be a good idea to feed it to some convolutional layers before it is consumed by the fully connected network.
+It takes just few epochs to train both ALSTM and ConvALSTM. For regularization I use dropout in all fully connected layers, early stopping and weight decay. Even though I get satisfying results, there are many ways to improve the model: performing a thorough hyper-parameter tuning (time consuming process which I have decided to skip). I think that the model would especially benefit from the optimal numbers of units in multi-layer perceptrons (ALSTM) or kernels in convolutional layers (ConvALSTM), as well as parameters of LSTM/ConvALSTM. Finally, the output to the ConvALSTM is a tensor of size $$F \dot F \dot U$$. Before it is consumed by fully connected layer it needs to be flattened. The resulting size of the vector is quite large. It would be a good idea to feed it to some convolutional layers first before using the fully connected network.
 
 The ALSTM contains an additional component in its loss, the attention regularization (Xu et al. 2015). This forces the model to look at each region of the frame at some point in time, so that:
 $$
@@ -128,13 +131,13 @@ To visualize an attention map $$c_i$$, I take its representation, a $$7 \times 7
 | U           | number of LSTM units (ALSTM) or number of channels in the convolutional kernel of convolutional LSTM (ConvALSTM) | 512       | 256       |
 | C           | number of classes                                            | 51        | 51        |
 | $$dt$$      | dropout value at all fully connected layers                  | 0.5       | 0.5       |
-| $$\lambda$$ | attention regularization term                                | 0         | $$-$$     |
+| $$\lambda$$ | attention regularization term                                | 0.5         | $$-$$     |
 | $$\omega$$  | weight decay parameter                                       | 0         | $$-$$     |
 | $$-$$       | accuracy of the model (test set)                             | $$56.0$$% | $$52.5$$% |
 
 ### Results
 
-It is interesting to see how well the network attends to meaningful patches of a video frame. Especially in case of ConvALSTM, which does much better job then ALSTM when it comes to calculating attention heatmaps.
+It is interesting to see how well the network attends to meaningful patches of a video frame. Even though ALSTM achieves higher accuracy then ConvALSTM, the latter does much better job when it comes to calculating attention heatmaps.
 
 #### Successful predictions 
 
