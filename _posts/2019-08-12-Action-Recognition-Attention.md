@@ -15,7 +15,8 @@ Action recognition is the task of inferring various actions from video clips. Th
 <img src="/assets/8/3000.gif" width="480">
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
-Independent of the action recognition problem the machine learning community observed a surge of scientific work which uses soft attention model - introduced initially for machine translation by Bahdanau et. al 2014[^1] . It has gotten more attention then its sibling, hard attention, because of its deterministic behavior and simplicity. The intuition behind the attention mechanism can be easily explained using human perception. Our visual processing system tends to focus selectively on parts of the receptive field while ignoring other irrelevant information. This helps us to filter out noise and effectively reason about the surrounding world. Similarly, in several problems involving language, speech or vision, some parts of the input can be more relevant compared to others. For instance, in translation and summarization tasks, only certain words in the input sequence may be relevant for predicting the next word. 
+
+Independent of the action recognition problem, the machine learning community observed a surge of scientific work which uses soft attention model - introduced initially for machine translation by Bahdanau et. al 2014[^1] . It has gotten more attention then its sibling, hard attention, because of its deterministic behavior and simplicity. The intuition behind the attention mechanism can be easily explained using human perception. Our visual processing system tends to focus selectively on parts of the receptive field while ignoring other irrelevant information. This helps us to filter out noise and effectively reason about the surrounding world. Similarly, in several problems involving language, speech or vision, some parts of the input can be more relevant compared to others. For instance, in translation and summarization tasks, only certain words in the input sequence may be relevant for predicting the next word. 
 
 The purpose of this blog post is to present how the visual attention can be used for action recognition. I will give a short overview of the history, discuss the neural network architectures used in the tutorial together with the implementation details and finally present the results produced by two methods: Attention LSTM __(ALSTM)__ and Convolutional Attention LSTM __(ConvALSTM)__. The code for this tutorial can be found in my github repo.
 
@@ -37,11 +38,11 @@ The purpose of this blog post is to present how the visual attention can be used
 
 The surge of deep learning research in the domain of __action recognition__ came around year 2014. That's when the problem has been successfully tackled from two angles. Karpathy et al. 2014 [^2] used convolutional neural networks (CNNs) to extract information from consecutive video frames and then fused those representations to reason about the class of the whole sequence. Soon Simmoyan and Zisserman 2014 [^3] came up with different solution - a network which analyzes two input streams independently: one stream reasons about the spatial context (video frames) while the second uses temporal information (extracted optical flow). Finally both pieces of information are combined so the network can compute class score. Another work introduced by Du Tran et al. 2014[^4] uses 3D convolutional kernels on spatiotemporal cube. Lastly, one of the most popular approaches was proposed by Donahue et al. 2014 [^5] . Here, the encoder-decoder architecture takes each single frame of the sequence, encodes it using a CNN and feeds its representation to an Long-Short Term Memory (LSTM) block. This way we "compress" the image using feature extractor and then learn the temporal dependencies between frames using recurrent neural network. 
 
-<img src="/assets/8/fencing.gif"/>
+<img src="/assets/8/fencing.gif" width="480">
 
-<img src="/assets/8/cycling.gif"/>
+<img src="/assets/8/cycling.gif" width="480">
 
-<img src="/assets/8/walking.gif"/>
+<img src="/assets/8/walking.gif" width="480">
 
 <em> Several examples of videos from HMDB-51 dataset. Each video belongs to one of the 51 classes: "fencing" (top), "ride_bike" (middle), "walk" (down).</em> 
 
