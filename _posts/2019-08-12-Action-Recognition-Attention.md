@@ -35,10 +35,10 @@ The purpose of this blog post is to present how the visual attention can be used
 * [Results](#results)
   * [Successful predictions](#successful-predictions)
      * [ALSTM](#alstm)
-     * [ALSTM](#alstm)
+     * [ConvALSTM](#convalstm)
   * [Failure cases](#failure-cases)
+     * [ALSTM](#alstm-1)
      * [ConvALSTM](#convalstm-1)
-     * [ConvALSTM](#convalstm-2)
 * [References](#references)
 
 ## Short Historical Background
@@ -143,6 +143,7 @@ To visualize an attention map $$c_i$$, I take its representation, a $$7 \times 7
 | $$\lambda$$ | attention regularization term                                | 0.5         | $$-$$     |
 | $$\omega$$  | weight decay parameter                                       | 0         | $$-$$     |
 | $$-$$       | accuracy of the model (test set)                             | $$56.0$$% | $$52.5$$% |
+
 <em> Description of models' parameters </em>
 
 ### Results
