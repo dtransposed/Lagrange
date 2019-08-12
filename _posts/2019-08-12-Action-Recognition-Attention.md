@@ -21,18 +21,24 @@ Independent of the action recognition problem, the machine learning community ob
 The purpose of this blog post is to present how the visual attention can be used for action recognition. I will give a short overview of the history, discuss the neural network architectures used in the tutorial together with the implementation details and finally present the results produced by two methods: Attention LSTM __(ALSTM)__ and Convolutional Attention LSTM __(ConvALSTM)__. The code for this tutorial can be found in my github repo.
 
 ## Table of Contents
-
-- [Short Historical Background](#short-historical-background)
-- [Attention LSTM for Action Recognition](#attention-lstm-for-action-recognition)
-  - [Summary of the Method](#summary-of-the-method)
-    - [Soft attention block](#soft-attention-block)
-    - [Final classification of weighted feature cube](#final-classification-of-weighted-feature-cube)
-    - [LSTM hidden state and cell state initialization](#lstm-hidden-state-and-cell-state-initialization)
-- [Making Attention LSTM Fully Convolutional](#making-attention-lstm-fully-convolutional)
-- [Implementation Details, Results and Evaluation](#implementation-details-results-and-evaluation)
-  - [HMDB-51 Dataset Processing](#hmdb-51-dataset-processing)
-  - [Implementation details](#implementation-details)
-- [References](#references)
+      * [Short Historical Background](#short-historical-background)
+      * [Attention LSTM for Action Recognition](#attention-lstm-for-action-recognition)
+         * [Summary of the Method](#summary-of-the-method)
+            * [Soft attention block](#soft-attention-block)
+            * [Final classification of weighted feature cube](#final-classification-of-weighted-feature-cube)
+            * [LSTM hidden state and cell state initialization](#lstm-hidden-state-and-cell-state-initialization)
+      * [Making Attention LSTM Fully Convolutional](#making-attention-lstm-fully-convolutional)
+      * [Implementation Details, Results and Evaluation](#implementation-details-results-and-evaluation)
+         * [HMDB-51 Dataset Processing](#hmdb-51-dataset-processing)
+         * [Implementation details](#implementation-details)
+         * [Results](#results)
+            * [Successful predictions](#successful-predictions)
+               * [ALSTM](#alstm)
+               * [ConvALSTM](#convalstm)
+            * [Failure cases](#failure-cases)
+               * [ConvALSTM](#convalstm-1)
+               * [ConvALSTM](#convalstm-2)
+      * [References](#references)
 
 ## Short Historical Background
 
