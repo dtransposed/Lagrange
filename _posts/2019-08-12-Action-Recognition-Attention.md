@@ -8,9 +8,9 @@ image: attention.jpg
 
 ---
 
-<img src="/assets/8/2006"/>
+<img src="/assets/8/2006.gif"/>
 
-<img src="/assets/8/3000"/>
+<img src="/assets/8/3000.gif"/>
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
 
