@@ -10,9 +10,9 @@ image: attention.jpg
 
 Action recognition is the task of inferring various actions from video clips. This feels like a natural extension of image classification task to multiple frames. The final decision on the class membership is being made by fusing the information from all the processed frames. Reasoning about a video remains a challenging task because of high computational cost (it takes more resources to processes three-dimensional data structures than 2D tensors), difficulty of capturing spatio-temporal context across frames (especially problematic when the position of a camera changes rapidly) or the difficulty of obtaining a useful, specialized dataset (it is much easier and cheaper to collect vast amounts of independent images then image sequences). 
 
-<img src="/assets/8/2006.gif"/ width="200">
+<img src="/assets/8/2006.gif" width="480">
 
-<img src="/assets/8/3000.gif"/>
+<img src="/assets/8/3000.gif" width="480">
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
 Independent of the action recognition problem the machine learning community observed a surge of scientific work which uses soft attention model - introduced initially for machine translation by Bahdanau et. al 2014[^1] . It has gotten more attention then its sibling, hard attention, because of its deterministic behavior and simplicity. The intuition behind the attention mechanism can be easily explained using human perception. Our visual processing system tends to focus selectively on parts of the receptive field while ignoring other irrelevant information. This helps us to filter out noise and effectively reason about the surrounding world. Similarly, in several problems involving language, speech or vision, some parts of the input can be more relevant compared to others. For instance, in translation and summarization tasks, only certain words in the input sequence may be relevant for predicting the next word. 
