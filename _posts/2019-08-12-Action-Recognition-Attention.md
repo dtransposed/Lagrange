@@ -38,19 +38,15 @@ The purpose of this blog post is to present how the visual attention can be used
 
 The surge of deep learning research in the domain of __action recognition__ came around year 2014. That's when the problem has been successfully tackled from two angles. Karpathy et al. 2014 [^2] used convolutional neural networks (CNNs) to extract information from consecutive video frames and then fused those representations to reason about the class of the whole sequence. Soon Simmoyan and Zisserman 2014 [^3] came up with different solution - a network which analyzes two input streams independently: one stream reasons about the spatial context (video frames) while the second uses temporal information (extracted optical flow). Finally both pieces of information are combined so the network can compute class score. Another work introduced by Du Tran et al. 2014[^4] uses 3D convolutional kernels on spatiotemporal cube. Lastly, one of the most popular approaches was proposed by Donahue et al. 2014 [^5] . Here, the encoder-decoder architecture takes each single frame of the sequence, encodes it using a CNN and feeds its representation to an Long-Short Term Memory (LSTM) block. This way we "compress" the image using feature extractor and then learn the temporal dependencies between frames using recurrent neural network. 
 
-<img src="/assets/8/fencing.gif" width="480">
+<img src="/assets/8/fencing.gif" width="200">
 
-<img src="/assets/8/cycling.gif" width="480">
+<img src="/assets/8/cycling.gif" width="200">
 
-<img src="/assets/8/walking.gif" width="480">
+<img src="/assets/8/walking.gif" width="200">
 
 <em> Several examples of videos from HMDB-51 dataset. Each video belongs to one of the 51 classes: "fencing" (top), "ride_bike" (middle), "walk" (down).</em> 
 
 With the increasing popularity of __attention mechanisms__ applied to the tasks such as image captioning or machine translation, incorporating visual attention in the action recognition tasks became an interesting research idea. The work by Sharma et al. 2016[^6]  may serve as an example. This is the first method which will be covered in this article. This idea has been improved by Z.Li et al. 2018 [^7] where  three further concepts were introduced. Firstly, the spatial layout of the input is being preserved throughout the whole network. This was not the case in the previous approach, where image was flattened at some point and treated as a vector. Secondly, the authors additionally feed optical flow information to the network. This makes the architecture more sensitive to the motion between the frames. Finally, the attention is also being used for action localization. This work will also be partially covered in this tutorial. For the sake of completeness it is important to mention that visual attention was also combined with 3D CNNs by Yao et al. 2015 [^8] . It is pretty fascinating how this concept has been successfully utilized over some many different domains and approaches!
-
-<img src="/assets/8/shoot_ball.gif"/>
-
-<em> A network understands, that in order to identify a basketball match it should pay attention to the player and the court infrastructure - basketball hoop. Those are the regions indicated by the overlaid heatmap. The algorithm also correctly classifies frames as "shoot_ball". </em>
 
 ## Attention LSTM for Action Recognition
 
@@ -66,10 +62,7 @@ $$D=512$$
 
 Then, the model combines the feature cube  $${\mathbf{X}}_{t,i}$$ with the respective attention map $$c_{t}\in  \mathbb{R}^{F^2}$$ (how we get those maps - I will explain soon) and propagates its vectorized form through an LSTM. The recurrent block then outputs a "context vector" $$h_t$$. This vector is being used not only to predict the action class of the current frame but is also being passed as a "history of the past frames" to generate next attention map $$c_{t+1}$$ for the frame $$x_{t+1}$$.
 
-
-
-
-
+<img src="/assets/8/alstm.jpg">
 <em> The detailed presentation of the network's architecture </em> 
 
 Let's take a closer look the the network. It can be dissected into three components:
