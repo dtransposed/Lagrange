@@ -12,7 +12,7 @@ Action recognition is the task of inferring various actions from video clips. Th
 
 
 
-<img src="/assets/8/3000.gif" width="380"> <img src="/assets/8/2006.gif" width="380">
+<img src="/assets/8/3000.gif" width="200"> <img src="/assets/8/2006.gif" width="200">
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
 
