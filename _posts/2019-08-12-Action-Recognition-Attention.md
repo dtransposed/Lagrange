@@ -12,7 +12,7 @@ Action recognition is the task of inferring various actions from video clips. Th
 
 
 
-<img src="/assets/8/3000.gif" width="200"> <img src="/assets/8/2006.gif" width="200">
+<img src="/assets/8/3000.gif" width="300"> <img src="/assets/8/2006.gif" width="300">
 
 <em> Attention module allows the network to explain its choice of class by pointing at important parts of the video.</em> 
 
@@ -82,6 +82,7 @@ First, we multiply element-wise each feature map in $$\mathbf{X}_{t,i}$$  with t
 #### LSTM hidden state and cell state initialization
 
 Drawing inspiration from Xu et al. 2015 , this approach uses the compressed information about the whole video $$v$$ to initialize $$h_{0}$$ and $$c_{0}$$ for faster convergence. 
+
 $$
 h_0 = mlp_h(\frac{1}{T}\sum_{t=1}^{T}(\frac{1}{F^2}\sum_{i=1}^{F^2}{\mathbf{X}_{t,i}}))
 $$
@@ -105,7 +106,7 @@ As mentioned before, the work Z. Li et al. introduces three new ideas regarding 
 
 This dataset is composed of 6766 videoclips from various sources and has 51 action classes. 
 
-For the purpose of my implementation, for every video in the dataset I extract every second frame, thus reducing the sampling rate from the original 30fps to 15fps. Then I split each video into multiple groups of 30 frames.I follow the first train/test split proposed by the authors of the dataset, so in the end I use 3570 videos for training, 1130 for validation and 400 for testing.
+For the purpose of my implementation, for every video in the dataset I extract every second frame, thus reducing the sampling rate from the original 30fps to 15fps. Then I split each video into multiple groups of 30 frames. I follow the first train/test split proposed by the authors of the dataset, so in the end I use 3570 videos for training, 1130 for validation and 400 for testing.
 
 ### Implementation details
 
