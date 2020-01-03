@@ -268,7 +268,7 @@ p(t|\mathbf{x}, \mathcal{D}) = \int p(t|\mathbf{x},\mathbf{w})p(\mathbf{w}|\math
 $$
 
 
-This result is an integral of two terms: the model $$p(t|\mathbf{x},\mathbf{w})$$ which uses a particular set of parameter values, and a posterior, the probability for these parameter values $$p(\mathbf{w}|\mathcal{D})$$. This means, that the predictive distribution considers every possible parameter value. It evaluates the model that has those parameter values and then weights that result by the probability of having those parameter values in the first place.
+This result is an integral of two terms- the model $$p(t|\mathbf{x},\mathbf{w})$$ which uses a particular set of parameter values, and a posterior, the probability for these parameter values $$p(\mathbf{w}|\mathcal{D})$$. This means, that the predictive distribution considers every possible parameter value. It evaluates the model that has those parameter values and then weights that result by the probability of having those parameter values in the first place.
 
 Both model and the posterior are Gaussians. We can easily obtain the predictive distribution by, once again, convoluting two Gaussians:
 
