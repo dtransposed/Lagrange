@@ -17,6 +17,7 @@ This example requires from the reader some basic machine learning knowledge, suc
 ## The Goal of the Tutorial
 
 In our task, there is some function. We know, that this function is linear. Additionally, the function is also noisy. We may assume additive, Gaussian noise. Our goal is create a parametrized model 
+
 $$
 t = y(\mathbf{x}, \mathbf{w}) + \epsilon
 $$
@@ -25,23 +26,23 @@ $$
 y(\mathbf{x}, \mathbf{w}) = w_0 + w_1x
 $$
 
-and find its parameter distribution $\mathbf{w}$ . This can be done by sequentially collecting samples $\mathcal{D}$  from the target function and using this data in the Bayesian framework to approach the true value of parameters. 
+and find its parameter distribution $$\mathbf{w}$$. This can be done by sequentially collecting samples $$\mathcal{D}$$ from the target function and using this data in the Bayesian framework to approach the true value of parameters. 
 
-However, finding the parameter distribution is merely an intermediate goal. Once we have established the distribution of coefficients through Bayesian treatment, we are able to predict $t$ for every new input $\mathbf{x}$ 
+However, finding the parameter distribution is merely an intermediate goal. Once we have established the distribution of coefficients through Bayesian treatment, we are able to predict $$t$$ for every new input $$\mathbf{x}$$
+
 $$
 p(t|\mathbf{x}, \mathcal{D}) = \int p(t|\mathbf{x},\mathbf{w})p(\mathbf{w}|\mathcal{D})d\mathbf{w}
 $$
 
+where $$\mathcal{D}$$ denotes the data observed by the algorithm.
 
-where $\mathcal{D}$ denotes the data observed by the algorithm.
+The key of Bayesian treatment is the ability to assign this probability to each value of $$t$$ for a given $$\mathbf{x}$$. Obviously, this is much more powerful than the solution based on maximizing the likelihood function. This is due to the fact that we obtain that precious probability distribution over parameters and not only point estimates. Additionally, the Bayesian approach does not suffer from over-fitting problem, nor it requires model complexity tuning (common problems with point estimates). 
 
-The key of Bayesian treatment is the ability to assign this probability to each value of $t$ for a given $\mathbf{x}$. Obviously, this is much more powerful than the solution based on maximizing the likelihood function. This is due to the fact that we obtain that precious probability distribution over parameters and not only point estimates. Additionally, the Bayesian approach does not suffer from over-fitting problem, nor it requires model complexity tuning (common problems with point estimates). 
+Coming back to the model. We can write it down as a Gaussian distribution, where the mean is $$y(\mathbf{x}, \mathbf{w})$$ and variance is governed by a precision parameter $$\beta$$. This last parameter quantifies the noise of the model.
 
-Coming back to the model. We can write it down as a Gaussian distribution, where the mean is $y(\mathbf{x}, \mathbf{w})$ and variance is governed by a precision parameter $\beta$. This last parameter quantifies the noise of the model.
 $$
 p(t|\mathbf{x}, \mathbf{w}) = \mathcal{N}(t| y(\mathbf{x}, \mathbf{w}), \beta^{-1})
 $$
-
 
 
 ## Prior, Likelihood and  Posterior
@@ -50,7 +51,8 @@ To treat linear regression in a Bayesian framework, we need to define three key 
 
 ### Likelihood
 
-Consider a data set of inputs $\mathbf{X} = \{\mathbf{x}_1,\mathbf{x}_2,...,\mathbf{x}_N\}$, with corresponding target values $\mathbf{T} = \{t_1,t_2,...,t_N\}$. Making the assumption that these data points are i.i.d (independent, identically distributed), we obtain the following expression for the likelihood function (which answers the question: how well function of parameters $\mathbf{w}$ explain data $\mathcal{D} = (\mathbf{X}, \mathbf{T})$):
+Consider a data set of inputs $$\mathbf{X} = \{\mathbf{x}_1,\mathbf{x}_2,...,\mathbf{x}_N\}$$, with corresponding target values $$\mathbf{T} = \{t_1,t_2,...,t_N\}$$. Making the assumption that these data points are i.i.d (independent, identically distributed), we obtain the following expression for the likelihood function (which answers the question: how well function of parameters $$\mathbf{w}$$ explain data $$\mathcal{D} = (\mathbf{X}, \mathbf{T})$$):
+
 $$
 p(\mathcal{D}|\mathbf{w})=\prod^{N}_{n=1}\mathcal{N}(t_n|\mathbf{w}^T\phi(\mathbf{x}_n), \beta^{-1})
 $$
@@ -58,7 +60,8 @@ $$
 
 ### Prior
 
-Our intermediate goal is to find parameter distribution $\mathbf{w}$, which is going to be as close as possible to the target coefficients $a_0$ and $a_1$. Initially, we know very little about the distribution. However, we may assume a conjugate prior to the likelihood function. Thus, in general the prior, will be also a Gaussian distribution.
+Our intermediate goal is to find parameter distribution $$\mathbf{w}$$, which is going to be as close as possible to the target coefficients $$a_0$$ and $$a_1$$. Initially, we know very little about the distribution. However, we may assume a conjugate prior to the likelihood function. Thus, in general the prior, will be also a Gaussian distribution.
+
 $$
 p(\mathbf{w})=\mathcal{N}(\mathbf{w}|\mathbf{m}_{0},\mathbf{S}_0)
 $$
@@ -77,6 +80,7 @@ p(\mathbf{w}|\mathcal{D})=\mathcal{N}(\mathbf{w}| \mathbf{m}_{N},\mathbf{S}_N)
     \propto p(\mathbf{T}|\mathbf{w}) p(\mathbf{w})
 $$
 It [may be shown](https://www.youtube.com/watch?v=nrd4AnDLR3U&list=PLD0F06AA0D2E8FFBA&index=61) , that the mean and precision for the prior are
+
 $$
 \mathbf{m}_N = \mathbf{S}_N(\mathbf{S}_0^{-1}\mathbf{m}_0 + \beta\mathbf{\Phi}^T\mathbf{T})
 $$
@@ -92,6 +96,7 @@ where $$\mathbf{\Phi}$$ is a design matrix computed from the input data $\mathbf
 ### Experimental Setup 
 
 The constructor shows the experimental setup. We define precision parameters $\alpha=2$ and $\beta=25$, as well as the coefficients of the "unknown", target, linear function:
+
 $$
 y(\mathbf{x}) = a_0+a_1x = -0.3 + 0.5x
 $$
@@ -138,7 +143,7 @@ Linear function method is used to generate synthetic data from the "unknown", ta
 
 ### Calculating a Design Matrix
 
-A design matrix is a matrix containing data about multiple characteristics of several individuals or objects. It is $N\times M$ matrix, where rows are equal to the number of samples and columns to the number of features. In our particular example, the design matrix will have two columns and a variable number of rows. The first column corresponds to the $w_0$ parameters and is a vector of ones. The second column corresponds to the $w_1$ and contains vector $[\phi_1(\mathbf{x}_1), \phi_1(\mathbf{x}_2), ..., \phi_1(\mathbf{x}_N)]^T$. Since we do not use any basis function, this simply boils down to $[\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N]^T$.
+A design matrix is a matrix containing data about multiple characteristics of several individuals or objects. It is $N\times M$ matrix, where rows are equal to the number of samples and columns to the number of features. In our particular example, the design matrix will have two columns and a variable number of rows. The first column corresponds to the $$w_0$$ parameters and is a vector of ones. The second column corresponds to the $$w_1$$ and contains vector $$[\phi_1(\mathbf{x}_1), \phi_1(\mathbf{x}_2), ..., \phi_1(\mathbf{x}_N)]^T$$. Since we do not use any basis function, this simply boils down to $$[\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N]^T$$.
 
 ```python
     def get_design_matrix(self, X):
@@ -183,7 +188,7 @@ This method performs the update step for the sequential learning. Once the poste
 
 ### Plotting the Prior/Posterior
 
-This method plots a prior/posterior distribution in every iteration. Additionally, we mark the point $(a_0, a_1)$  to see how quickly the posterior converges to our solution.
+This method plots a prior/posterior distribution in every iteration. Additionally, we mark the point $$(a_0, a_1)$$  to see how quickly the posterior converges to our solution.
 
 ```python
     def plot_prior(self):
@@ -211,15 +216,18 @@ This method plots a prior/posterior distribution in every iteration. Additionall
 ### Plotting the Likelihood
 
 By analogy, we can also visualize the likelihood distribution. This answers the question: for the given batch of data, which parameters would best explain this data? I have already presented the likelihood equation. We can use it to compute log likelihood:
+
 $$
 \ln p(\mathcal{D}|\mathbf{w})= \frac{N}{2}\ln\beta - \frac{N}{2}\ln(2\pi) - \frac{\beta}{2}\sum^N_{n=1}\{t_n-\mathbf{w}^T\phi(\mathbf{x}_n)\}^2
 $$
 
 
-Since only the last term depends on the parameters $\mathbf{w}$, we might write:
+Since only the last term depends on the parameters $$\mathbf{w}$$, we might write:
+
 $$
 p(\mathcal{D}|\mathbf{w})\propto \exp(-\sum^N_{n=1}\{t_n-\mathbf{w}^T\phi(\mathbf{x}_n)\}^2)
 $$
+
 And use this equation to finally compute the likelihood distribution.
 
 ```python
@@ -254,6 +262,7 @@ And use this equation to finally compute the likelihood distribution.
 ### Predictive Distribution
 
 Finally, the goal of the Bayesian framework, estimating the uncertainty of the prediction! Recall the formula for predictive distribution:
+
 $$
 p(t|\mathbf{x}, \mathcal{D}) = \int p(t|\mathbf{x},\mathbf{w})p(\mathbf{w}|\mathcal{D})d\mathbf{w}
 $$
@@ -263,6 +272,7 @@ This result is an integral of two terms: the model $p(t|\mathbf{x},\mathbf{w})$ 
 
 Both model and the posterior are Gaussians. We can easily obtain the predictive distribution by, once again, convoluting two Gaussians:
 $$
+
 p(t|x, \mathcal{D})=\mathcal{N}(t|\mu, \sigma^2))
 $$
 
@@ -334,7 +344,7 @@ Finally, we construct a method which plots the batch of upcoming data (blue poin
 
 
 
-Now, the procedure is straightforward. We start knowing nothing - the initial prior. We sample fixed number of samples $X$ from uniform distribution, use those samples to obtain $T$. Next, we use $(X,T)$ to visualize likelihood function and the current quality of the model in the data space. Additionally we plot the prior distribution in parameter space. Finally, we use the batch of data $(\mathbf{X}, \mathbf{Y})$ to perform the sequential Bayesian update.
+Now, the procedure is straightforward. We start knowing nothing - the initial prior. We sample fixed number of samples $$X$$ from uniform distribution, use those samples to obtain $$T$$. Next, we use $$(X,T)$$ to visualize likelihood function and the current quality of the model in the data space. Additionally we plot the prior distribution in parameter space. Finally, we use the batch of data $$(\mathbf{X}, \mathbf{Y})$$ to perform the sequential Bayesian update.
 
 ```python
 def run_sequential_bayes():
@@ -359,10 +369,12 @@ def run_sequential_bayes():
 
 ## Experiments
 
-I perform two experiments. Firstly, in every iteration I supply only one pair of input and target (samples_in_batch = 1). We can see that the posterior starts converging close to the goal coefficients around iteration 8. This is also reflected in the data space. This is when the predictive distribution mean is almost equal to the target function. Note, how confidence bounds tighten as we observe more samples. Interestingly, the likelihood function always resembles a "ray". Why is that so? Since we compute it only for one single sample $(x_0, t_0)$, any pair $w_0$, $w_1$, which satisfies the equation $t_0 = w_0 + w_1x_0 $ is a good fit. This means, that the line, which describes those good fits can be rewritten as:
+I perform two experiments. Firstly, in every iteration I supply only one pair of input and target (samples_in_batch = 1). We can see that the posterior starts converging close to the goal coefficients around iteration 8. This is also reflected in the data space. This is when the predictive distribution mean is almost equal to the target function. Note, how confidence bounds tighten as we observe more samples. Interestingly, the likelihood function always resembles a "ray". Why is that so? Since we compute it only for one single sample $$(x_0, t_0)$$, any pair $$w_0$$, $$w_1$$, which satisfies the equation $$t_0 = w_0 + w_1x_0$$ is a good fit. This means, that the line, which describes those good fits can be rewritten as:
+
 $$
 w_0 = t_0 - w_1x_0
 $$
+
 And this is straight-line equation, responsible for the shape of a "ray".
 
 Now, let's use larger batches of 50 input-target pairs (samples_in_batch = 50). The posterior converges to a good approximation much faster and a satisfying solution in data space emerges after 3 iterations. Note, that the likelihood is not "ray-shaped" anymore. This time the likelihood needs to take into the account not one but fifty points It is not surprise that the distribution of highly probable parameters is much more narrow.
