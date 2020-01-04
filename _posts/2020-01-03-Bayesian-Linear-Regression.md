@@ -389,15 +389,15 @@ $$
 
 And this is straight-line equation, responsible for the "ray" shape.
 
-<img src="/assets/9/batch_1/Data_Space.gif" width="300"> 
-<img src="/assets/9/batch_1/Likelihood.gif" width="300"> 
-<img src="/assets/9/batch_1/Prior_Posterior.gif" width="300"> 
+<img src="/assets/9/batch_1/Data_Space.gif" width="500"> 
+<img src="/assets/9/batch_1/Likelihood.gif" width="500"> 
+<img src="/assets/9/batch_1/Prior_Posterior.gif" width="500"> 
 
 Now, let's use larger batches of 50 input-target pairs (samples_in_batch = 50). The posterior converges to a good approximation much faster and the satisfying solution in data space emerges after 3 iterations. Note, that the likelihood is not "ray-shaped" anymore. This time the likelihood needs to take into the account not one but fifty points It is not surprise that the distribution of "good fit" parameters is much more narrow.
 
-<img src="/assets/9/batch_50/Data_Space.gif" width="300"> 
-<img src="/assets/9/batch_50/Likelihood.gif" width="300"> 
-<img src="/assets/9/batch_50/Prior_Posterior.gif" width="300">
+<img src="/assets/9/batch_50/Data_Space.gif" width="500"> 
+<img src="/assets/9/batch_50/Likelihood.gif" width="500"> 
+<img src="/assets/9/batch_50/Prior_Posterior.gif" width="500">
 
 ## Full Code 
 
