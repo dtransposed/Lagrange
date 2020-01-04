@@ -381,7 +381,7 @@ def run_sequential_bayes():
 
 ## Experiments
 
-I perform two experiments. Firstly, in every iteration I supply only one pair of input and target (samples_in_batch = 1). We can see that the posterior starts converging close to the goal coefficients around iteration 8. This is also reflected in the data space. That is when the predictive distribution mean is almost equal to the target function. Note, how confidence bounds tighten as we observe more samples. Interestingly, the likelihood function always resembles a "ray". Why is that so? Since we compute it only for one single sample $$(x_0, t_0)$$, any pair $$w_0$$, $$w_1$$, which satisfies the equation $$t_0 = w_0 + w_1x_0$$ is a good fit. This means, that the line, which describes those good fits can be rewritten as:
+I perform two experiments. Firstly, in every iteration I supply only one pair of input and target (samples_in_batch = 1). We can see that the posterior starts converging close to the goal coefficients around iteration 12. This is also reflected in the data space. That is when the predictive distribution mean is almost equal to the target function. Note, how confidence bounds tighten as we observe more samples. Interestingly, the likelihood function always resembles a "ray". Why is that so? Since we compute it only for one single sample $$(x_0, t_0)$$, any pair $$w_0$$, $$w_1$$, which satisfies the equation $$t_0 = w_0 + w_1x_0$$ is a good fit. This means, that the line, which describes those good fits can be rewritten as:
 
 $$
 w_0 = t_0 - w_1x_0
@@ -393,7 +393,7 @@ And this is straight-line equation, responsible for the "ray" shape.
 <img src="/assets/9/batch_1/Likelihood.gif" width="500"> 
 <img src="/assets/9/batch_1/Prior_Posterior.gif" width="500"> 
 
-Now, let's use larger batches of 50 input-target pairs (samples_in_batch = 50). The posterior converges to a good approximation much faster and the satisfying solution in data space emerges after 3 iterations. Note, that the likelihood is not "ray-shaped" anymore. This time the likelihood needs to take into the account not one but fifty points It is not surprise that the distribution of "good fit" parameters is much more narrow.
+Now, let's use larger batches of 50 input-target pairs (samples_in_batch = 50). The posterior converges to a good approximation much faster and the satisfying solution in data space emerges after 4 iterations. Note, that the likelihood is not "ray-shaped" anymore. This time the likelihood needs to take into the account not one but fifty points It is not surprise that the distribution of "good fit" parameters is much more narrow.
 
 <img src="/assets/9/batch_50/Data_Space.gif" width="500"> 
 <img src="/assets/9/batch_50/Likelihood.gif" width="500"> 
