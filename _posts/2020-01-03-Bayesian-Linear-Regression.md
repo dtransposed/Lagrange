@@ -1,5 +1,6 @@
 ---
 layout: post
+crosspost_to_medium: true
 title: "Tutorial - Sequential Bayesian Learning - Linear Regression"
 author: "Damian Bogunowicz"
 categories: blog
