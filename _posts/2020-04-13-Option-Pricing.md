@@ -27,7 +27,7 @@ Options can be used as as an "insurance" to your position. This strategy is also
 As of today, one share of TSLA is $545. At the same time, you purchase a put to insure the purchased stock. The strike price of the option should be at least greater than the amount you paid for the actual stock. For example, you buy put with a strike price of $550, with additional premium of $60 per share, which expires in four weeks. 
 
 We can plot the risk characteristics of such a strategy. 
-<img src="/assets/10/blog_image.png">
+<img src="/assets/10/blog_image1.png">
 
 We can see that for a stock, the theoretical profit (and loss) are not bounded. Worst case scenario, you can simply loose all your money. Best case scenario, you may enjoy unlimited wealth increase. For a put, its is agreed upon that once the stock price falls below the strike price, you enjoy a linear profit (i.e you bet on stock price plummeting). If the stock price rises above the strike price, you may choose not to excercise the option and loose nothing. Of course, this kind of free, wonderful insurance is too good to be true in reality. That is why investors pay substantial premiums for the insurance - in this particular case, the premium amounts to mind-boggling 11%. As a result, the curve is shifted downwards by the premium price. 
 
