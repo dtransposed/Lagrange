@@ -33,8 +33,8 @@ We can see that for a stock, the theoretical profit (and loss) are not bounded. 
 
 Now, by combining long position and put, we simply add two curves and observe the effect of the marriage between the long position and the put:
 
-- If the stock price is higher then the strike price + premium, you start enjoying linear profit from your investment, congratulations!
-- If the stock price is lower then the strike price + premium, you will experience losses proportional to the fall in stock price.
+- If the stock price is higher then the initial stock price (when you bought the equity) + premium, you start enjoying linear profit from your investment, congratulations!
+- If the stock price is lower then the initial stock price + premium, you will experience losses proportional to the fall in stock price.
 - However, the moment the stock price falls below the strike price, the lower bound on our losses kicks in. From this moment on, you will not loose any more money. This is the put protecting you from any possible troubles.
 
 Note, that married put has similar effect as the call option. It basically hedges your long position. In fact, an investor can mix long positions, short positions and various options to create different strategies to hedge against different risks. The ingenuity of financial engineers gave rise to constructs with such names as butterfly spread, iron condor or straddle, but those are advanced products not covered in this write-up.
