@@ -90,7 +90,11 @@ From the model we are able to calculate the price of an option based on a number
 - $$T$$, time to maturity is also known. This is when the option expires.
 - $$\sigma$$, the volatility. There are two ways to compute this value. We may retrieve the **implied volatility** from the current available options on the market for the same asset. Alternatively, and this is the approach in my implementation, we may use **historical volatility**- the standard deviation of log returns (difference of closing prices of the stock over consecutive days) over past data. The volatility is annualized to be consistent with the rest of the data.
 - $$r$$, annualized risk-free rate. In my implementation, this is the mean of the current interest rates on US treasury bill rates for different times of maturity.
+
+Finally, $$N(.)$$ is cumulative distribution function.
+
 <img src="/assets/10/test.png">
+
 Let's scrutinize two stocks with very different characteristics - volatile, young Tesla and steady, blue chip - Coca-Cola. As shown on the diagram above, there is little dispersion in the price of Coca-Cola. Tesla, on the contrary, is one of the hottest and most volatile stocks of the recent years. Please note that my results may be very particular. Due to the current situation on the markets, most of the stocks are characterised by unusually high volatility. At the same time, we are naturally experiencing very low interest rates. The options chosen are calls. The price of the premium is neglected, as well as the fact that KO pays regular dividends.
 
 ```python
@@ -108,7 +112,11 @@ INFO:root:
  The call matures in 60 days.
 
 ```
-<img src="/assets/10/ezgif.com-gif-maker-11.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-13.gif" width="300">
+
+<img src="/assets/10/ezgif.com-gif-maker-11.gif"> 
+
+<img src="/assets/10/ezgif.com-gif-maker-13.gif">
+
 Both plots tell us, how the function $$V(S,t)$$ behaves for a given pair of variables. One can observe that, for fixed $$t$$,  the price of the option increases as the stock price increases. This makes sense, since it is increasingly more likely to expire with a positive value. Also, for fixed $$S$$ and decreasing $$t$$ (meaning we are approaching maturity), the call becomes worth less and less, since its value at expiration is become more and more certain. This means that the more volatility an option has, the more expensive it is. Why? Uncertainties are costly. Since costs raise prices, and volatility is an uncertainty, volatility raises prices.
 
 ### Binomial Option Pricing Model
@@ -126,10 +134,21 @@ p = \frac{r-d}{u-d}
 $$
 
 And $$u$$ and $$d$$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
+{:refdef: style="text-align: center;"}
+![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/3/Figure_2.png "Example"){:height="50%" width="50%"}
+{: refdef}
 
-<img src="/assets/10/ezgif.com-gif-maker-10.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-12.gif" width="300">
+<img src="/assets/10/ezgif.com-gif-maker-10.gif"> 
+
+<img src="/assets/10/ezgif.com-gif-maker-12.gif">
 
 As shown below, BOPM provides a good, discrete approximation to the Black-Scholes model.
+
 <img src="/assets/10/bi_59.png" width="300"> <img src="/assets/10/bs_59.png" width="300">
+
+## Further Reading
+The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution, Gregory Zuckerman
+A Non-Random Walk Down Wall Street, Andrew Lo
+Options, Futures, and Other Derivatives, John C. Hull
 
 
