@@ -125,7 +125,7 @@ $$
 p = \frac{r-d}{u-d}
 $$
 
-And $u$ and $d$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
+And $$u$$ and $$d$$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
 
 <img src="/assets/10/ezgif.com-gif-maker-10.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-12.gif" width="300">
 
