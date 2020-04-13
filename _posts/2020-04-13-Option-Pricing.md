@@ -39,7 +39,7 @@ Now, by combining long position and put, we simply add two curves and observe th
 
 Note, that married put has similar effect as the call option. It basically hedges your long position. In fact, an investor can mix long positions, short positions and various options to create different strategies to hedge against different risks. The ingenuity of financial engineers gave rise to constructs with such names as butterfly spread, iron condor or straddle, but those are advanced products not covered in this write-up.
 
-## The Unsolved Mystery of Option Pricing
+## The (un)Solved Mystery of Option Pricing
 
 Option pricing turns out to be much more interesting then figuring out the value of bonds or stocks. Calculating the current value of the option, has baffled the financial world for a long time. The history of solving the problem stretches throughout the whole twentieth century and, quite frankly, could make a great Netflix series plot. 
 
