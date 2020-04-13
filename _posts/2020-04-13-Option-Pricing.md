@@ -27,7 +27,7 @@ Options can be used as as an "insurance" to your position. This strategy is also
 As of today, one share of TSLA is $545. At the same time, you purchase a put to insure the purchased stock. The strike price of the option should be at least greater than the amount you paid for the actual stock. For example, you buy put with a strike price of $550, with additional premium of $60 per share, which expires in four weeks. 
 
 We can plot the risk characteristics of such a strategy. 
-<img src="/assets/8/3000.gif">
+<img src="/assets/10/blog_image.png">
 
 We can see that for a stock, the theoretical profit (and loss) are not bounded. Worst case scenario, you can simply loose all your money. Best case scenario, you may enjoy unlimited wealth increase. For a put, its is agreed upon that once the stock price falls below the strike price, you enjoy a linear profit (i.e you bet on stock price plummeting). If the stock price rises above the strike price, you may choose not to excercise the option and loose nothing. Of course, this kind of free, wonderful insurance is too good to be true in reality. That is why investors pay substantial premiums for the insurance - in this particular case, the premium amounts to mind-boggling 11%. As a result, the curve is shifted downwards by the premium price. 
 
@@ -86,10 +86,10 @@ $$
 
 From the model we are able to calculate the price of an option based on a number of different factors. To use Black-Scholes formula, we need first to figure out the value of the parameters of the equation:
 
-- $K$, the strike price. If we decide to buy an option, this what we obviously should now. This is our bet on the future price of the asset.
-- $T$, time to maturity is also known. This is when the option expires.
-- $/sigma$, the volatility. There are two ways to compute this value. We may retrieve the **implied volatility** from the current available options on the market for the same asset. Alternatively, and this is the approach in my implementation, we may use **historical volatility**- the standard deviation of log returns (difference of closing prices of the stock over consecutive days) over past data. The volatility is annualized to be consistent with the rest of the data.
-- $r$, annualized risk-free rate. In my implementation, this is the mean of the current interest rates on US treasury bill rates for different times of maturity.
+- $$K$$, the strike price. If we decide to buy an option, this what we obviously should now. This is our bet on the future price of the asset.
+- $$T$$, time to maturity is also known. This is when the option expires.
+- $$/sigma$$, the volatility. There are two ways to compute this value. We may retrieve the **implied volatility** from the current available options on the market for the same asset. Alternatively, and this is the approach in my implementation, we may use **historical volatility**- the standard deviation of log returns (difference of closing prices of the stock over consecutive days) over past data. The volatility is annualized to be consistent with the rest of the data.
+- $$r$$, annualized risk-free rate. In my implementation, this is the mean of the current interest rates on US treasury bill rates for different times of maturity.
 <img src="/assets/10/test.png">
 Let's scrutinize two stocks with very different characteristics - volatile, young Tesla and steady, blue chip - Coca-Cola. As shown on the diagram above, there is little dispersion in the price of Coca-Cola. Tesla, on the contrary, is one of the hottest and most volatile stocks of the recent years. Please note that my results may be very particular. Due to the current situation on the markets, most of the stocks are characterised by unusually high volatility. At the same time, we are naturally experiencing very low interest rates. The options chosen are calls. The price of the premium is neglected, as well as the fact that KO pays regular dividends.
 
@@ -108,8 +108,8 @@ INFO:root:
  The call matures in 60 days.
 
 ```
-<img src="/assets/10/ezgif.com-gif-maker-11.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-13.gif" width="300">
-Both plots tell us, how the function $V(S,t)$ behaves for a given pair of variables. One can observe that, for fixed $t$,  the price of the option increases as the stock price increases. This makes sense, since it is increasingly more likely to expire with a positive value. Also, for fixed $S$ and decreasing $t$ (meaning we are approaching maturity), the call becomes worth less and less, since its value at expiration is become more and more certain. This means that the more volatility an option has, the more expensive it is. Why? Uncertainties are costly. Since costs raise prices, and volatility is an uncertainty, volatility raises prices.
+<img src="/assets/10/ezgif.com-gif-maker-11.gif" width="400"> <img src="/assets/10/ezgif.com-gif-maker-13.gif" width="400">
+Both plots tell us, how the function $$V(S,t)$$ behaves for a given pair of variables. One can observe that, for fixed $$t$$,  the price of the option increases as the stock price increases. This makes sense, since it is increasingly more likely to expire with a positive value. Also, for fixed $$S$$ and decreasing $$t$$ (meaning we are approaching maturity), the call becomes worth less and less, since its value at expiration is become more and more certain. This means that the more volatility an option has, the more expensive it is. Why? Uncertainties are costly. Since costs raise prices, and volatility is an uncertainty, volatility raises prices.
 
 ### Binomial Option Pricing Model
 
@@ -126,6 +126,8 @@ p = \frac{r-d}{u-d}
 $$
 
 And $u$ and $d$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
+
+<img src="/assets/10/ezgif.com-gif-maker-10.gif" width="400"> <img src="/assets/10/ezgif.com-gif-maker-12.gif" width="400">
 
 As shown below, BOPM provides a good, discrete approximation to the Black-Scholes model.
 
