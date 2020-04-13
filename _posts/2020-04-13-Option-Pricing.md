@@ -108,7 +108,7 @@ INFO:root:
  The call matures in 60 days.
 
 ```
-<img src="/assets/10/ezgif.com-gif-maker-11.gif" width="350"> <img src="/assets/10/ezgif.com-gif-maker-13.gif" width="350">
+<img src="/assets/10/ezgif.com-gif-maker-11.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-13.gif" width="300">
 Both plots tell us, how the function $$V(S,t)$$ behaves for a given pair of variables. One can observe that, for fixed $$t$$,  the price of the option increases as the stock price increases. This makes sense, since it is increasingly more likely to expire with a positive value. Also, for fixed $$S$$ and decreasing $$t$$ (meaning we are approaching maturity), the call becomes worth less and less, since its value at expiration is become more and more certain. This means that the more volatility an option has, the more expensive it is. Why? Uncertainties are costly. Since costs raise prices, and volatility is an uncertainty, volatility raises prices.
 
 ### Binomial Option Pricing Model
@@ -127,7 +127,9 @@ $$
 
 And $u$ and $d$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
 
-<img src="/assets/10/ezgif.com-gif-maker-10.gif" width="350"> <img src="/assets/10/ezgif.com-gif-maker-12.gif" width="350">
+<img src="/assets/10/ezgif.com-gif-maker-10.gif" width="300"> <img src="/assets/10/ezgif.com-gif-maker-12.gif" width="300">
 
 As shown below, BOPM provides a good, discrete approximation to the Black-Scholes model.
+<img src="/assets/10/bi_59.png" width="300"> <img src="/assets/10/bs_59.png" width="300">
+
 
