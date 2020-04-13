@@ -134,9 +134,6 @@ p = \frac{r-d}{u-d}
 $$
 
 And $$u$$ and $$d$$ are specific factors of the asset price moving move up or down. Those can be deduced from the implied or historical volatility.
-{:refdef: style="text-align: center;"}
-![alt text](https://raw.githubusercontent.com/dtransposed/dtransposed.github.io/master/assets/3/Figure_2.png "Example"){:height="50%" width="50%"}
-{: refdef}
 
 <img src="/assets/10/ezgif.com-gif-maker-10.gif"> 
 
@@ -147,8 +144,8 @@ As shown below, BOPM provides a good, discrete approximation to the Black-Schole
 <img src="/assets/10/bi_59.png" width="300"> <img src="/assets/10/bs_59.png" width="300">
 
 ## Further Reading
-The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution, Gregory Zuckerman
-A Non-Random Walk Down Wall Street, Andrew Lo
-Options, Futures, and Other Derivatives, John C. Hull
+1. The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution, Gregory Zuckerman
+2. A Non-Random Walk Down Wall Street, Andrew Lo
+3. Options, Futures, and Other Derivatives, John C. Hull
 
 
