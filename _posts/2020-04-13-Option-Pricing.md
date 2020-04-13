@@ -143,7 +143,7 @@ As shown below, BOPM provides a good, discrete approximation to the Black-Schole
 
 <img src="/assets/10/bi_59.png" width="300"> <img src="/assets/10/bs_59.png" width="300">
 
-## Further Reading
+## Additional Reading
 1. The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution, Gregory Zuckerman
 2. A Non-Random Walk Down Wall Street, Andrew Lo
 3. Options, Futures, and Other Derivatives, John C. Hull
