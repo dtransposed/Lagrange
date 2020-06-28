@@ -9,7 +9,6 @@ image: whatmatters.jpg
 
 ---
 
-# Research Paper Summary - What Matters In On-Policy Reinforcement Learning? A Large-Scale Empirical Study
 
 Recent paper from Google Brain team, [What Matters In On-Policy Reinforcement Learning? A Large-Scale Empirical Study](https://arxiv.org/abs/2006.05990), tackles one of the notoriously neglected problems in deep Reinforcement Learning (deep RL). I believe this is a pain point both for RL researchers and engineers: 
 
