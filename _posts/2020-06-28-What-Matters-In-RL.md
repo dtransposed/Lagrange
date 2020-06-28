@@ -69,7 +69,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Takeaways:**
 
-1. Initialize the last policy layer with $$100x$$ smaller weights. 
+1. Initialize the last policy layer with $$100\times$$ smaller weights. 
 
 2. Use<em> softplus</em> to transform network input into action standard deviation and add a (negative) offset to its input to decrease the initial standard deviations of actions. Tune this offset if possible. 
 
