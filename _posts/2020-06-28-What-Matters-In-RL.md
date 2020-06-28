@@ -1,7 +1,7 @@
 ---
 layout: post
 crosspost_to_medium: true
-title: "Research Paper Summary - What Matters In On-Policy Reinforcement Learning? A Large-Scale Empirical Study
+title: "Research Paper Summary - What Matters In On-Policy Reinforcement Learning? A Large-Scale Empirical Study"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [reinforcement learning, machine learning, summary, research]
@@ -56,7 +56,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** choice of different policy losses (e.g. PPO, policy gradient, V-MPO etc.) on the performance of the benchmark environments.
 
-**Recommendation: **
+**Recommendation:**
 
 1. In the on-policy setting, PPO policy loss is a recommendable default choice for majority of environments. 
 
@@ -66,7 +66,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** structure/size of actor/critic, activation functions, initialisation of network weights, standard deviations of actions, transformations of sampled actions.
 
-**Takeaways: **
+**Takeaways:**
 
 1. Initialize the last policy layer with $100x$ smaller weights. 
 
@@ -86,7 +86,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** observation normalisation, value function normalisation, per-minibatch advantage normalisation, gradient and observation clipping.
 
-**Takeaways: **
+**Takeaways:**
 
 1. Always use observation normalisation and check if value function normalisation improves performance. 
 
@@ -98,7 +98,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** choice of different advantage estimators (e.g. GAE, N-step) and their hyperparameters on the performance of the benchmark environments.
 
-**Recommendation: **
+**Recommendation:**
 
 1. In the on-policy setting, GAE with $\lambda=0.9$is a recommendable default choice for majority of environments. 
 
@@ -106,7 +106,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** number of parallel environments, number of transitions gathered in each iteration, number of passes over the data, mini batch size, how the data is split into mini batches
 
-**Takeaways: **
+**Takeaways:**
 
 1. Go over experience multiple times (allows to quickly find an approximately optimal policy).
 
@@ -122,7 +122,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Design decisions:** discount factor $\gamma$, frame skip, episode termination handling.
 
-**Takeaways: **
+**Takeaways:**
 
 1. Discount factor $\gamma$ turns out to be pretty crucial for the performance and should be individually tuned for every environment.(with the default value of 0.99). 
 
@@ -138,7 +138,7 @@ The experiments show that it is not important how we handle <em>abandoned</em> e
 
 **Design decisions:** choice of different gradient-based optimizers (e.g. Adam, RMSprop) and their hyperparameters on the performance of the benchmark environments.
 
-**Takeaway: **
+**Takeaway:**
 
 1. As a default, use Adam optimizer with momentum $\beta_{1}=0.9$ . Start with the default learning rate $0.0003$, but be sure to adjust it to your problem. 
 
@@ -150,7 +150,7 @@ The experiments show that it is not important how we handle <em>abandoned</em> e
 
 **Design decisions:** choice of different policy regularisers (e.g. entropy, KL divergence between action distribution and a unit Gaussian) and their hyperparameters on the performance of the benchmark environments.
 
-**Takeaway: **
+**Takeaway:**
 
 Well, here the results of the experiments were not very spectacular. Any form of regularization (be it entropy, Kullback-Leibler divergence between the unit Gaussian and the policy action distribution, reverse KL divergence between the target and behavioural policy) does not help much. But we have to keep in mind, that all the agents were trained with the PPO loss, which already enforces the trust region. This means that it already incorporates a certain form of regularization.
 
