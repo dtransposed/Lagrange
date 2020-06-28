@@ -125,7 +125,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Takeaways:**
 
-1. Discount factor $$\gamma$$ turns out to be pretty crucial for the performance and should be individually tuned for every environment.(with the default value of 0.99). 
+1. Discount factor $$\gamma$$ turns out to be pretty crucial for the performance and should be individually tuned for every environment (with the default value of 0.99). 
 
 2. Frame skipping (the number of frames an action is repeated before a new action is selected) can also help in some cases. 
 
