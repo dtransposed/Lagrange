@@ -30,7 +30,7 @@ I believe that the publication may resonate with many engineers out there. Once 
 
 ...well, in reality, **you would face TONS of problems on the way.** Those could be:
 
-1. The sheer amount of hyperparameters available for tuning. This includes both "ML-specific" choices (batch size, networks' architecture, learning rate), but also "RL-specific" (time discount $\gamma$, hyperparameters of advantage estimator). If your agent does not converge with default hyperparameters - bad luck. You will probably need to not only find out which hyperparameter is the key to your agent's performance, but also figure out its optimal value.
+1. The sheer amount of hyperparameters available for tuning. This includes both "ML-specific" choices (batch size, networks' architecture, learning rate), but also "RL-specific" (time discount $$\gamma$$, hyperparameters of advantage estimator). If your agent does not converge with default hyperparameters - bad luck. You will probably need to not only find out which hyperparameter is the key to your agent's performance, but also figure out its optimal value.
 2. It is quite likely that there are strong interactions existing between certain hyperparameters (e.g batch size and learning rate are very much intertwined). This makes the tuning complexity significantly harder.
 3. Same algorithms may be implemented differently in different research papers or RL frameworks. Your initial prototype of the PPO agent may be training fine. But later you would like to distribute your system using Ray framework, and their implementation of PPO could be slightly different. As the result, your previous hyperparameter configuration does not work for the current implementation.
 
@@ -61,7 +61,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 1. In the on-policy setting, PPO policy loss is a recommendable default choice for majority of environments. 
 
-2. The PPO clipping threshold should be set by default to $0.25$ and then tuned.
+2. The PPO clipping threshold should be set by default to $$0.25$$ and then tuned.
 
 ## Networks Architecture
 
@@ -69,7 +69,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Takeaways:**
 
-1. Initialize the last policy layer with $100x$ smaller weights. 
+1. Initialize the last policy layer with $$100x$$ smaller weights. 
 
 2. Use<em> softplus</em> to transform network input into action standard deviation and add a (negative) offset to its input to decrease the initial standard deviations of actions. Tune this offset if possible. 
 
@@ -101,7 +101,7 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 **Recommendation:**
 
-1. In the on-policy setting, GAE with $\lambda=0.9$is a recommendable default choice for majority of environments. 
+1. In the on-policy setting, GAE with $$\lambda=0.9$$ is a recommendable default choice for majority of environments. 
 
 ## Training Setup
 
@@ -121,11 +121,11 @@ They run about 250 000 experiments to investigate design choices from eight them
 
 ## Timesteps Handling
 
-**Design decisions:** discount factor $\gamma$, frame skip, episode termination handling.
+**Design decisions:** discount factor $$\gamma$$, frame skip, episode termination handling.
 
 **Takeaways:**
 
-1. Discount factor $\gamma$ turns out to be pretty crucial for the performance and should be individually tuned for every environment.(with the default value of 0.99). 
+1. Discount factor $$\gamma$$ turns out to be pretty crucial for the performance and should be individually tuned for every environment.(with the default value of 0.99). 
 
 2. Frame skipping (the number of frames an action is repeated before a new action is selected) can also help in some cases. 
 
@@ -141,7 +141,7 @@ The experiments show that it is not important how we handle <em>abandoned</em> e
 
 **Takeaway:**
 
-1. As a default, use Adam optimizer with momentum $\beta_{1}=0.9$ . Start with the default learning rate $0.0003$, but be sure to adjust it to your problem. 
+1. As a default, use Adam optimizer with momentum $$\beta_{1}=0.9$$ . Start with the default learning rate $$0.0003$$, but be sure to adjust it to your problem. 
 
 2. Linear decaying may slightly improve the performance. 
 
