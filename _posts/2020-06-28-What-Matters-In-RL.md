@@ -5,7 +5,7 @@ title: "Research Paper Summary - What Matters In On-Policy Reinforcement Learnin
 author: "Damian Bogunowicz"
 categories: blog
 tags: [reinforcement learning, machine learning, summary, research]
-image: whatmatters.jpg
+image: whatmatters.png
 
 ---
 
