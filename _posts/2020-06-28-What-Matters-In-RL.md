@@ -34,7 +34,7 @@ I believe that the publication may resonate with many engineers out there. Once 
 2. It is quite likely that there are strong interactions existing between certain hyperparameters (e.g batch size and learning rate are very much intertwined). This makes the tuning complexity significantly harder.
 3. Same algorithms may be implemented differently in different research papers or RL frameworks. Your initial prototype of the PPO agent may be training fine. But later you would like to distribute your system using Ray framework, and their implementation of PPO could be slightly different. As the result, your previous hyperparameter configuration does not work for the current implementation.
 
-Point 3. Brings me to the the paper [Implementation Matters in Deep Policy Gradients: A Case Study on PPO and TRPO](https://arxiv.org/abs/2005.12729). This publication highlights the following problem: if your algorithm turns out to be superior to, let's say, current state-of-the-art, is it better because the algorithm is more clever, or you just used more favourable sets of hyperparameters (or in this case just better code quality)?
+Point 3. Brings me to the the paper [Implementation Matters in Deep Policy Gradients: A Case Study on PPO and TRPO](https://arxiv.org/abs/2005.12729). This publication highlights the following problem: if your algorithm turns out to be superior to, let's say, current state-of-the-art, is it better because the algorithm is more clever, or you just used more favourable sets of hyperparameters (or simply just better code quality)?
 
 **All those aforementioned issues could be (partially) avoided if we had a sound understanding of the importance of various hyperparameters**. If we could draw some general conclusions about the significance of a particular configurations perhaps we could be more aware of its consequences on our RL system. Additionally, we could be less prone to mistaking more favourable hyperparameter configuration for superior algorithm design.
 
@@ -145,7 +145,7 @@ The experiments show that it is not important how we handle <em>abandoned</em> e
 
 2. Linear decaying may slightly improve the performance. 
 
-**Comments:** This is pretty much consistent with what we already know about the most popular optimizers. Adam is pretty much always a safe default. And regarding the default learning rate, well, Andrej Karpathy has pretty much said it [four years ago](https://twitter.com/karpathy/status/801621764144971776?s=20).
+**Comments:** This is pretty much consistent with what we already know about the most popular optimizers. Adam is pretty much always a safe default. And regarding the default learning rate, well, Andrej Karpathy pretty much said it [four years ago](https://twitter.com/karpathy/status/801621764144971776?s=20).
 
 ## Regularization
 
