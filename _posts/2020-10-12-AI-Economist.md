@@ -58,9 +58,9 @@ Imagine it's a hot, summer day and you lucky to be participate in all-you-can ea
 - You will probably refuse to eat the tenth ice-cream - otherwise you will get quite queasy (negative utility - you don't even want to any more ice-cream!)
 
 This law is implemented in our agents behaviour through the function $$crra$$. In the context of our simulation, we can substitute ice-cream with houses. We can see that the utility grows initially with the amount of houses built by the agent, but at some point it starts to decline.
-
-<img src="/assets/11/agent_utility.png" width="300">
-
+<p align="center">
+    <img src="/assets/11/agent_utility.png" width="300">
+</p>
 The goal of the citizens is to maximum the sum of their total discounted future utility:
 
 $$
