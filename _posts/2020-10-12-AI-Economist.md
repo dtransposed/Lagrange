@@ -4,7 +4,7 @@ title: "Research Paper Summary - The AI Economist: Improving Equality and Produc
 author: "Damian Bogunowicz"
 categories: blog
 tags: [AI, economics, deep reinforcement learning]
-image: economist.jpg
+image: ai-economist.jpg
 
 ---
 
