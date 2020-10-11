@@ -86,8 +86,9 @@ $$
     <img src="https://blog.einstein.ai/content/images/2020/04/economist-ai.gif" width="300">
 </p>
 
-The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. Red and orange agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The teal agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. Dark blue agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. 
-The size of the circle shows total productivity, while colours of the pie chart show the percentage of economy's wealth each agent owns. The trade-off between equality and productivity is measured by multiplying equality and productivity.</em> 
+The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. **Red** and **orange** agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The **teal** agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. **Dark blue** agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. 
+
+The size of the circle shows total productivity, while colours of the pie chart show the percentage of economy's wealth each agent owns. The trade-off between equality and productivity is measured by multiplying equality and productivity.
 
 ## The AI Government
 
@@ -122,9 +123,13 @@ where $$\mathbf{1}[ z > m_{b+1}]$$ is an indicator function for whether $$z$$ sa
 The AI government's goal is to maximise the social warfare of the community, defined by the **social welfare function** $$swf$$. The social welfare function can be defined in many ways, but in this paper the authors decide to tackle the fundamental trade-off between **income equality** and **productivity**. 
 
 - If income equality is high, this means that the most productive members of the community are financially supporting the least productive agents (which is characteristic for e.g. centrally planned economies). Obviously, those most productive members are disincentivized - they do not want to perform labor from which they do not gain any coins - so the productivity falls.
+
 - If productivity is high (essentially unregulated, free market), the most productive members thrive, but agents who are less fortunate (e.g. are "born" with low skills) barely make a living.
 
-OBRAZEK GINI
+<p align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/GINI_index_World_Bank_up_to_2018.png/2880px-GINI_index_World_Bank_up_to_2018.png" width="400">
+</p>
+<em>World map of the GINI coefficients by country. Based on World Bank data ranging from 1992 to 2018. Source: wikipedia</em>
 
 The economic quantity which gauges of economic inequality is the Gini index. Therefore, to express the inequality we can use the compliment of the Gini index computed for the toy community.
 
