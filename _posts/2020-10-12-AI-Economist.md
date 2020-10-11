@@ -7,6 +7,7 @@ tags: [AI, economics, deep reinforcement learning]
 image: ai-economist.jpg
 
 ---
+<em> All the figures in this post come from the research publication: The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies</em>
 
 It is really refreshing to see that machine learning, especially reinforcement learning, can be successfully used in social sciences. The recent research from the Salesforce team, the [AI Economist](https://arxiv.org/abs/2004.13332), is a study on how to improve economic design through the AI-driven simulation. The goal of the study is to **optimise productivity and social equality of the economy**. The AI framework has been designed to simulate millions of years of economies to help economists, governments and others design tax policies that strive for fair social outcomes in the real world. 
 
@@ -18,7 +19,7 @@ There are two types of actors in the economic simulation: **AI Citizens** (membe
 
 ### Gather-and-Build Game
 
-![Zrzut ekranu 2020-10-11 o 14.10.07](/Users/damian/Desktop/ai/Zrzut ekranu 2020-10-11 o 14.10.07.png)
+![Zrzut ekranu 2020-10-11 o 14.10.07](/assets/10/Zrzut ekranu 2020-10-11 o 14.10.07.png)
 
 The rules of the modelled world, the **Gather-and-Build Game**, are quite simple. One could even argue that the simplicity of the simulation is the one of the biggest flaws of the study. Obviously, the hand-designed environments are bound to miss many of the subtleties of economics.
 
@@ -57,7 +58,7 @@ Imagine it's a hot, summer day and you lucky to be participate in all-you-can ea
 
 This law is implemented in our agents behaviour through the function $$ccra$$. In the context of our simulation, we can substitute ice-cream with houses. We can see that the utility grows initially with the amount of houses built by the agent, but at some point it starts to decline.
 
-![agent_utility](/Users/damian/Desktop/ai/agent_utility.png)
+![agent_utility](/assets/10/agent_utility.png)
 
 The goal of the citizens is to maximum the sum of their total discounted future utility:
 $$
@@ -106,7 +107,7 @@ where $$\mathbf{1}[ z > m_{b+1}]$$ is an indicator function for whether $z$ satu
 
 ### AI Government's Goal
 
-![](/Users/damian/Desktop/ai/Zrzut ekranu 2020-10-11 o 14.11.23.png)
+![](/assets/10/Zrzut ekranu 2020-10-11 o 14.11.23.png)
 
 The AI government's goal is to maximise the social warfare of the community, defined by the **social welfare function** $$swf$$. The social welfare function can be defined in many ways, but in this paper the authors decide to tackle the fundamental trade-off between **income equality** and **productivity**. 
 
@@ -152,11 +153,11 @@ The authors report that the joint optimisation of the AI citizens and AI Governm
 
 ## The AI Taxation Policy
 
-![](/Users/damian/Desktop/ai/Zrzut ekranu 2020-10-11 o 14.11.47.png)
+![](/assets/10/Zrzut ekranu 2020-10-11 o 14.11.47.png)
 
 The figure illustrates the comparison of overall economic outcomes. The AI Economist achieves significantly better equality-productivity trade-offs compared to the baseline models: free-market economy, US-Fed tax policy and Saez formula (model of optimal income tax rate developed by [Emmanuel Saez (2001)](https://eml.berkeley.edu/~saez/derive.pdf). Note, that the AI Economist, while initially being very socialistic (prefers equality to productivity), finally converges to the optimal equilibrium point, where those two objectives are relatively balanced.
 
-![](/Users/damian/Desktop/ai/Zrzut ekranu 2020-10-11 o 14.12.14.png)
+![](/assets/10/Zrzut ekranu 2020-10-11 o 14.12.14.png)
 
 The figure shows the marginal taxes rates for each of the baselines (except for the free-market where taxes do not exist). On average, the AI Economist sets a higher top tax rate than both of the US Federal and Saez tax schedules. It seems that it favours two groups of citizens: agents which earn little (but no too little) and the "middle-class". Those two groups benefit from sharply reduced tax rates. Maybe the AI gives us a hint, that we should keep the taxes low for the middle class? Or that we shall tax the poorest to incentivise them to work? Truth be told, I am quite sceptical about saying that the AI Government has "came up" with some certain taxation policy - the model is far too simple. After all, the simulated economy consists of only four citizens and it seems that every episode results in the same occupation distribution. Those are two low-income agents (stone and wood harvesters), one "jack of all trades" and one high-income house builder: not really a very robust result. 
 
@@ -164,7 +165,7 @@ The figure shows the marginal taxes rates for each of the baselines (except for 
 
 The researchers conclude the paper with an interesting study. They employ human participants on Amazon Mechanical Turk platform to investigate whether AI Economist tax policy can transfer to economic activity of real people without extensive fine-tuning. Human participants play the Gather-and-Build Game with the goal of maximising their wealth, while being the subject to baseline and AI Economist taxation policies. 
 
-![](/Users/damian/Desktop/ai/Zrzut ekranu 2020-10-11 o 14.12.29.png)
+![](/assets/10/Zrzut ekranu 2020-10-11 o 14.12.29.png)
 
 Results of tax policy transfer for game with 58 human participants in 51 episodes. Each episode involves four participants. The AI Economist achieves competitive equality-productivity trade-offs with the baselines, and statistically significantly outperforms the free market.
 
