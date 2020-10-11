@@ -19,7 +19,7 @@ There are two types of actors in the economic simulation: **AI Citizens** (membe
 
 ### Gather-and-Build Game
 
-![Zrzut ekranu 2020-10-11 o 14.10.07](/assets/11/Zrzut ekranu 2020-10-11 o 14.10.07.png)
+<img src="/assets/11/Zrzut ekranu 2020-10-11 o 14.10.07.png" width="300">
 
 The rules of the modelled world, the **Gather-and-Build Game**, are quite simple. One could even argue that the simplicity of the simulation is the one of the biggest flaws of the study. Obviously, the hand-designed environments are bound to miss many of the subtleties of economics.
 
@@ -59,7 +59,7 @@ Imagine it's a hot, summer day and you lucky to be participate in all-you-can ea
 
 This law is implemented in our agents behaviour through the function $$crra$$. In the context of our simulation, we can substitute ice-cream with houses. We can see that the utility grows initially with the amount of houses built by the agent, but at some point it starts to decline.
 
-![agent_utility](/assets/11/agent_utility.png)
+<img src="/assets/11/agent_utility.png" width="300">
 
 The goal of the citizens is to maximum the sum of their total discounted future utility:
 
@@ -116,6 +116,7 @@ where $$\mathbf{1}[ z > m_{b+1}]$$ is an indicator function for whether $$z$$ sa
 
 ![](/assets/11/Zrzut ekranu 2020-10-11 o 14.11.23.png)
 
+
 The AI government's goal is to maximise the social warfare of the community, defined by the **social welfare function** $$swf$$. The social welfare function can be defined in many ways, but in this paper the authors decide to tackle the fundamental trade-off between **income equality** and **productivity**. 
 
 - If income equality is high, this means that the most productive members of the community are financially supporting the least productive agents (which is characteristic for e.g. centrally planned economies). Obviously, those most productive members are disincentivized - they do not want to perform labor from which they do not gain any coins - so the productivity falls.
@@ -124,18 +125,25 @@ The AI government's goal is to maximise the social warfare of the community, def
 OBRAZEK GINI
 
 The economic quantity which gauges of economic inequality is the Gini index. Therefore, to express the inequality we can use the compliment of the Gini index computed for the toy community.
+
 $$
 eq(\mathbf{x}^c)=1 - gini(\mathbf{x}^c)\frac{N}{N-1}
 $$
+
 To measure the economic productivity, we can take the sum of all the coins in the economy:
+
 $$
 prod(\mathbf{x}^c)=\sum_{i=1}^{N}x_i^c
 $$
+
 The social welfare function is simply the product of income equality and productivity:
+
 $$
 swf_t(\mathbf{x}_t^c) = eq_t(\mathbf{x}_t^c)\cdot prod_t(\mathbf{x}_t^c)
 $$
+
 The AI Government's (denoted as $$p$$) objective is to maximise the social welfare:
+
 $$
 \max_{\pi_p}
     \mathbb{E}_{
