@@ -62,6 +62,7 @@ This law is implemented in our agents behaviour through the function $$crra$$. I
 ![agent_utility](/assets/11/agent_utility.png)
 
 The goal of the citizens is to maximum the sum of their total discounted future utility:
+
 $$
 \forall i:
     \max_{\pi_i}
@@ -83,7 +84,8 @@ $$
 
 GIF GAME
 
-The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. Red and orange agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The teal agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. Dark blue agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. The size of the circle shows total productivity, while colours of the pie chart show the percentage of economy's wealth each agent owns. The trade-off between equality and productivity is measured by multiplying equality and productivity.</em> 
+The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. Red and orange agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The teal agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. Dark blue agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. 
+The size of the circle shows total productivity, while colours of the pie chart show the percentage of economy's wealth each agent owns. The trade-off between equality and productivity is measured by multiplying equality and productivity.</em> 
 
 ## The AI Government
 
@@ -91,20 +93,24 @@ The AI Government is the entity which oversees the community and tries to come u
 
 ### Collecting Taxes
 
-Every episode is divided into ten periods. At the end of each period, the government observes citizen's income (total number of coins) -  $$z^{p}_{I}$$ of an agent $$j$$ after the period $$p$$ - and takes away some of its capital governed by the tax function $$T$$ . Finally, once all taxes are collected, the government sums them up and redistributes the amount equally among the community. 
+Every episode is divided into ten periods. At the end of each period, the government observes citizen's income (total number of coins) -  $$z^{p}_{i}$$ of an agent $$i$$ after the period $$p$$ - and takes away some of its capital governed by the tax function $$T$$ . Finally, once all taxes are collected, the government sums them up and redistributes the amount equally among the community. 
 
-So the post-tax income of agent $$I$$ in the period $$p$$ is given by:
+So the post-tax income of agent $$i$$ in the period $$p$$ is given by:
+
 $$
 \widetilde{z}^p_i = z^p_i - T(z^p_i) + \frac{1}{N} \sum_{j=1}^N T(z^p_j).
 $$
+
 The amount of tax $$T(z)$$ imposed on agent's income $$z$$ in a tax period $$p$$ is computed by taking the sum of the amount of income within each bracket $$[m_b, m_{b+1}]$$ times that bracket's marginal rate $$\tau_b$$:
+
 $$
-T(z) = \sum_{b=0}^{B-1} \tau_b \cdot ({
+T(z)=\sum_{b=0}^{B-1} \tau_b \cdot ({
  ({m_{b+1} - m_b })\mathbf{1}[z > m_{b+1} ]
  + ({z - m_b }) \mathbf{1}[m_b < z \leq m_{b+1} ]
  }
 $$
-where $$\mathbf{1}[ z > m_{b+1}]$$ is an indicator function for whether $z$ saturates bracket $b$ and $$\mathbf{1}[ m_b < z \leq m_{b+1} ]$$ is an indicator function for whether $z$ falls within bracket $b$.
+
+where $$\mathbf{1}[ z > m_{b+1}]$$ is an indicator function for whether $$z$$ saturates bracket $$b$$ and $$\mathbf{1}[ m_b < z \leq m_{b+1} ]$$ is an indicator function for whether $$z$$ falls within bracket $$b$$.
 
 ### AI Government's Goal
 
