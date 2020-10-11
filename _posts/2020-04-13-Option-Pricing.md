@@ -5,7 +5,7 @@ title: "Option Pricing - Introduction, Example and Implementation"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [finance, options, algotrading]
-image: options.jpg
+image: options.jpeg
 
 ---
 
