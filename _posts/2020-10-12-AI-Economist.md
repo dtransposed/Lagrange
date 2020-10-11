@@ -18,9 +18,9 @@ There are two types of actors in the economic simulation: **AI Citizens** (membe
 ## The AI Citizens
 
 ### Gather-and-Build Game
-
-<img src="/assets/11/Zrzut ekranu 2020-10-11 o 14.10.07.png" width="300">
-
+<p align="center">
+    <img src="/assets/11/Zrzut ekranu 2020-10-11 o 14.10.07.png" width="400">
+</p>
 The rules of the modelled world, the **Gather-and-Build Game**, are quite simple. One could even argue that the simplicity of the simulation is the one of the biggest flaws of the study. Obviously, the hand-designed environments are bound to miss many of the subtleties of economics.
 
 The community consists of four citizens. Each of the citizens can choose between four actions: 
@@ -42,7 +42,7 @@ Heterogeneities of the citizens are the main driver of **inequality and speciali
 
 ### Citizen's Goal
 
-Citizens are fundamentally simplistic creatures. Their goal is to become wealthy. However, not at all costs. They also strive to avoid performing any labor at all. How? In economics and AI, the desires or preferences of rational agents are being modelled by the **utility** **function**. If we consume some kind of item, we derive satisfaction (utility) from it. Our citizen $$j$$ at time $$t$$ derives pleasure from its coins $$x_{i,t}^{c}$$ and dissatisfaction from performing labor $$l_{i,t}$$:
+Citizens are fundamentally simplistic creatures. Their goal is to become wealthy. However, not at all costs. They also strive to avoid performing any labor at all. How? In economics and AI, the desires or preferences of rational agents are being modelled by the **utility** **function**. If we consume some kind of item, we derive satisfaction (utility) from it. Our citizen $$i$$ at time $$t$$ derives pleasure from its coins $$x_{i,t}^{c}$$ and dissatisfaction from performing labor $$l_{i,t}$$:
 
 $$
 u_i(x_{i,t},l_{i,t})=crra(x^{c}_{i,t})-l_{i,t}
@@ -82,7 +82,9 @@ $$
 
 ### Example of an Episode
 
-GIF GAME
+<p align="center">
+    <img src="https://blog.einstein.ai/content/images/2020/04/economist-ai.gif" width="300">
+</p>
 
 The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. Red and orange agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The teal agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. Dark blue agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. 
 The size of the circle shows total productivity, while colours of the pie chart show the percentage of economy's wealth each agent owns. The trade-off between equality and productivity is measured by multiplying equality and productivity.</em> 
