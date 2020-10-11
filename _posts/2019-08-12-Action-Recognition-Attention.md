@@ -4,7 +4,7 @@ title: "Tutorial - Visual Attention for Action Recognition"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [computer vision, tutorial, neural networks, classification]
-image: attention.jpg
+image: attention.jpeg
 
 ---
 
