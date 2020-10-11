@@ -83,7 +83,7 @@ $$
 ### Example of an Episode
 
 <p align="center">
-    <img src="https://blog.einstein.ai/content/images/2020/04/economist-ai.gif" width="300">
+    <img src="https://blog.einstein.ai/content/images/2020/04/economist-ai.gif">
 </p>
 
 The figure above show the economic simulation in which four agents collect and trade resources, build houses and earn income. **Red** and **orange** agents were endowed with very low house-building skill, so they specialise in collecting and trading wood/stones for coins. The **teal** agent seems to be the jack of all trades, building moderate amounts of houses and collecting some resources. **Dark blue** agent (high house-building skill) actively buys most of the resources from the market and floods the world with its houses. 
@@ -168,7 +168,7 @@ $$
 
 ## Two-Phase Training
 
-The authors report that the joint optimisation of the AI citizens and AI Government is not straightforward and may suffer from training instability in early episodes (which is not surprising giving that the joint objective resembles a min-max game). To solve this problem, the <em> two-phase training </em> approach is being used:
+The authors report that the joint optimisation of the AI citizens and AI Government **is not straightforward and may suffer from training instability in early episodes** (which is not surprising giving that the joint objective resembles a min-max game). To solve this problem, the <em> two-phase training </em> approach is being used:
 
 - **Phase 1**: agents are being trained in the tax-free world (essentially free-market scenario).
 - **Phase 2**: the training is continued, but community is gently introduced to the AI Government and the concept of income redistribution. To avoid unstable learning dynamics created by the sudden introduction of taxes, the marginal tax rates are linearly annealed from 10% to 100%.
@@ -177,27 +177,26 @@ The authors report that the joint optimisation of the AI citizens and AI Governm
 
 ![](/assets/11/Zrzut ekranu 2020-10-11 o 14.11.47.png)
 
-The figure illustrates the comparison of overall economic outcomes. The AI Economist achieves significantly better equality-productivity trade-offs compared to the baseline models: free-market economy, US-Fed tax policy and Saez formula (model of optimal income tax rate developed by [Emmanuel Saez (2001)](https://eml.berkeley.edu/~saez/derive.pdf). Note, that the AI Economist, while initially being very socialistic (prefers equality to productivity), finally converges to the optimal equilibrium point, where those two objectives are relatively balanced.
+The figure illustrates **the comparison of overall economic outcomes**. The AI Economist achieves significantly better equality-productivity trade-offs compared to the baseline models: **free-market economy, US-Fed tax policy and Saez formula (model of optimal income tax rate developed by [Emmanuel Saez (2001)](https://eml.berkeley.edu/~saez/derive.pdf)**. Note, that the AI Economist, while initially being very socialistic (prefers equality to productivity), finally converges to the optimal equilibrium point, where those two objectives are **relatively balanced**.
 
 ![](/assets/11/Zrzut ekranu 2020-10-11 o 14.12.14.png)
 
-The figure shows the marginal taxes rates for each of the baselines (except for the free-market where taxes do not exist). On average, the AI Economist sets a higher top tax rate than both of the US Federal and Saez tax schedules. It seems that it favours two groups of citizens: agents which earn little (but no too little) and the "middle-class". Those two groups benefit from sharply reduced tax rates. Maybe the AI gives us a hint, that we should keep the taxes low for the middle class? Or that we shall tax the poorest to incentivise them to work? Truth be told, I am quite sceptical about saying that the AI Government has "came up" with some certain taxation policy - the model is far too simple. After all, the simulated economy consists of only four citizens and it seems that every episode results in the same occupation distribution. Those are two low-income agents (stone and wood harvesters), one "jack of all trades" and one high-income house builder: not really a very robust result. 
+The figure shows **the marginal taxes rates** for each of the baselines (except for the free-market where taxes do not exist). On average, **the AI Economist sets a higher top tax rate than both of the US Federal and Saez tax schedules**. It seems that it favours two groups of citizens: agents which earn little (but no too little) and the "middle-class". Those two groups benefit from sharply reduced tax rates. Maybe the AI gives us a hint, that we should keep the taxes low for the middle class? Or that we shall tax the poorest to incentivise them to work? 
+
+Truth be told, I am quite sceptical about saying that the AI Government has "came up" with some certain taxation policy - the model is far too simple. After all, the simulated economy consists of only four citizens and it seems that every episode results in the same occupation distribution. Those are two low-income agents (stone and wood harvesters), one "jack of all trades" and one high-income house builder: not really a very robust result. 
 
 ### Applying AI Taxation to Real Humans
 
-The researchers conclude the paper with an interesting study. They employ human participants on Amazon Mechanical Turk platform to investigate whether AI Economist tax policy can transfer to economic activity of real people without extensive fine-tuning. Human participants play the Gather-and-Build Game with the goal of maximising their wealth, while being the subject to baseline and AI Economist taxation policies. 
+The researchers conclude the paper with an interesting study. They employ **human participants** on Amazon Mechanical Turk platform to investigate whether AI Economist tax policy can **transfer to economic activity of real people without extensive fine-tuning**. Human participants play the Gather-and-Build Game with the goal of maximising their wealth, while being the subject to baseline and AI Economist taxation policies. 
 
 ![](/assets/11/Zrzut ekranu 2020-10-11 o 14.12.29.png)
 
-Results of tax policy transfer for game with 58 human participants in 51 episodes. Each episode involves four participants. The AI Economist achieves competitive equality-productivity trade-offs with the baselines, and statistically significantly outperforms the free market.
+The figure above presents the results of tax policy transfer for game with 58 human participants in 51 episodes. Each episode involves four participants. The AI Economist achieves competitive equality-productivity trade-offs with the baselines, and statistically significantly outperforms the free market.
 
 What really sparks my interest is the fact, that the behaviour of human participants and trained AI agents differ significantly. For example, it has been observed that humans tend to block other players and otherwise display adversarial behaviour. 
 
-
-
 ## Conclusion 	
-
-This work from Salesforce team shows that  AI-based, economic simulators for learning economic policies have the potential to be useful in the real world. I am really excited to see more research, which tries to apply AI to social sciences and solve some of the vast puzzles, which we encounter in economy both in the micro and macro scale. For more information, check out the paper, as well as the [Salesforce's blog post on the AI Economist](https://blog.einstein.ai/the-ai-economist/). They also published a great video intro to the publication on [YouTube](https://www.youtube.com/watch?v=4iQUcGyQhdA&feature=emb_title). 
+This work from Salesforce team shows that **AI-based, economic simulators for learning economic policies have the potential to be useful in the real world**. I am really excited to see more research, which tries to apply AI to social sciences and solve some of the vast puzzles, which we encounter in economy both in the micro and macro scale. For more information, check out the paper, as well as the [Salesforce's blog post on the AI Economist](https://blog.einstein.ai/the-ai-economist/). They also published a great video intro to the publication on [YouTube](https://www.youtube.com/watch?v=4iQUcGyQhdA&feature=emb_title). 
 
 
 
