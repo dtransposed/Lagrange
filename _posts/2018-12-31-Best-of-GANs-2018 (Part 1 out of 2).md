@@ -4,7 +4,7 @@ title: "The best of GAN papers in the year 2018"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [computer vision, neural networks, generative adversarial networks]
-image: gan.jpeg
+image: gan.jpg
 ---
 This year I had a great pleasure to be involved in a research project, which required me to get familiar with a substantial number of publications from the domain of deep learning for computer vision. It allowed me to take a deep dive into the field and I was amazed by the progress done in the last 2-3 years. It is truly exciting and motivating how all different subfields such as image inpainting, adversarial examples, super-resolution or 3D reconstruction have greatly benefited from the recent advances. However, there is one type of neural networks, which has earned truly massive amounts of hype (in my humble opinion definitely for a reason)- __Generative Adversarial Networks__ (GANs). I can agree that those models are fascinating and I am always on a lookout for some new GAN ideas.
 
