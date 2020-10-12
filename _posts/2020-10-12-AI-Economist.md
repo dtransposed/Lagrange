@@ -7,7 +7,7 @@ tags: [AI, economics, deep reinforcement learning]
 image: ai-economist.jpg
 
 ---
-<em> All the figures in this post come from the research publication: The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies</em>
+<em> All the figures in this post come from the research publication: The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies (Zheng et al. 2020)</em>
 
 It is really refreshing to see that machine learning, especially reinforcement learning, can be successfully used in social sciences. The recent research from the Salesforce team, the [AI Economist](https://arxiv.org/abs/2004.13332), is a study on how to improve economic design through the AI-driven simulation. The goal of the study is to **optimise productivity and social equality of the economy**. The AI framework has been designed to simulate millions of years of economies to help economists, governments and others design tax policies that strive for fair social outcomes in the real world. 
 
@@ -196,7 +196,7 @@ The figure above presents the results of tax policy transfer for game with 58 hu
 What really sparks my interest is the fact, that the behaviour of human participants and trained AI agents differ significantly. For example, it has been observed that humans tend to block other players and otherwise display adversarial behaviour. 
 
 ## Conclusion 	
-This work from Salesforce team shows that **AI-based, economic simulators for learning economic policies have the potential to be useful in the real world**. I am really excited to see more research, which tries to apply AI to social sciences and solve some of the vast puzzles, which we encounter in economy both in the micro and macro scale. For more information, check out the paper, as well as the [Salesforce's blog post on the AI Economist](https://blog.einstein.ai/the-ai-economist/). They also published a great video intro to the publication on [YouTube](https://www.youtube.com/watch?v=4iQUcGyQhdA&feature=emb_title). 
+This work from Salesforce team shows that **AI-based, economic simulators for learning economic policies have the potential to be useful in the real world**. I am really excited to see more research, which tries to apply AI to social sciences and solve some of the vast puzzles, which we encounter in economy both in the micro and macro scale. For more information, check out the paper, as well as the [Salesforce's blog post on the AI Economist](https://blog.einstein.ai/the-ai-economist/). They also published a great video intro to the publication on [YouTube](https://www.youtube.com/watch?v=4iQUcGyQhdA&feature=emb_title). Finally, the project's [code has been released to the public](https://github.com/salesforce/ai-economist)!
 
 
 
