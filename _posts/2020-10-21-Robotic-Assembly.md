@@ -7,11 +7,6 @@ tags: [robotics, sim2real, deep reinforcement learning]
 image: tutorial_gif.gif
 
 ---
-
-# Robotic Assembly Using Deep Reinforcement Learning
-
-![](../assets/12/tutorial_gif.gif)
-
 ## Introduction
 
 <em>**Disclaimer**: This article is a cross post from [Pytorch Medium Blog Post](https://link.medium.com/gwm2y0JdPab ).</em>
@@ -277,11 +272,6 @@ Once the policy converges, you can either test it (run inference) in the simulat
 ![](../assets/12/real_infer.gif)
 
 ## About the Team
-<p align="center">
-  <img src="./images/logo.png" alt="Sublime's custom image"/>
-</p>
-
-
 This tutorial is based on the research done at [ARRIVAL](https://arrival.com/?gclid=CjwKCAjwnef6BRAgEiwAgv8mQby9ldRbN6itD_fEpRZ2TdgFBeKltK-EPSVPNUhvdoH2s8PnNAYMLxoC5OAQAvD_BwE) by the outstanding robotics team: 
 * [Damian Bogunowicz](https://dtransposed.github.io)
 * [Fedor Chervinskii](https://www.linkedin.com/in/chervinskii/)
