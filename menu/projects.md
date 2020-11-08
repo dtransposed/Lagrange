@@ -10,8 +10,8 @@ The growing list of my projects and other pieces of work I was involved in.
 
 <em>__2020__</em>
 
-1. [__Publication: Sim2Real for Peg-Hole Insertion with Eye-in-Hand Camera__](http://wordpress.csc.liv.ac.uk/smartlab/wp-content/uploads/sites/5/2020/05/ICRA2020ViTac_paper_2.pdf) - at ICRA 2020 ViTac Workshop. Research published while working at (ARRIVAL)[https://arrival.com/]. [Youtube recording](https://www.youtube.com/watch?v=qOtFIL3aHDg) of the presentation.
-2. **Talk: Applying Sim2Real Transfer To Industrial Robots**- at [Data Science Summit 2020](https://dssconf.pl). (Link to the talk on Youtube [https://www.youtube.com/watch?v=1BG5pC8WbTE].
+1. [__Publication: Sim2Real for Peg-Hole Insertion with Eye-in-Hand Camera__](http://wordpress.csc.liv.ac.uk/smartlab/wp-content/uploads/sites/5/2020/05/ICRA2020ViTac_paper_2.pdf) - at ICRA 2020 ViTac Workshop. Research published while working at [ARRIVAL](https://arrival.com/). [Youtube recording](https://www.youtube.com/watch?v=qOtFIL3aHDg) of the presentation.
+2. **Talk: Applying Sim2Real Transfer To Industrial Robots**- at [Data Science Summit 2020](https://dssconf.pl). [link to the talk on Youtube](https://www.youtube.com/watch?v=1BG5pC8WbTE).
 3. **Tutorial: Robotic Assembly Using Deep Reinforcement Learning**-  on [PyTorch Medium Blog](https://link.medium.com/gwm2y0JdPab)  and
 accompanying [GitHub Repository](https://github.com/arrival-ltd/catalyst-rl-tutorial). Created together with the team from [ARRIVAL](https://arrival.com/).
 
