@@ -8,14 +8,14 @@ image: prisoners.jpeg
 
 ---
 
-Over the christmas holidays I finally managed to finish one of my <em>2020</em> lockdown projects. After reading the (excellent) book by Tim Marshall, "Prisoners of Geography", I discovered three important facts: 
+Over the christmas holidays I finally managed to finish one of my <em>2020</em> lockdown projects. After reading the (excellent) book by Tim Marshall, **"Prisoners of Geography"**, I discovered three important facts: 
 - Tim Marshall is an **amazing** author. 
 - I have been much more ignorant about the global geopolitics than I thought. 
 - To build a solid and lost-lasting understanding of geopolitics I need to re-read most of the chapters, explore some topics on my own and take thorough notes.
 
 So...those are fruits of my work: **the summary of every chapter in the book**. Please note, that the summary is very subjective. There were some chapters which I almost skipped (Europe, duh!), while some regions were so fascinating, that I spent a lot of time going deep into the effects of Earth's geography on its politics and international relations.
 
-I have also created a (.pdf version for easier reading)[https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/geography.pdf]. Enjoy!
+I have also created a [.pdf version for easier reading](https://github.com/dtransposed/dtransposed.github.io/blob/master/assets/geography.pdf). Enjoy!
 
 # Russia
 <p align="center">
