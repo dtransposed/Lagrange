@@ -8,8 +8,6 @@ tags: [politics, geography]
 image: prisoners.jpg
 ---
 
-<div style="page-break-after: always; break-after: page;"></div>
-
 
 # Russia
 <p align="center">
