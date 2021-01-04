@@ -12,9 +12,9 @@ image: prisoners.jpg
 
 
 # Russia
-
-<img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="russia.jpg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="russia.jpg" style="zoom: 25%;"/>
+</p>
 - > "There is nothing which they admire so much as strength, and there is nothing for which they have less respect than for military weakness." - Churchill
 
 - > ' - Are you European or are you Asian? - Neither, I am Russian.'
