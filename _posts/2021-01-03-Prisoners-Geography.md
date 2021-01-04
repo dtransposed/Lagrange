@@ -1,7 +1,6 @@
-
 ---
 layout: post
-title: "Prisoners of Geography (Tim Marshall) - my notes."
+title: "Notes - Prisoners of Geography (Tim Marshall)"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [politics, geography]
