@@ -6,6 +6,7 @@ author: "Damian Bogunowicz"
 categories: blog
 tags: [politics, geography]
 image: prisoners.jpeg
+
 ---
 
 Over the christmas holidays I finally managed to finish one of my <em>2020</em> lockdown projects. After reading the (excellent) book by Tim Marshall, "Prisoners of Geography", I discovered three important facts: 
