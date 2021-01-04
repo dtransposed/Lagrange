@@ -56,9 +56,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # China
-
-<img src="https://images.unsplash.com/photo-1517309230475-6736d926b979?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="china.jpg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1517309230475-6736d926b979?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="china.jpg" style="zoom: 25%;" />
+</p>
 - > China is a civilisation pretending to be a nation. - Lucian Pye.
 
 - **The Han people** make up 90 percent of the Chinese population and they dominate Chinese business and politics. **Mandarin** Chinese, which originated in the North, is the dominant language in the media and politics.
@@ -99,9 +99,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # USA
-
-<img src="https://images.unsplash.com/photo-1547050260-179ac224ba25?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80" alt="usa.jpg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1547050260-179ac224ba25?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80" alt="usa.jpg" style="zoom: 25%;" />
+</p>
 - > God has a special providence for fools, drunkards, and the United States of America. - Otto von Bismarck
 
 - One of the early principles of the USA was to **steer clear of permanent alliances** with any portion of the foreign world. This was the case until 1941, when the Americans intervened in the WWII.
@@ -159,9 +159,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # Europe
-
-<img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="europe.jpg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="europe.jpg" style="zoom: 25%;" />
+</p>
 > - For those who didn't live through this themselves and who especially now in the crisis are asking what benefits Europe's unity brings, the answer despite the unprecedented European period of peace lasting more than 65 years and despite the problems and difficulties we must still overcome is: peace. - Helmut Kohl
 
 ## Geography
@@ -184,8 +184,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # Africa
-
-<img src="https://images.unsplash.com/photo-1497271679421-ce9c3d6a31da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="africa.jpeg" style="zoom: 25%;" />
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1497271679421-ce9c3d6a31da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="africa.jpeg" style="zoom: 25%;" />
+</p>
 
 > - History might have turned out differently if African armies, fed by barnyard-giraffe meat and backed by waves of cavalry mounted on huge rhinos, had swept into Europe to overrun its mutton-fed soldiers mounted on puny horses. - Jared Diamond
 
@@ -257,8 +258,9 @@ image: prisoners.jpg
 
 
 # Middle East
-
-<img src="https://images.unsplash.com/photo-1565689477474-36ff3b63ac6c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80" alt="middle.jpg" style="zoom: 25%;" />
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1565689477474-36ff3b63ac6c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80" alt="middle.jpg" style="zoom: 25%;" />
+</p>
 
 ## Geography
 
@@ -285,8 +287,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # India and Pakistan
-
-<img src="https://images.unsplash.com/photo-1516540268055-e1042f0b2c60?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="india.jpg" style="zoom: 25%;" />
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1516540268055-e1042f0b2c60?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" alt="india.jpg" style="zoom: 25%;" />
+</p>
 
 - > Pakistan has decided to bleed India with thousand cuts. It's the policy of Pakistan. The creation of Bangladesh, which happened with the help of India, was a very humiliating defeat for them, and they feel that this is one way of avenging that defeat. They are avenging this defeat by causing casualties to our security forces and creating mayhem amongst the people. - General Bipin Rawat
 
@@ -314,9 +317,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # South America
-
-<img src="https://images.unsplash.com/photo-1521836597172-87a550ef7210?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="peru.jpg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1521836597172-87a550ef7210?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="peru.jpg" style="zoom: 25%;" />
+</p>
 ## Geography
 
 - South America is a living proof, that **if the geography is against you, then you are bound to have limited economic success**. The continent has just few deep, natural harbours.
@@ -362,9 +365,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # The Arctic
-
-<img src="https://images.unsplash.com/photo-1514125067037-8e669dd37638?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="arctic.jpeg" style="zoom: 25%;" />
-
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1514125067037-8e669dd37638?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="arctic.jpeg" style="zoom: 25%;" />
+</p>
 > - Offshore fields especially in the Arctic, are without any exaggeration, our strategic reserve for the twenty-first century. - Vladimir Putin
 
 > - They have cities in arctics, we only have villages. - Melissa Bert
@@ -387,8 +390,9 @@ image: prisoners.jpg
 <div style="page-break-after: always; break-after: page;"></div>
 
 # Korea and Japan
-
-<img src="https://images.unsplash.com/photo-1552183417-6c68fe4047d2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="korea.jpg" style="zoom: 25%;" />
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1552183417-6c68fe4047d2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="korea.jpg" style="zoom: 25%;" />
+</p>
 
 - The recent relationship between both Koreas, Japan and the USA has resembled a long-lasting Mexican stand-off. **Solving the North Korean problem may have properties of a self-fulfilling prophecy**. One on hand world leaders should intervene against the regime. However, they are aware that the collapse of North Korea will, without any doubt, cause huge chaos to every party involved.
 
