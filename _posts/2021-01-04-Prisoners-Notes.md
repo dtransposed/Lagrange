@@ -1,20 +1,15 @@
 
-
-
-
-# Prisoners of Geography
-
-### By Tim Marshall
-
-## Notes by Damian Bogunowicz 
-
-
-
-
+---
+layout: post
+title: "Prisoners of Geography (Tim Marshall) - my notes."
+author: "Damian Bogunowicz"
+categories: blog
+tags: [politics, geography]
+image: prisoners.jpg
+---
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-##### 
 
 # Russia
 
