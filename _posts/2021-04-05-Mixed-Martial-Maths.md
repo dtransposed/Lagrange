@@ -15,7 +15,7 @@ In your professional and private life you may be often presented with difficult 
 
 > How many weddings are performed each day in Japan?
 
-...or
+or
 
 > How many total miles do Americans drive in a year?
 
@@ -49,17 +49,21 @@ I will be mentioning **divide-and-conquer** reasoning in conjunction with other 
 
 The purpose of divide-and-conquer is to be break the problem into smaller, digestible pieces and then combine them into a full solution.
 
-First let's think about how long it takes to say a number out-loud. For relatively small numbers it takes me about $0.5$ second, while I need up to $5$ seconds to say: $999,999,999$. We can use the best- and worse-case scenario to compute an "average" time necessary to say a number. 
+First let's think about how long it takes to say a number out-loud. For relatively small numbers it takes me about $$0.5$$ second, while I need up to $$5$$ seconds to say: $$999,999,999$$. We can use the best- and worse-case scenario to compute an "average" time necessary to say a number. 
 
 To combine quantities produced by our "mental hardware" (especially lower and upper bounds), we shall use geometric mean, rather than arithmetic mean. This is because geometric mean operates on a logarithmic scale and this is compatible with how humans perceive quantities - through ratios.
+
 $$
 t_{mean} = \sqrt{t_{max} \cdot t_{min}}=\sqrt{5 \cdot 0.5} \approx 1.6s
 $$
+
 An average time to say a number out-loud is about $1.6$ second. Now, we can complete the assignment by calculating how much time it takes to say a number out-loud billion times!
+
 $$
 t_{tot} = t_{mean} \cdot 10^9 = 1.6s\cdot 10^9
 $$
-This is equivalent to about $51$ years, quite some time!
+
+This is equivalent to about $$51$$ years, quite some time!
 
 We broke one, seemingly overwhelming problem into two, fairly easy ones. While the complexity of the example was pretty modest,  the usefulness of **divide-and-conquer** reasoning will be demonstrated later on in this write-up. 
 
