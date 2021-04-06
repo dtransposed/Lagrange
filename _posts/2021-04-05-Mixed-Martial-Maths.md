@@ -81,10 +81,12 @@ Creating an adequate representation (abstraction) of the vinyl collection allows
 
 #### When in Rome, Do Not Do As the Romans.
 
-Have you ever noticed how ridiculously impractical, in the context of modern mathematics, Roman numerals are? It seems pointless to use them for any kind of useful algebra. XXVII times XXXVI is equivalent to $27 \cdot 36$. However, because of the level of abstraction inadequate for this operation, it feels so unnatural to perform multiplication in this notation. The modern number system, based on the abstractions of value and zero, makes the operation surprisingly simple. Even if you cannot do mental multiplication fast, you could use its properties to compute:
+Have you ever noticed how ridiculously impractical, in the context of modern mathematics, Roman numerals are? It seems pointless to use them for any kind of useful algebra. XXVII times XXXVI is equivalent to $$27 \cdot 36$$. However, because of the level of abstraction inadequate for this operation, it feels so unnatural to perform multiplication in this notation. The modern number system, based on the abstractions of value and zero, makes the operation surprisingly simple. Even if you cannot do mental multiplication fast, you could use its properties to compute:
+
 $$
 27 \cdot 36 = (20+7) \cdot (30+6) = 20\cdot 30 + 7\cdot 30 + 20\cdot 6 + 7\cdot6 = 600+210+120+42=810+162=972
 $$
+
 But why did the Romans do, seemingly, such a poor job? You can find the answer [here](https://www.encyclopedia.com/science/encyclopedias-almanacs-transcripts-and-maps/roman-numerals-their-origins-impact-and-limitations). The Romans were not concerned with pure mathematics, which usually requires high degree of abstraction. Instead they used mathematics to figure personal and government accounts, keep military records, and aid in the construction of aqueducts and buildings. 
 
 **Conclusion: Good abstractions amplify our intelligence and bad abstractions make us confused. An example of good abstraction: “Could you slide the chair toward the table?". An example of bad abstraction: “Could you, without tipping it over, move the wooden board glued to four thick sticks toward the large white plastic circle?”.**
@@ -97,27 +99,33 @@ It is particularly beneficial to discover an existence of some **invariants** in
 
 #### A Rat-Eaten Chessboard
 
-<img src="/Users/damian/Documents/blog posts/MMM/image1.png" alt="image1" style="zoom:50%;" />
+<img src="/assets/13/image1.png" alt="image1" style="zoom:50%;" />
 
-Imagine a basement, where you keep your old chess set.  A rat comes out and gnaws on your antique  chessboard. As a result, the animal chews off two diagonally opposite corners out your standard $8 \times 8$ chessboard. In the basement you also keep a box of rectangular $2 \times 1$ dominoes. 
+Imagine a basement, where you keep your old chess set.  A rat comes out and gnaws on your antique  chessboard. As a result, the animal chews off two diagonally opposite corners out your standard $$8 \times 8$$ chessboard. In the basement you also keep a box of rectangular $$2 \times 1$$ dominoes. 
 
 > Can these dominoes tile the rat-eaten chessboard i.e. can we lay down the dominoes on the chessboard, so that every square is covered exactly once? 
 
 What we could try to do is to start placing dominoes naively, hoping that we spot some patterns or just stumble upon the solution. Most likely we would get overwhelmed by the number of possible move sequences. Instead of using <em>brute force</em>, let us identify some quantity, which remains unchanged, no matter how many dominoes pieces are on the board. In general, this quality is the **invariant**.
 
 Since each domino covers exactly one white and one black square on the chessboard, the following relationship $x$ between uncovered black squares and uncovered white squares remains unchanged. This is true, not matter how many dominoes are laying on the chessboard at any given time.
+
 $$
 x = \text{uncovered}_{\text{white}} - \text{uncovered}_{\text{black}}
 $$
-A regular $8 \times 8$ chessboard initially has $32$ black squares and $32$ white squares. Our perturbed chessboard is missing 2 black squares. This means that:
+
+A regular $$8 \times 8$$ chessboard initially has $$32$$ black squares and $$32$$ white squares. Our perturbed chessboard is missing $$2$$ black squares. This means that:
+
 $$
 x_{initial} = 32-30=2
 $$
+
 Now, we succeed if there are no empty squares on the nibbled chessboard (and no overlapping dominoes). This means finishing the game with no uncovered white or black squares:
+
 $$
 x_{final} = 0-0 = 0
 $$
-Because $x_{final} \neq x_{initial}$ ($x$ is always equal to $2$ after every move until no further moves are available), we cannot tile the nibbled chessboard with dominoes. We can reach this conclusion immediately once we find a meaningful invariant.
+
+Because $$x_{final} \neq x_{initial}$$ ($$x$$ is always equal to $$2$$ after every move until no further moves are available), we cannot tile the nibbled chessboard with dominoes. We can reach this conclusion immediately once we find a meaningful invariant.
 
 Whenever facing a complex problem, it is helpful to look for the **conserved** quantity. Finding the **invariant** allows for creation of a high-level abstraction layer of the problem. Operating on this abstraction layer can directly lead to the solution without delving into the messy complexity of the problem at hand. Often, however, the invariant is given, so we can analyse the actions that preserve it. Those actions, which take advantage of the **symmetry** of the problem and preserve it, are called **symmetry operations** .
 
@@ -125,15 +133,18 @@ Whenever facing a complex problem, it is helpful to look for the **conserved** q
 
 The fans of mathematical anecdotes surely know the one about the young Carl Friedrich Gauss. As a young student he was given the following problem:
 
-> Find the sum numbers from $1$ to $100$. 
+> Find the sum numbers from $$1$$ to $$100$$. 
 
-It took just several minutes until the prodigy child quickly returned with the answer: $5050$. What was the trick?
+It took just several minutes until the prodigy child quickly returned with the answer: $$5050$$. What was the trick?
 
 Gauss found the **invariant**, the sum, which does not change when the terms are added "forward" (from the lowest number to the highest) or "backward" (from the highest number to lowest) - hence he also discovered the corresponding **symmetry operation**.
+
 $$
 S = 1+2+3+ \cdots + 99 + 98 + 100 = 100+99+98+\cdots+3+2+1
 $$
+
 Having found the symmetry of the problem, the solution is easy to compute. By adding the "forward" and backward" representation of the sum we end up with:
+
 $$
 2S = 101+101+101+\cdots+101+101+101 = 101\cdot100
 $$
@@ -144,21 +155,25 @@ $$
 
 #### Finding vertex without the calculus
 
-<img src="/Users/damian/Documents/blog posts/MMM/unknown.png" alt="image2" style="zoom:60%;" />
+<img src="/assets/13/unknown.png" alt="image2" style="zoom:60%;" />
 
 Let's find the maximum of the simple function:
+
 $$
 f(x)=-x^2+2x
 $$
+
 Your instinct may tell you to use calculus to solve the problem, but why should we use a sledgehammer to crack a nut? Let's do what Gauss did with a sum of series - use the invariant and related symmetry operation to crack the puzzle efficiently.
 
 The invariant of the problem is the location of the minimum. We can safely guess that there is some symmetry available to be exploited (the equation represents a second-order polynomial, which has a parabolic shape). 
 
 We can factor the function:
+
 $$
 f(x)=-x^2+2x=x(-x+2)
 $$
-Since multiplication is commutative ($x(-x+2) = (-x+2)x$) , we have found our symmetry operation: $x \leftrightarrow -x+2$. This operation turns $2$ into $0$ or $3$ into $-1$ (and vice-versa). The only value unchanged (left invariant) by the symmetry operation is $1$, the solution to our problem!
+
+Since multiplication is commutative ($$x(-x+2) = (-x+2)x$$) , we have found our symmetry operation: $$x \leftrightarrow -x+2$$. This operation turns $$2$$ into $$0$$ or $$3$$ into $$-1$$ (and vice-versa). The only value unchanged (left invariant) by the symmetry operation is $$1$$, the solution to our problem!
 
 Interestingly, I have also been recently reading completely unrelated book by Benoit Mandelbrot. It was interesting to stumble upon his testimony about invariants in the context of financial engineering:
 
