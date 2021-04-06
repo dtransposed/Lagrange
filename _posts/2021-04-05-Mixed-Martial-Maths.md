@@ -7,8 +7,6 @@ tags: [mathematics, reasoning, engineering,approximation]
 image: prisoners.jpeg
 
 ---
-# Mixed Martial Maths - Simple Reasoning Tools For Complex Phenomena
-
 Recently I have been interested in obtaining a very particular skill. I have seen this ability demonstrated by many excellent individuals - not in only in the tech world, but also in finance or consulting industry.
 
 I am talking here about the art of <em>back-of-the-napkin</em> (or <em>back-of-the-envelope</em>) calculation, also known as <em>guesstimation</em> or <em>order-of-magnitude analysis</em>. 
