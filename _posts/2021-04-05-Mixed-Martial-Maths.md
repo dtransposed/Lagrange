@@ -189,11 +189,13 @@ Proportional reasoning is yet another powerful weapon, which allows to avoid com
 
 If a person approached you on the street and asked: "how many McDonald's restaurants are there in your country?", you would be probably quite baffled. If not due to the surprising nature of the question, then certainly by the difficulty of the estimate. Most of the people I asked usually were overstating the number - some of the estimates were off by two orders of magnitude! They would surely give an accurate answer, if they knew about the proportional reasoning.
 
-My hometown in Poland has, give or take, $400$ thousand inhabitants. We surely had about 5 McDonald's outlets back when I was attending middle high. Poland has population of $40,000,000$. By applying simple proportional reasoning I can estimate that there are...
+My hometown in Poland has, give or take, $$400$$ thousand inhabitants. We surely had about $5$ McDonald's outlets back when I was attending middle high. Poland has population of $$40,000,000$$. By applying simple proportional reasoning I can estimate that there are...
+
 $$
 \text{restaurants}_\text{poland} = \text{restaurants}_\text{hometown}\cdot \frac{\text{population}_\text{poland}}{\text{population}_\text{hometown}} = 5 \cdot \frac{4 \cdot 10^7}{4 \cdot 10^5} = 500
 $$
- ...McDonald's restaurants in Poland. The actual number is 462 (data from 2019 according to [wikipedia](https://en.wikipedia.org/wiki/List_of_countries_with_McDonald%27s_restaurants)). Pretty neat huh?
+
+ ...McDonald's restaurants in Poland. The actual number is $$462$$ (data from $$2019$$ according to [wikipedia](https://en.wikipedia.org/wiki/List_of_countries_with_McDonald%27s_restaurants)). Pretty neat huh?
 
 #### To Fly or Not to Fly
 
@@ -212,6 +214,7 @@ To investigate, which mean of transport is more fuel-efficient, we can compute t
 $$
 \frac{E_{plane}}{E_{car}} = \frac{\rho_{plane}}{\rho_{car}} \cdot \frac{A_{cs, plane}}{A_{cs, car}} \cdot (\frac{v_{plane}}{v_{car}})^2
 $$
+
 Our goal is to find out the ratio on the left hand side. We can do this by estimating the terms on the right hand side.
 
 ##### Air density
@@ -220,18 +223,20 @@ Rather than estimating air density at the cruising altitude (plane) and at sea l
 
 ##### Cross-section 
 
-Once again, we shouldn't care much for each value separately. Let us directly estimate the ratio! How many car cross-sections can "fit" into a cross-section of a plane? I am pretty sure that in terms of width, plane's round fuselage cross-section (I am neglecting the wings) could be occluded by three cars parked next to each other. Probably the same thing applies in the vertical dimension. If we stacked three cars on top of each other they could "cover" the plane horizontally. This means that the cross-section ratio is about $3 \cdot 3 = 9$
+Once again, we shouldn't care much for each value separately. Let us directly estimate the ratio! How many car cross-sections can "fit" into a cross-section of a plane? I am pretty sure that in terms of width, plane's round fuselage cross-section (I am neglecting the wings) could be occluded by three cars parked next to each other. Probably the same thing applies in the vertical dimension. If we stacked three cars on top of each other they could "cover" the plane horizontally. This means that the cross-section ratio is about $$3 \cdot 3 = 9$$
 
-<img src="/Users/damian/Documents/blog posts/MMM/Untitled Diagram-3.png" alt="image2" style="zoom:60%;" />
+<img src="/assets/13/Untitled Diagram-3.png" alt="image2" style="zoom:60%;" />
 
 ##### Velocities 
 
-Here, I feel pretty comfortable with estimating each velocity separately. A car travels at around $100$km/h, while a plane travels at almost $1000$km/h. This means velocity ratio of $10$.
+Here, I feel pretty comfortable with estimating each velocity separately. A car travels at around $$100$$km/h, while a plane travels at almost $$1000$$km/h. This means velocity ratio of $$10$$.
 
 Finally, we can compute the drag energy ratio:
+
 $$
 \frac{E_{plane}}{E_{car}} = \frac{1}{2} \cdot 12 \cdot (10)^2 = 450
 $$
+
 Given the common knowledge, that the fuel efficiency of a car and plane, per passenger, are roughly the same, I am pretty happy with this estimate. A car needs one "unit" of energy per person (assuming an average person drives to and from work alone). Conversely, a plane, which carries about 500 people, needs approximately one unit of energy per person as well.
 
 Notice how **divide-and-conquer**, as well reasoning from first principles, were efficiently utilised in this analysis as well!
@@ -244,7 +249,7 @@ Dimensional analysis makes it possible to say a great deal about the behaviour o
 
 #### Dimensional Analysis "a la Huygens" 
 
-<img src="/Users/damian/Documents/blog posts/MMM/image4.png" alt="image4" style="zoom:67%;" />
+<img src="/assets/13/image4.png" alt="image4" style="zoom:67%;" />
 
 <em> Image credit: [Khan Academy](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-oscillations/a/trig-and-forces-the-pendulum)</em>
 
@@ -258,10 +263,10 @@ We make a list of all the physical variables and constants on which the answer m
 
 | Quantity | Symbol | Unit            |
 | -------- | ------ | --------------- |
-| period   | $T$    | $s$             |
-| gravity  | $g$    | $\frac{m}{s^2}$ |
-| mass     | $M$    | $kg$            |
-| length   | $L$    | $m$             |
+| period   | $$T$$    | $$s$$             |
+| gravity  | $$g$$ | $$\frac{m}{s^2}$$ |
+| mass     | $$M$$    | $$kg$$            |
+| length   | $$L$$    | $$m$$             |
 
 
 
@@ -274,14 +279,17 @@ Those quantities shall be combined in the functional relation, such that the equ
 How many quantities do we have? Four - period, gravitational acceleration, mass and string's length. How many independent dimensions do we have? Three - mass, time and distance. The acceleration is derived from distance and time so we do not consider it. We end up with $4-3=1$ dimensional group. 
 
 Assume that the product of listed quantities, each raised to some unknown power, shall be dimensionless:
+
 $$
 T^{\alpha}g^{\beta}M^{\gamma}L^{\theta} = C
 $$
-where $C$ is some dimensionless constant.
+
+where $$C$$ is some dimensionless constant.
 
 ##### 3. Make the most general dimensionless statement
 
 We solve system of four equations (choose the unknowns so that all the physical units in the equation cancel out) and obtain:
+
 $$
 \alpha=2, \beta=1, \gamma=0, \theta=-1
 $$
@@ -296,19 +304,18 @@ Also, note that the dimensionless constant $C$ is universal. The same constant a
 
 ##### 4. Use physical knowledge to narrow down the possibilities
 
-The last element is finding the dimensionless constant. How? Sure, you can solve the pendulum differential equation, but how about a small experiment? Take something which resembles a simple pendulum (e.g. I used my key chain) and make it oscillate. Write down the length and the period and plug it into equation to estimate $C$. If the value is close to 6, well done! It is in fact $2\pi$!
-
+The last element is finding the dimensionless constant. How? Sure, you can solve the pendulum differential equation, but how about a small experiment? Take something which resembles a simple pendulum (e.g. I used my key chain) and make it oscillate. Write down the length and the period and plug it into equation to estimate $$C$$. If the value is close to $$6$$, well done! It is in fact $$2\pi$$!
 
 
 #### A Picture Worth a Thousand Tons of TNT
 
-<img src="/Users/damian/Documents/blog posts/MMM/image5.jpg" alt="image5" style="zoom:40%;" />
+<img src="/assets/13/image5.jpg" alt="image5" style="zoom:40%;" />
 
-<em> In the desert of New Mexico, the scientists and military servicemen of the ultra secret Manhattan Project watched as the first atomic bomb - code-named Trinity - was set off (1945).</em> 
+<em> In the desert of New Mexico, the scientists and military servicemen of the ultra secret Manhattan Project watched as the first atomic bomb - code-named Trinity - was set off ($$1945$$).</em> 
 
 Estimating the period of the pendulum was just a warm up exercise. Time for something more exciting - estimation of the atomic bomb energy. Yes, this example will surely make us appreciate the power of the dimensional analysis. 
 
-The first explosion of an atomic bomb happened in New Mexico in 1945. Several years later a series of pictures of the explosion, along with a scale bar of the fireball and timestamps, were released out to the public. However, the information about the blast energy (yield) remained highly classified for years.
+The first explosion of an atomic bomb happened in New Mexico in $$1945$$. Several years later a series of pictures of the explosion, along with a scale bar of the fireball and timestamps, were released out to the public. However, the information about the blast energy (yield) remained highly classified for years.
 
 However, with the use of the pictures and the dimensional analysis, the great scientists G.I Taylor estimated the secret value pretty accurately.
 
@@ -316,14 +323,15 @@ Which quantities matter when it comes to the blast energy estimation? Let's see 
 
 | Quantity    | Symbol | Unit                       |
 | ----------- | ------ | -------------------------- |
-| energy      | $E$    | $\frac{kg \cdot m^2}{s^2}$ |
-| time        | $t$    | $s$                        |
-| radius      | $R$    | $m$                        |
-| air density | $\rho$ | $\frac{kg}{m^3}$           |
+| energy      | $$E$$    | $$\frac{kg \cdot m^2}{s^2}$$ |
+| time        | $$t$$    | $$s$$                        |
+| radius      | $$R$$    | $$m$$                        |
+| air density | $$\rho$$ | $$\frac{kg}{m^3}$$           |
 
 Four quantities and three independent dimensions give us one independent dimensional group.
 
 Once again, we solve a system of equations and compute the dimensionless relationship:
+
 $$
 E^{\alpha}t^{\beta}R^{\gamma}\rho^{\theta} = C
 $$
@@ -336,13 +344,15 @@ $$
 E^{1}t^{2}R^{-5}\rho^{-1} = C \implies E = C\frac{\rho R^5}{t^2}
 $$
 
-Finding $C$ in the analogous way to the previous example is difficult (unless you have some spare atomic bombs). I can spill the beans and tell you, that G.I Taylor estimated it (using experimental data) to be close to 1.
+Finding $$C$$ in the analogous way to the previous example is difficult (unless you have some spare atomic bombs). I can spill the beans and tell you, that G.I Taylor estimated it (using experimental data) to be close to $$1$$.
 
-While air density can be looked up ($\rho=1.2\text{\frac{kg}/{m^3}}$), the radius and time can be read off from the photograph. At $t=0.016$ seconds we can say that $R \approx 150$ metres. Let's plug in the numbers to find the energy.
+While air density can be looked up ($$\rho=1.2\text{\frac{kg}/{m^3}}$$), the radius and time can be read off from the photograph. At $$t=0.016$$ seconds we can say that $$R \approx 150$$ metres. Let's plug in the numbers to find the energy.
+
 $$
 E = \frac{1.2 \cdot 150^5}{0.016^2} \approx 10^{14}J
 $$
-$10^14$ Joules is equivalent to $25$ kilo-tons of TNT. Taylor has reported the value of $22$ kilo-tons in 1950, while Fermi, who also used guesstimation to compute the yield obtained result of $10$ kilo-tons in 1945. The actual, classified yield was $20$ kilo-tons. Not bad for the back-of-the-envelope calculation...
+
+$$10^14$$ Joules is equivalent to $$25$$ kilo-tons of TNT. Taylor has reported the value of $$22$$ kilo-tons in $$1950$$, while Fermi, who also used guesstimation to compute the yield obtained result of $$10$$ kilo-tons in $$1945$$. The actual, classified yield was $$20$$ kilo-tons. Not bad for the back-of-the-envelope calculation...
 
 **Conclusion: Dimensional analysis allows us to establish the form of an equation, or more often, to check that the answer to a calculation as a guard against many simple errors.** 
 
@@ -359,11 +369,14 @@ This application of approximation is incredibly simple, yet very effective. By r
 $$
 1\text{ month} \times \frac{30 \text{ days}}{\text{month}} \times \frac{24\text{ hours}}{\text{day}} \times \frac{60\text{ minutes}}{\text{hour}} = 30 \times 24 \times 60 \text{ minutes}
 $$
-You may find it quite challenging to multiply all the numbers quickly. So let's round each factor to the nearest power of $10$. For example, because $60$ is a factor of almost $2$ away from $100$, but a factor of $6$ away from $10$, it gets rounded to $100$. We apply same rule for the other factors:
+
+You may find it quite challenging to multiply all the numbers quickly. So let's round each factor to the nearest power of $$10$$. For example, because $$60$$ is a factor of almost $$2$$ away from $$100$$, but a factor of $$6$$ away from $$10$$, it gets rounded to $$100$$. We apply same rule for the other factors:
+
 $$
 30 \times 24 \times 60 \approx 10 \times 10\times 100 = 10^{1+1+2} = 10^4
 $$
-The exact value is $43200$, so the estimate of $10000$ is too small by $23$ percent. This is a reasonable price to pay for the ability to estimate such a big number without any effort.
+
+The exact value is $$43,200$, so the estimate of $$10,000$$ is too small by $$23$$ percent. This is a reasonable price to pay for the ability to estimate such a big number without any effort.
 
 #### How High 
 
@@ -377,68 +390,80 @@ Fine, now we can try to start constructing some physical model to illustrate the
 
 Once again, start simple. We may use principle of **conservation** to define two quantities: 
 
--  $E_\text{supplied}$ - the amount of energy needed for an animal to reach jumping height $h$.
+-  $$E_\text{supplied}$$ - the amount of energy needed for an animal to reach jumping height $$h$$.
 
--  $E_\text{demanded}$ - the maximum amount of energy that an animal can generate using its muscles.
+-  $$E_\text{demanded}$$ - the maximum amount of energy that an animal can generate using its muscles.
 
 We can analyse both energy terms separately and then use the fact that they must be in equilibrium (like supply and demand in economics).
 
-![image6](/Users/damian/Documents/blog posts/MMM/image6.svg)
+![image6](/assets/13/image6.svg)
 
 <em>A tree that summarises our model. Notice the use of **divide-and-conquer** reasoning</em>.
 
-Energy demanded is the amount of energy needed for an animal to reach jumping height $h$. The type of energy, which is responsible for bodies being lifted up away from the Earth's surface is potential energy. It depends on the height $h$, body mass $m_\text{body}$ and gravity $g$. We can discard the gravity term - all the considered animals experience the same gravitational acceleration. 
+Energy demanded is the amount of energy needed for an animal to reach jumping height $$h$$. The type of energy, which is responsible for bodies being lifted up away from the Earth's surface is potential energy. It depends on the height $$h$$, body mass $$m_\text{body}$$ and gravity $$g$$. We can discard the gravity term - all the considered animals experience the same gravitational acceleration. 
+
 $$
 E_\text{demanded} \propto m_\text{body}h
 $$
-Energy supplied is the maximum amount of energy an animal can generate using its muscles. This energy is simply a product of the muscle mass $m_\text{muscle}$ and the muscle energy density. Note that we are introducing another simplification: we treat all different muscles in the animal's body as one, homogenous tissue: all the muscles contribute equally to the jump. We can go even further and say that the muscle energy density is the same for all the living creatures. Some might say that this is too much of a simplification, but my guts tells me otherwise: all muscles use similar "biological technology". They have similar organic composition so why not treat them (approximately) equally? This assumption allows for consider the muscle energy density as constant so:
+
+Energy supplied is the maximum amount of energy an animal can generate using its muscles. This energy is simply a product of the muscle mass $$m_\text{muscle}$$ and the muscle energy density. Note that we are introducing another simplification: we treat all different muscles in the animal's body as one, homogenous tissue: all the muscles contribute equally to the jump. We can go even further and say that the muscle energy density is the same for all the living creatures. Some might say that this is too much of a simplification, but my guts tells me otherwise: all muscles use similar "biological technology". They have similar organic composition so why not treat them (approximately) equally? This assumption allows for consider the muscle energy density as constant so:
+
 $$
 E_\text{supplied} \propto m_\text{muscle} \cdot \text{energy density}_\text{muscle} \propto m_\text{muscle}
 $$
-Neat. The next question is what is the relationship between the muscle mass $m_\text{muscle}$ and body mass $m_\text{body}$? My guts tells me that this quantity does not only depends on the type of an animal (I would be surprised if this ratio was the same for a bull and a pig), but also on the age and gender (it would be different for an athletic male adult versus an old woman). 
+
+Neat. The next question is what is the relationship between the muscle mass $$m_\text{muscle}$$ and body mass $$m_\text{body}$$? My guts tells me that this quantity does not only depends on the type of an animal (I would be surprised if this ratio was the same for a bull and a pig), but also on the age and gender (it would be different for an athletic male adult versus an old woman). 
 
 Once again, let's simplify and throw away this information - treat the ratio as a constant. Yes, on hand we assume (courageously) that all animals have the same muscle to body mass ratio, but on the other hand we get to peel off the next layer of complexity.
+
 $$
 E_\text{supplied} \propto m_\text{muscle} \propto m_\text{body}
 $$
+
 Now we can compare the demanded and supplied energy to obtain the following relationship:
+
 $$
 m_\text{body}\propto m_\text{body}h
 $$
+
 Which means that jump height is in fact independent of the body mass of the animal!
+
 $$
 m_\text{body}^0 \propto h
 $$
+
 How can this be true? Let's think about it. Very small animals can jump very high. Think about insects such as fleas, grasshoppers or locust. But larger animals, such as crocodiles and turtles are very poor jumpers! Tigers, lions, humans and monkeys can jump very high. But can elephants jump at all?  Let's allow the data to provide some answers:
 
-<img src="/Users/damian/Documents/blog posts/MMM/image7.png" alt="image7" style="zoom:80%;" />
+<img src="/assets/13/image7.png" alt="image7" style="zoom:80%;" />
 
-The data does in fact confirm our finding. For all the different animals, which mass spans from micrograms to tons (up to 8 orders of magnitude) the jumping height varies by tens of centimetres. The predicted scaling of constant $m_\text{body}^0 \propto 1 \propto h$  is surprisingly accurate.
+The data does in fact confirm our finding. For all the different animals, which mass spans from micrograms to tons (up to 8 orders of magnitude) the jumping height varies by tens of centimetres. The predicted scaling of constant $$m_\text{body}^0 \propto 1 \propto h$$  is surprisingly accurate.
 
-**Conclusio: When the problem overwhelms you, do not be afraid to lower your standards. Approximate first, worry later. Otherwise you never start, and you can never learn that the approximations would have been accurate enough—if only you had gathered the courage to make them.**
+**Conclusion: When the problem overwhelms you, do not be afraid to lower your standards. Approximate first, worry later. Otherwise you never start, and you can never learn that the approximations would have been accurate enough—if only you had gathered the courage to make them.**
 
 ### Tool #7 Consider Easy Cases First
 
 A correct analysis works in all cases—including the simplest ones. This principle is the basis of our next tool for discarding complexity: the method of easy cases. Easy cases help us check and, more surprisingly, guess solutions.
 
-To find easy cases, we need to find the appropriate dimensionless quantity $\beta$. The value of $\beta$ divides the system behaviour in three regimes: $\beta \ll  1$, $\beta \approx 1$, $\beta \gg  1$. The behaviour of the system in those three regimes (and the relationship between those regimes) often gives us great insight and reveals many useful facts.
+To find easy cases, we need to find the appropriate dimensionless quantity $$\beta$$. The value of $$\beta$$ divides the system behaviour in three regimes: $$\beta \ll  1$$, $$\beta \approx 1$$, $$\beta \gg  1$$. The behaviour of the system in those three regimes (and the relationship between those regimes) often gives us great insight and reveals many useful facts.
 
 #### The Area of an Ellipse
 
 Let's use the method of easy cases to solve a simple problem: determine the area of an ellipse. 
 
-We know that an ellipse is this peculiar, circle-like object with two focal points, hence two radii. We can be pretty confident that the area of the ellipse will depend on those two radii and since their ratio is a dimensionless quantity, we can use it as our $\beta$. Let's investigate the behaviour of $\beta$ for three regimes:
+We know that an ellipse is this peculiar, circle-like object with two focal points, hence two radii. We can be pretty confident that the area of the ellipse will depend on those two radii and since their ratio is a dimensionless quantity, we can use it as our $$\beta$$. Let's investigate the behaviour of $$\beta$$ for three regimes:
 
 |                           Regime 1                           |                           Regime 2                           |                           Regime 3                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|              $\frac{r_{1}}{r_{2}} =\beta \ll 1$              |            $\frac{r_{1}}{r_{2}} =\beta \approx 1$            |              $\frac{r_{1}}{r_{2}} =\beta \gg 1$              |
-| <img src="/Users/damian/Documents/blog posts/MMM/image8.png" alt="image8" style="zoom:50%;" /> | <img src="/Users/damian/Documents/blog posts/MMM/image10.png" alt="image10" style="zoom:50%;" /> | <img src="/Users/damian/Documents/blog posts/MMM/image9.png" alt="image" style="zoom:50%;" /> |
-|             The area of the ellipse tends to 0.              | The ellipse becomes a radius with the area $r_{1}^{2}\pi$ (or $r_{2}^{2}\pi$ ). |             The area of the ellipse tends to 0.              |
+|              $$\frac{r_{1}}{r_{2}} =\beta \ll 1$$              |            $$\frac{r_{1}}{r_{2}} =\beta \approx 1$$            |              $$\frac{r_{1}}{r_{2}} =\beta \gg 1$$              |
+| <img src="/assets/13/image8.png" alt="image8" style="zoom:50%;" /> | <img src="/assets/13/image10.png" alt="image10" style="zoom:50%;" /> | <img src="/assets/13/image9.png" alt="image" style="zoom:50%;" /> |
+|             The area of the ellipse tends to $$0$$.              | The ellipse becomes a radius with the area $$r_{1}^{2}\pi$$ (or $$r_{2}^{2}\pi$$ ). |             The area of the ellipse tends to $$0$$.              |
 
-Regime 2 suggests that  $r_{1}^{2}\pi$ or  $r_{2}^{2}\pi$ may be the answer, but we know that those are particular cases of an ellipse. On the other hand, regimes 1 and 3 suggest, that there is a symmetry in the problem. Perhaps, in the general equation  we need to include both $r_1$ and $r_2$? This implies that interchanging $r_{1}$ and $r_{2}$ shall have no effect on the area of the ellipse. Those two pieces of information suggest that the correct equation should be:
+Regime 2 suggests that  $$r_{1}^{2}\pi$$ or $$r_{2}^{2}\pi$$ may be the answer, but we know that those are particular cases of an ellipse. On the other hand, regimes 1 and 3 suggest, that there is a symmetry in the problem. Perhaps, in the general equation  we need to include both $$r_1$$ and $$r_2$$? This implies that interchanging $$r_{1}$$ and $$r_{2}$$ shall have no effect on the area of the ellipse. Those two pieces of information suggest that the correct equation should be:
+
 $$
 A=r_{1}r_{2}\pi
 $$
+
 Indeed, this equation is correct for all three regimes. 
 
 #### Clearing the Atmosphere
@@ -452,80 +477,95 @@ Let's test the usefulness of **easy-cases** method to answer the following quest
 When we think about the height, we are interested in forces which act perpendicular to the surface of the earth. All the bodies on our planet are being pulled towards the Earth due to gravitation. Why is the atmosphere not collapsing - pulled all the way to the ground? This is due to the thermal energy of atmosphere's molecules. In absence of gravity the air molecules would basically scatter towards the space.
 
 So from the perspective of one "atmosphere molecule" there are two competing effects: gravity and thermal energy. Since both quantities are some form of energy, their ratio is a dimensionless quantity:
+
 $$
 \beta = \frac{E_\text{gravity}}{E_\text{thermal}}=\frac{mgh}{k_{b}T}
 $$
+
 Let's think about the behaviour of the system in terms of **easy-cases** regimes:
 
 |                           Regime 1                           |                       Regime 2                        |                           Regime 3                           |
 | :----------------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------------: |
-|                        $\beta \ll 1$                         |                   $\beta \approx 1$                   |                        $\beta \gg 1$                         |
+|                        $$\beta \ll 1$$                         |                   $$\beta \approx 1$$                   |                        $$\beta \gg 1$$                         |
 | The dispersion of the molecules is stronger than the gravity - atmosphere expanding. | State of equilibrium - the atmosphere remains stable. | The dispersion of the molecules is weaker than the gravity - atmosphere contracting. |
 
-Nature is biased towards equilibria so we should use regime 2 to continue with our problem - computing the height of the atmosphere. Temperature of the atmosphere is about $300$ Kelvins, mass of the atmosphere can be approximated as a mass of a nitrogen molecule (Earth's atmosphere is mostly nitrogen) and gravitational acceleration and Boltzmann constant are known to us.
+Nature is biased towards equilibria so we should use regime 2 to continue with our problem - computing the height of the atmosphere. Temperature of the atmosphere is about $$300$$ Kelvins, mass of the atmosphere can be approximated as a mass of a nitrogen molecule (Earth's atmosphere is mostly nitrogen) and gravitational acceleration and Boltzmann constant are known to us.
+
 $$
 h = \frac{Tk_b}{mg} \approx \frac{300 \cdot 1.38 \cdot 10^{-23}}{4.65 \cdot 10^{-26}\cdot 9.81} \approx 9000\text{m}
 $$
 
-In reality Earth's atmosphere stretches from the surface of the planet up to as far as $10,000$ kilometres above (after that, the atmosphere blends into space).
+In reality Earth's atmosphere stretches from the surface of the planet up to as far as $$10,000$$ kilometres above (after that, the atmosphere blends into space).
 
 **Conclusion: When the going gets tough, the tough lower your standards. A correct solution works in all cases, including the easy cases. Therefore, look at the easy cases first. Often, we can completely solve a problem simply by understanding the easy cases.**
 
 ### Tool #8 Look for the Spring-like Behaviour
 
 The ideal spring, which you may know from high-school physics, produces a restoring force proportional to the displacement from equilibrium and stores an energy proportional to the displacement squared. 
+
 $$
 \Delta E= F\Delta x = -k\Delta x \cdot \Delta x = k(\Delta x)^2
 $$
+
 We have already established, that the nature likes equilibria. If you swing a system out of balance, it usually wants to restore its initial stability. So yes, you've guessed it: many physical process "contain" a spring. Spring models are therefore very useful abstraction that can be used to speak about the connections between chemical bonds, trajectories of the planets or biomechanics of the human body. It is also useful in the material engineering.
 
 #### Young's Modulus as a Spring Constant
 
 Most engineering students at some point encounter the quantity known as Young's modulus. It is a fundamental property of every material, which describes its stiffness - how easily it bends or stretches. However it is not directly visible, how every material can be envisioned as a huge set of tiny springs and masses.
 
-<img src="/Users/damian/Documents/blog posts/MMM/image11.png" alt="image11" style="zoom:20%;" />
+<img src="/assets/13/image11.png" alt="image11" style="zoom:20%;" />
 
 <em> Image source:  "The Art of Insight in Science and Engineering: Mastering Complexity"</em>
 
 Young's modulus is a function of two values: stress (the force applied to a material, divided by the its cross-sectional area) and strain (deformation of material that results from an applied stress).
+
 $$
 Y = \frac{\text{stress}}{\text{strain}}
 $$
-While stress is straightforward to compute (using force applied and the cross-section of the block of material, $\text{stress} = \frac{F}{A}$), it can be quite difficult to compute material's strain. However, we can easily estimate it through modelling a block of material as a system of springs and masses. Imagine that a block of material is in fact a bundle of tiny, elastic fibres. 
 
-<img src="/Users/damian/Documents/blog posts/MMM/image12.png" alt="image11" style="zoom:20%;" />
+While stress is straightforward to compute (using force applied and the cross-section of the block of material, $$\text{stress} = \frac{F}{A}$$), it can be quite difficult to compute material's strain. However, we can easily estimate it through modelling a block of material as a system of springs and masses. Imagine that a block of material is in fact a bundle of tiny, elastic fibres. 
+
+<img src="/assets/13/image12.png" alt="image11" style="zoom:20%;" />
 
 Each fibre is a chain (series) of springs (bonds) and masses (atoms). 
 
-<img src="/Users/damian/Documents/blog posts/MMM/image13.png" alt="image1" style="zoom:20%;" />
+<img src="/assets/13/image13.png" alt="image1" style="zoom:20%;" />
 
 Since strain is the fractional length change, the strain in the block is the strain in each fibre:
+
 $$
 \text{strain} = \frac{\Delta x}{a}
 $$
-Where $\Delta x$ is the extension of the spring and $a$ is the length of the bond between two atoms at rest.
 
-How to compute $\Delta x$? Using the spring equation for a single fibre:
+Where $$\Delta x$$ is the extension of the spring and $a$ is the length of the bond between two atoms at rest.
+
+How to compute $$\Delta x$$? Using the spring equation for a single fibre:
+
 $$
 \frac{F}{N_\text{fibres}} = k\Delta x
 $$
-Where $F$ is the force acting on the block of material, $N_\text{fibres}$ is the number of fibres in the block, $k$ is the spring constant and $\Delta x$ is the spring extension.
 
-How many fibres are there in the block of materials? We know $A$, the cross-section of the block of material. We also know the approximate cross-section of one fibre - $a^2$, so:
+Where $$F$$ is the force acting on the block of material, $$N_\text{fibres}$$ is the number of fibres in the block, $$k$$ is the spring constant and $$\Delta x$$ is the spring extension.
+
+How many fibres are there in the block of materials? We know $A$, the cross-section of the block of material. We also know the approximate cross-section of one fibre - $$a^2$$, so:
+
 $$
 N_\text{fibres} = \frac{A}{a^2}
 $$
+
 Notice, how we used **divide-and-conquer** reasoning to break down the problem into smaller components. Now let's collect of the established information and derive the equation for Young's modulus:
+
 $$
 Y = \frac{\text{stress}}{\text{strain}} = \frac{\frac{F}{A}}{\frac{\Delta x}{a}}=\frac{Fa}{A\Delta x} = \frac{Fa}{A\frac{F}{kN_\text{fibres}}}= k\frac{aN_\text{fibres}}{A}=k\frac{a\frac{A}{a^2}}{A}=\frac{k}{a}
 $$
+
 So Young's modulus has actually a neat micro-level interpretation. It a direct function of the interatomic spring constant $k$ and the distance between atoms in the material's lattice.
 
-**Conclusions: Many physical processes contain a minimum-energy state where small deviations from the minimum require an energy proportional to the square of the deviation. This behavior is the essential characteristic of a spring. A spring is therefore not only a physical object but a transferable abstraction.**
+**Conclusion: Many physical processes contain a minimum-energy state where small deviations from the minimum require an energy proportional to the square of the deviation. This behavior is the essential characteristic of a spring. A spring is therefore not only a physical object but a transferable abstraction.**
 
 ### Tool #7 Probabilistic Reasoning
 
-The final element in our toolbox is **probabilistic reasoning**. Bayesian thinking is a very useful [every-day "philosophy" ](https://www.youtube.com/watch?v=BrK7X_XlGB8)- so it should come as no surprise, that we would like to include it in our <em>back-of-the-envelope</em> calculations. **Probabilistic reasoning** is a nice sprinkle on top of **divide-and-conquer**. It allows us to do the same decomposition of the problem as before, but now the estimated values are not point estimates anymore, they are probability distributions - confidence intervals.
+The final element in our toolbox is **probabilistic reasoning**. Bayesian thinking is a very useful [every-day "philosophy"](https://www.youtube.com/watch?v=BrK7X_XlGB8)- so it should come as no surprise, that we would like to include it in our <em>back-of-the-envelope</em> calculations. **Probabilistic reasoning** is a nice sprinkle on top of **divide-and-conquer**. It allows us to do the same decomposition of the problem as before, but now the estimated values are not point estimates anymore, they are probability distributions - confidence intervals.
 
 #### Setzen Alles Auf Eine (Land-)Karte
 
@@ -533,9 +573,10 @@ The final element in our toolbox is **probabilistic reasoning**. Bayesian thinki
 
 ##### Method 1: Quick Order-of-Magnitude Estimation
 
-To compute the area of a country, we can do quick <em>order-of-magnitude</em> estimation. Imagine that Germany has perfectly rectangular area. Given, that we speak in terms of kilometres, could the area of Germany be $10 \times 10$? Absolutely not! $100 \times 100$? Still, too little. $1000 \times 1000$, probably too much... So it seems that the good estimate is somewhere between $10^5$ and $10^6$. I am pretty sure about that, so I may give 2-to-1 odds that the correct value lies in that range. 2-to-1 odds means that I attach probability $P\approx 2/3$ to this statement.
+To compute the area of a country, we can do quick <em>order-of-magnitude</em> estimation. Imagine that Germany has perfectly rectangular area. Given, that we speak in terms of kilometres, could the area of Germany be $$10 \times 10$$? Absolutely not! $$100 \times 100$$? Still, too little. $$1000 \times 1000$$, probably too much... So it seems that the good estimate is somewhere between $$10^5$$ and $$10^6$$. I am pretty sure about that, so I may give 2-to-1 odds that the correct value lies in that range. 2-to-1 odds means that I attach probability $$P\approx 2/3$$ to this statement.
 
 ![image_Area (order-of-magnitude)](/Users/damian/Documents/blog posts/MMM/image_Area (order-of-magnitude).png)
+
 $$
 A_\text{order-of-magnitude} = 10^5...10^6 \text{ }[\text{km}^2]
 $$
@@ -544,9 +585,10 @@ $$
 
 This is the result obtained from rough estimation. Now let's use **divide-and-conquer** reasoning. The rectangular area is product of two values: height and width. 
 
-The height of Germany is a bit more than a distance between Hamburg and Munich. Having spent a lot of time travelling between those cities in the past, I know that it takes about $8$ hours by car to cross Germany north to south. This implies the distance of $1200$ kilometres. While I am not sure about the exact value, I think that it's not less than $800$, but not more than $1500$ kilometres. Once again, I attach probability of $P\approx 2/3$ to this statement.
+The height of Germany is a bit more than a distance between Hamburg and Munich. Having spent a lot of time travelling between those cities in the past, I know that it takes about $$8$$ hours by car to cross Germany north to south. This implies the distance of $$1200$$ kilometres. While I am not sure about the exact value, I think that it's not less than $$800$$, but not more than $$1500$$ kilometres. Once again, I attach probability of $$P\approx 2/3$$ to this statement.
 
-Germany is certainly longer than wider, so the width is less than the height. To travel from Hamburg to the Dutch border it takes about $5$ hours or so. I am not really sure, but I bet that it is not less than $300$, and not more than $600$ kilometres. 
+Germany is certainly longer than wider, so the width is less than the height. To travel from Hamburg to the Dutch border it takes about $$5$$ hours or so. I am not really sure, but I bet that it is not less than $$300$$, and not more than $$600$$ kilometres. 
+
 $$
 h_\text{divide-and-conquer} = 800...1500 \text{ }[\text{km}]
 $$
@@ -563,13 +605,14 @@ $$
 A_{max, \text{divide-and-conquer}} = 600 \cdot 1500 = 900,000 \text{ }[\text{km}]
 $$
 
-![image_Area (divide-conquer)](/Users/damian/Documents/blog posts/MMM/image_Area (divide-conquer).png)
+![image_Area (divide-conquer)](/assets/13/image_Area (divide-conquer).png)
 
-We can already see the benefits of **divide-and-conquer** over the rough order-of-magnitude estimation - we are much more surer about the actual result. It has significantly narrowed the confidence interval by replacing a quantity about which we have vague knowledge (area), with quantities about which can be approximated much more precisely (width and height). The direct approximation gives us a range which spans over ratio of $10$. However, divide-and-conquer gives the ratio of $\frac{A_{max}}{A_{min}} \approx 3.75$. 
+We can already see the benefits of **divide-and-conquer** over the rough order-of-magnitude estimation - we are much more surer about the actual result. It has significantly narrowed the confidence interval by replacing a quantity about which we have vague knowledge (area), with quantities about which can be approximated much more precisely (width and height). The direct approximation gives us a range which spans over ratio of $$10$$. However, divide-and-conquer gives the ratio of $$\frac{A_{max}}{A_{min}} \approx 3.75$$. 
 
 ##### Method 3: Divide-and-Conquer + Probabilistic Reasoning
 
 We can express the estimation for height and width as probability distributions: log-normal distributions. There are three reasons for choosing this particular distribution: it is more compatible with our "mental hardware" (humans think in terms of ratios), easy to describe and simple to perform computations with. For example, confidence interval of the height can be characterised by a following  (geometric) mean and standard distribution (ratio):
+
 $$
 h_{\mu} = \sqrt{h_{min} \cdot h_{max}}=1095
 $$
@@ -578,27 +621,34 @@ $$
 h_{\sigma} = \frac{h_{max}}{h_{\mu}} =\frac{h_{\mu}}{h_{min}} = 1.37
 $$
 
-![image_Height](/Users/damian/Documents/blog posts/MMM/image_Height_.png)
+![image_Height](/assets/13/image_Height_.png)
 
 Same applies for the width. 
 
-![image_Height](/Users/damian/Documents/blog posts/MMM/image_Width_.png)
+![image_Height](/assets/13/image_Width_.png)
 
 Now to find the area, we can combine those two distributions, which is equivalent of multiplying two point estimates - width and height.
 
 The mean is simply a product of geometric means:
+
 $$
 A_{\mu} = h_{\mu} \cdot h_{\mu}= 464,758\text{ }[\text{km}^2]
 $$
+
 Standard deviation of product of two (independent) normal distributions is:
+
 $$
 \sigma_{3} = \sqrt{\sigma_{1}^2 \cdot \sigma_{2}^2}
 $$
+
 However, in our log-normal form, the standard deviation of area needs to be computed in log space:
+
 $$
 \ln\sigma_{A} = \ln(\sqrt{\sigma_{h}^2 + \sigma_{w}^2})  \implies \sigma_{A} = e^{(\sqrt{(\ln{\sigma_{h}})^2 + (\ln{\sigma_{w}})^2}}=1.60
 $$
+
 By combining **divide-and-conquer** with **probabilistic reasoning** we get the following estimate of the area:
+
 $$
 A_{min, \text{probabilistic reasoning}} = A_{\mu} / A_{\sigma} = 291,094 \text{ }[\text{km}^2]
 $$
@@ -611,12 +661,12 @@ $$
 A_\text{probabilistic-reasoning} = 291, 094...742,026 \text{ }[\text{km}^2]
 $$
 
-...while the actual area of Germany is $357,386$ square kilometres - comfortably included in my predicted range.
+...while the actual area of Germany is $$357,386$$ square kilometres - comfortably included in my predicted range.
 
-![image_Area (probabilistic reasoning)](/Users/damian/Documents/blog posts/MMM/image_Area (probabilistic reasoning).png)
+![image_Area (probabilistic reasoning)](/assets/13/image_Area (probabilistic reasoning).png)
 
-Probabilistic reasoning gives us the values range which spans only over the ratio of $2.55$ (variance of the distribution). 
+Probabilistic reasoning gives us the values range which spans only over the ratio of $$2.55$$ (variance of the distribution). 
 
 How did we produce such accurate estimate? This problem is hard to analyse directly because we do not know the accuracy in advance. But we can analyse a related problem: how divide-and-conquer reasoning increases our confidence in an estimate or, more precisely, decreases our uncertainty.
 
-**Conclusion: In complex systems, the information is either overwhelming or not available. Then we have to reason with incomplete information. The tool for this purpose is probabilistic reasoning, which helps us manage incomplete information. It can e.g. help us to estimate the uncertainty in our divide-and-conquer reasoning. **
+**Conclusion: In complex systems, the information is either overwhelming or not available. Then we have to reason with incomplete information. The tool for this purpose is probabilistic reasoning, which helps us manage incomplete information. It can e.g. help us to estimate the uncertainty in our divide-and-conquer reasoning.**
