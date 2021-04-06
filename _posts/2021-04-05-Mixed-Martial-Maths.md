@@ -406,7 +406,7 @@ Once again, start simple. We may use principle of **conservation** to define two
 
 We can analyse both energy terms separately and then use the fact that they must be in equilibrium (like supply and demand in economics).
 <p align="center">
- <img src="/assets/13/image6.svg" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image6.svg" alt="image5" style="zoom:70%;" />
 </p>
 <em>A tree that summarises our model. Notice the use of **divide-and-conquer** reasoning</em>.
 
@@ -593,7 +593,7 @@ The final element in our toolbox is **probabilistic reasoning**. Bayesian thinki
 To compute the area of a country, we can do quick <em>order-of-magnitude</em> estimation. Imagine that Germany has perfectly rectangular area. Given, that we speak in terms of kilometres, could the area of Germany be $$10 \times 10$$? Absolutely not! $$100 \times 100$$? Still, too little. $$1000 \times 1000$$, probably too much... So it seems that the good estimate is somewhere between $$10^5$$ and $$10^6$$. I am pretty sure about that, so I may give 2-to-1 odds that the correct value lies in that range. 2-to-1 odds means that I attach probability $$P\approx 2/3$$ to this statement.
 
 <p align="center">
- <img src="/assets/13/image_Area (order-of-magnitude).png" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image_Area (order-of-magnitude).png" alt="image5" style="zoom:70%;" />
 </p>
 
 $$
@@ -625,7 +625,7 @@ A_{max, \text{divide-and-conquer}} = 600 \cdot 1500 = 900,000 \text{ }[\text{km}
 $$
 
 <p align="center">
- <img src="/assets/13/image_Area (divide-conquer).png" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image_Area (divide-conquer).png" alt="image5" style="zoom:70%;" />
 </p>
 
 We can already see the benefits of **divide-and-conquer** over the rough order-of-magnitude estimation - we are much more surer about the actual result. It has significantly narrowed the confidence interval by replacing a quantity about which we have vague knowledge (area), with quantities about which can be approximated much more precisely (width and height). The direct approximation gives us a range which spans over ratio of $$10$$. However, divide-and-conquer gives the ratio of $$\frac{A_{max}}{A_{min}} \approx 3.75$$. 
@@ -643,13 +643,13 @@ h_{\sigma} = \frac{h_{max}}{h_{\mu}} =\frac{h_{\mu}}{h_{min}} = 1.37
 $$
 
 <p align="center">
- <img src="/assets/13/image_Height_.png" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image_height_.png" alt="image51" style="zoom:70%;" />
 </p>
 
 Same applies for the width. 
 
 <p align="center">
- <img src="/assets/13/image_Width_.png" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image_width_.png" alt="image52" style="zoom:70%;" />
 </p>
 
 Now to find the area, we can combine those two distributions, which is equivalent of multiplying two point estimates - width and height.
@@ -689,7 +689,7 @@ $$
 ...while the actual area of Germany is $$357,386$$ square kilometres - comfortably included in my predicted range.
 
 <p align="center">
- <img src="/assets/13/image_Area (probabilistic reasoning).png" alt="image5" style="zoom:40%;" />
+ <img src="/assets/13/image_Area (probabilistic reasoning).png" alt="image5" style="zoom:70%;" />
 </p>
 
 Probabilistic reasoning gives us the values range which spans only over the ratio of $$2.55$$ (variance of the distribution). 
