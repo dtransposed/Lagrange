@@ -84,7 +84,11 @@ Creating an adequate representation (abstraction) of the vinyl collection allows
 Have you ever noticed how ridiculously impractical, in the context of modern mathematics, Roman numerals are? It seems pointless to use them for any kind of useful algebra. XXVII times XXXVI is equivalent to $$27 \cdot 36$$. However, because of the level of abstraction inadequate for this operation, it feels so unnatural to perform multiplication in this notation. The modern number system, based on the abstractions of value and zero, makes the operation surprisingly simple. Even if you cannot do mental multiplication fast, you could use its properties to compute:
 
 $$
-27 \cdot 36 = (20+7) \cdot (30+6) = 20\cdot 30 + 7\cdot 30 + 20\cdot 6 + 7\cdot6 = 600+210+120+42=810+162=972
+27 \cdot 36 = (20+7) \cdot (30+6) = 20\cdot 30 + 7\cdot 30 + 20\cdot 6 + 7\cdot6 = 
+$$
+
+$$
+=600+210+120+42=810+162=972
 $$
 
 But why did the Romans do, seemingly, such a poor job? You can find the answer [here](https://www.encyclopedia.com/science/encyclopedias-almanacs-transcripts-and-maps/roman-numerals-their-origins-impact-and-limitations). The Romans were not concerned with pure mathematics, which usually requires high degree of abstraction. Instead they used mathematics to figure personal and government accounts, keep military records, and aid in the construction of aqueducts and buildings. 
@@ -98,8 +102,9 @@ But why did the Romans do, seemingly, such a poor job? You can find the answer [
 It is particularly beneficial to discover an existence of some **invariants** in the problem. **Invariants** mean that there exists some form of **conservation** or **symmetry** in the system. Hence, some part of complexity is a mirror copy of the remaining complexity and can be safely discarded.
 
 #### A Rat-Eaten Chessboard
-
-<img src="/assets/13/image1.png" alt="image1" style="zoom:50%;" />
+<p align="center">
+ <img src="/assets/13/image1.png" alt="image1" style="zoom:50%;" />
+</p>
 
 Imagine a basement, where you keep your old chess set.  A rat comes out and gnaws on your antique  chessboard. As a result, the animal chews off two diagonally opposite corners out your standard $$8 \times 8$$ chessboard. In the basement you also keep a box of rectangular $$2 \times 1$$ dominoes. 
 
@@ -107,7 +112,7 @@ Imagine a basement, where you keep your old chess set.  A rat comes out and gnaw
 
 What we could try to do is to start placing dominoes naively, hoping that we spot some patterns or just stumble upon the solution. Most likely we would get overwhelmed by the number of possible move sequences. Instead of using <em>brute force</em>, let us identify some quantity, which remains unchanged, no matter how many dominoes pieces are on the board. In general, this quality is the **invariant**.
 
-Since each domino covers exactly one white and one black square on the chessboard, the following relationship $x$ between uncovered black squares and uncovered white squares remains unchanged. This is true, not matter how many dominoes are laying on the chessboard at any given time.
+Since each domino covers exactly one white and one black square on the chessboard, the following relationship $$x$$ between uncovered black squares and uncovered white squares remains unchanged. This is true, not matter how many dominoes are laying on the chessboard at any given time.
 
 $$
 x = \text{uncovered}_{\text{white}} - \text{uncovered}_{\text{black}}
