@@ -4,7 +4,7 @@ title: "Mixed Martial Maths - Simple Reasoning Tools For Complex Phenomena"
 author: "Damian Bogunowicz"
 categories: blog
 tags: [mathematics, reasoning, engineering,approximation]
-image: prisoners.jpeg
+image: mmm.jpg
 
 ---
 Recently I have been interested in obtaining a very particular skill. I have seen this ability demonstrated by many excellent individuals - not in only in the tech world, but also in finance or consulting industry.
