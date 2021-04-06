@@ -159,8 +159,9 @@ S=\frac{10100}{2} = 5050
 $$
 
 #### Finding vertex without the calculus
-
-<img src="/assets/13/unknown.png" alt="image2" style="zoom:60%;" />
+<p align="center">
+ <img src="/assets/13/unknown.png" alt="image2" style="zoom:60%;" />
+</p>
 
 Let's find the maximum of the simple function:
 
@@ -230,8 +231,9 @@ Rather than estimating air density at the cruising altitude (plane) and at sea l
 
 Once again, we shouldn't care much for each value separately. Let us directly estimate the ratio! How many car cross-sections can "fit" into a cross-section of a plane? I am pretty sure that in terms of width, plane's round fuselage cross-section (I am neglecting the wings) could be occluded by three cars parked next to each other. Probably the same thing applies in the vertical dimension. If we stacked three cars on top of each other they could "cover" the plane horizontally. This means that the cross-section ratio is about $$3 \cdot 3 = 9$$
 
-<img src="/assets/13/Untitled Diagram-3.png" alt="image2" style="zoom:60%;" />
-
+<p align="center">
+ <img src="/assets/13/Untitled Diagram-3.png" alt="image2" style="zoom:60%;" />
+</p>
 ##### Velocities 
 
 Here, I feel pretty comfortable with estimating each velocity separately. A car travels at around $$100$$km/h, while a plane travels at almost $$1000$$km/h. This means velocity ratio of $$10$$.
@@ -254,8 +256,9 @@ Dimensional analysis makes it possible to say a great deal about the behaviour o
 
 #### Dimensional Analysis "a la Huygens" 
 
-<img src="/assets/13/image4.png" alt="image4" style="zoom:67%;" />
-
+<p align="center">
+ <img src="/assets/13/image4.png" alt="image4" style="zoom:67%;" />
+</p>
 <em> Image credit: [Khan Academy](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-oscillations/a/trig-and-forces-the-pendulum)</em>
 
 Let's take a look at example which illustrates the basic method of dimensional analysis. Dimensional analysis, together with some physical intuition, allows us to find the equation for the period of oscillation for simple pendulum (a.k.a Huygens's law for the period). 
@@ -313,9 +316,9 @@ The last element is finding the dimensionless constant. How? Sure, you can solve
 
 
 #### A Picture Worth a Thousand Tons of TNT
-
-<img src="/assets/13/image5.jpg" alt="image5" style="zoom:40%;" />
-
+<p align="center">
+ <img src="/assets/13/image5.jpg" alt="image5" style="zoom:40%;" />
+</p>
 <em> In the desert of New Mexico, the scientists and military servicemen of the ultra secret Manhattan Project watched as the first atomic bomb - code-named Trinity - was set off ($$1945$$).</em> 
 
 Estimating the period of the pendulum was just a warm up exercise. Time for something more exciting - estimation of the atomic bomb energy. Yes, this example will surely make us appreciate the power of the dimensional analysis. 
@@ -400,9 +403,9 @@ Once again, start simple. We may use principle of **conservation** to define two
 -  $$E_\text{demanded}$$ - the maximum amount of energy that an animal can generate using its muscles.
 
 We can analyse both energy terms separately and then use the fact that they must be in equilibrium (like supply and demand in economics).
-
-![image6](/assets/13/image6.svg)
-
+<p align="center">
+ ![image6](/assets/13/image6.svg)
+</p>
 <em>A tree that summarises our model. Notice the use of **divide-and-conquer** reasoning</em>.
 
 Energy demanded is the amount of energy needed for an animal to reach jumping height $$h$$. The type of energy, which is responsible for bodies being lifted up away from the Earth's surface is potential energy. It depends on the height $$h$$, body mass $$m_\text{body}$$ and gravity $$g$$. We can discard the gravity term - all the considered animals experience the same gravitational acceleration. 
@@ -439,7 +442,9 @@ $$
 
 How can this be true? Let's think about it. Very small animals can jump very high. Think about insects such as fleas, grasshoppers or locust. But larger animals, such as crocodiles and turtles are very poor jumpers! Tigers, lions, humans and monkeys can jump very high. But can elephants jump at all?  Let's allow the data to provide some answers:
 
-<img src="/assets/13/image7.png" alt="image7" style="zoom:80%;" />
+<p align="center">
+ <img src="/assets/13/image7.png" alt="image7" style="zoom:80%;" />
+</p>
 
 The data does in fact confirm our finding. For all the different animals, which mass spans from micrograms to tons (up to 8 orders of magnitude) the jumping height varies by tens of centimetres. The predicted scaling of constant $$m_\text{body}^0 \propto 1 \propto h$$  is surprisingly accurate.
 
@@ -518,8 +523,9 @@ We have already established, that the nature likes equilibria. If you swing a sy
 
 Most engineering students at some point encounter the quantity known as Young's modulus. It is a fundamental property of every material, which describes its stiffness - how easily it bends or stretches. However it is not directly visible, how every material can be envisioned as a huge set of tiny springs and masses.
 
-<img src="/assets/13/image11.png" alt="image11" style="zoom:20%;" />
-
+<p align="center">
+ <img src="/assets/13/image11.png" alt="image11" style="zoom:20%;" />
+</p>
 <em> Image source:  "The Art of Insight in Science and Engineering: Mastering Complexity"</em>
 
 Young's modulus is a function of two values: stress (the force applied to a material, divided by the its cross-sectional area) and strain (deformation of material that results from an applied stress).
@@ -530,11 +536,15 @@ $$
 
 While stress is straightforward to compute (using force applied and the cross-section of the block of material, $$\text{stress} = \frac{F}{A}$$), it can be quite difficult to compute material's strain. However, we can easily estimate it through modelling a block of material as a system of springs and masses. Imagine that a block of material is in fact a bundle of tiny, elastic fibres. 
 
-<img src="/assets/13/image12.png" alt="image11" style="zoom:20%;" />
+<p align="center">
+ <img src="/assets/13/image12.png" alt="image11" style="zoom:20%;" />
+</p>
 
 Each fibre is a chain (series) of springs (bonds) and masses (atoms). 
 
-<img src="/assets/13/image13.png" alt="image1" style="zoom:20%;" />
+<p align="center">
+ <img src="/assets/13/image13.png" alt="image1" style="zoom:20%;" />
+</p>
 
 Since strain is the fractional length change, the strain in the block is the strain in each fibre:
 
@@ -580,7 +590,9 @@ The final element in our toolbox is **probabilistic reasoning**. Bayesian thinki
 
 To compute the area of a country, we can do quick <em>order-of-magnitude</em> estimation. Imagine that Germany has perfectly rectangular area. Given, that we speak in terms of kilometres, could the area of Germany be $$10 \times 10$$? Absolutely not! $$100 \times 100$$? Still, too little. $$1000 \times 1000$$, probably too much... So it seems that the good estimate is somewhere between $$10^5$$ and $$10^6$$. I am pretty sure about that, so I may give 2-to-1 odds that the correct value lies in that range. 2-to-1 odds means that I attach probability $$P\approx 2/3$$ to this statement.
 
-![image_Area (order-of-magnitude)](/Users/damian/Documents/blog posts/MMM/image_Area (order-of-magnitude).png)
+<p align="center">
+ ![image_Area (order-of-magnitude)](/Users/damian/Documents/blog posts/MMM/image_Area (order-of-magnitude).png)
+</p>
 
 $$
 A_\text{order-of-magnitude} = 10^5...10^6 \text{ }[\text{km}^2]
@@ -610,7 +622,9 @@ $$
 A_{max, \text{divide-and-conquer}} = 600 \cdot 1500 = 900,000 \text{ }[\text{km}]
 $$
 
+<p align="center">
 ![image_Area (divide-conquer)](/assets/13/image_Area (divide-conquer).png)
+</p>
 
 We can already see the benefits of **divide-and-conquer** over the rough order-of-magnitude estimation - we are much more surer about the actual result. It has significantly narrowed the confidence interval by replacing a quantity about which we have vague knowledge (area), with quantities about which can be approximated much more precisely (width and height). The direct approximation gives us a range which spans over ratio of $$10$$. However, divide-and-conquer gives the ratio of $$\frac{A_{max}}{A_{min}} \approx 3.75$$. 
 
@@ -626,11 +640,15 @@ $$
 h_{\sigma} = \frac{h_{max}}{h_{\mu}} =\frac{h_{\mu}}{h_{min}} = 1.37
 $$
 
+<p align="center">
 ![image_Height](/assets/13/image_Height_.png)
+</p>
 
 Same applies for the width. 
 
+<p align="center">
 ![image_Height](/assets/13/image_Width_.png)
+</p>
 
 Now to find the area, we can combine those two distributions, which is equivalent of multiplying two point estimates - width and height.
 
@@ -668,7 +686,9 @@ $$
 
 ...while the actual area of Germany is $$357,386$$ square kilometres - comfortably included in my predicted range.
 
-![image_Area (probabilistic reasoning)](/assets/13/image_Area (probabilistic reasoning).png)
+<p align="center">
+ ![image_Area (probabilistic reasoning)](/assets/13/image_Area (probabilistic reasoning).png)
+</p>
 
 Probabilistic reasoning gives us the values range which spans only over the ratio of $$2.55$$ (variance of the distribution). 
 
