@@ -194,7 +194,7 @@ Proportional reasoning is yet another powerful weapon, which allows to avoid com
 
 If a person approached you on the street and asked: "how many McDonald's restaurants are there in your country?", you would be probably quite baffled. If not due to the surprising nature of the question, then certainly by the difficulty of the estimate. Most of the people I asked usually were overstating the number - some of the estimates were off by two orders of magnitude! They would surely give an accurate answer, if they knew about the proportional reasoning.
 
-My hometown in Poland has, give or take, $$400$$ thousand inhabitants. We surely had about $5$ McDonald's outlets back when I was attending middle high. Poland has population of $$40,000,000$$. By applying simple proportional reasoning I can estimate that there are...
+My hometown in Poland has, give or take, $$400$$ thousand inhabitants. We surely had about $$5$$ McDonald's outlets back when I was attending middle high. Poland has population of $$40,000,000$$. By applying simple proportional reasoning I can estimate that there are...
 
 $$
 \text{restaurants}_\text{poland} = \text{restaurants}_\text{hometown}\cdot \frac{\text{population}_\text{poland}}{\text{population}_\text{hometown}} = 5 \cdot \frac{4 \cdot 10^7}{4 \cdot 10^5} = 500
@@ -224,7 +224,7 @@ Our goal is to find out the ratio on the left hand side. We can do this by estim
 
 ##### Air density
 
-Rather than estimating air density at the cruising altitude (plane) and at sea level (car) separately, let's think about their ratio. Planes fly high - Mount Everest high. I know that climbers have difficulty breathing on the peak of the mountain due to lower oxygen density. This means that the density of the air decreases with altitude. Compared to the sea level, I am guessing the density ratio of $2$ (sea level to plane's cruising altitude). 
+Rather than estimating air density at the cruising altitude (plane) and at sea level (car) separately, let's think about their ratio. Planes fly high - Mount Everest high. I know that climbers have difficulty breathing on the peak of the mountain due to lower oxygen density. This means that the density of the air decreases with altitude. Compared to the sea level, I am guessing the density ratio of $$2$$ (sea level to plane's cruising altitude). 
 
 ##### Cross-section 
 
@@ -281,7 +281,7 @@ Those quantities shall be combined in the functional relation, such that the equ
 
 > Number of independent dimensional groups = number of quantities - number of independent dimensions
 
-How many quantities do we have? Four - period, gravitational acceleration, mass and string's length. How many independent dimensions do we have? Three - mass, time and distance. The acceleration is derived from distance and time so we do not consider it. We end up with $4-3=1$ dimensional group. 
+How many quantities do we have? Four - period, gravitational acceleration, mass and string's length. How many independent dimensions do we have? Three - mass, time and distance. The acceleration is derived from distance and time so we do not consider it. We end up with $$4-3=1$$ dimensional group. 
 
 Assume that the product of listed quantities, each raised to some unknown power, shall be dimensionless:
 
@@ -305,7 +305,7 @@ $$
 
 We have found our dimensionless relation. Note that mass was actually superfluous and vanished in the process. 
 
-Also, note that the dimensionless constant $C$ is universal. The same constant applies to a pendulum on Mars or a pendulum with a different string length. Once we find the constant, we can reuse it for the wide range of different applications.
+Also, note that the dimensionless constant $$C$$ is universal. The same constant applies to a pendulum on Mars or a pendulum with a different string length. Once we find the constant, we can reuse it for the wide range of different applications.
 
 ##### 4. Use physical knowledge to narrow down the possibilities
 
@@ -351,13 +351,13 @@ $$
 
 Finding $$C$$ in the analogous way to the previous example is difficult (unless you have some spare atomic bombs). I can spill the beans and tell you, that G.I Taylor estimated it (using experimental data) to be close to $$1$$.
 
-While air density can be looked up ($$\rho=1.2\text{\frac{kg}/{m^3}}$$), the radius and time can be read off from the photograph. At $$t=0.016$$ seconds we can say that $$R \approx 150$$ metres. Let's plug in the numbers to find the energy.
+While air density can be looked up, the radius and time can be read off from the photograph. At $$t=0.016$$ seconds we can say that $$R \approx 150$$ metres. Let's plug in the numbers to find the energy.
 
 $$
 E = \frac{1.2 \cdot 150^5}{0.016^2} \approx 10^{14}J
 $$
 
-$$10^14$$ Joules is equivalent to $$25$$ kilo-tons of TNT. Taylor has reported the value of $$22$$ kilo-tons in $$1950$$, while Fermi, who also used guesstimation to compute the yield obtained result of $$10$$ kilo-tons in $$1945$$. The actual, classified yield was $$20$$ kilo-tons. Not bad for the back-of-the-envelope calculation...
+$$10^{14}$$ Joules is equivalent to $$25$$ kilo-tons of TNT. Taylor has reported the value of $$22$$ kilo-tons in $$1950$$, while Fermi, who also used guesstimation to compute the yield obtained result of $$10$$ kilo-tons in $$1945$$. The actual, classified yield was $$20$$ kilo-tons. Not bad for the back-of-the-envelope calculation...
 
 **Conclusion: Dimensional analysis allows us to establish the form of an equation, or more often, to check that the answer to a calculation as a guard against many simple errors.** 
 
@@ -381,7 +381,7 @@ $$
 30 \times 24 \times 60 \approx 10 \times 10\times 100 = 10^{1+1+2} = 10^4
 $$
 
-The exact value is $$43,200$, so the estimate of $$10,000$$ is too small by $$23$$ percent. This is a reasonable price to pay for the ability to estimate such a big number without any effort.
+The exact value is $$43,200$$, so the estimate of $$10,000$$ is too small by $$23$$ percent. This is a reasonable price to pay for the ability to estimate such a big number without any effort.
 
 #### How High 
 
@@ -552,7 +552,7 @@ $$
 
 Where $$F$$ is the force acting on the block of material, $$N_\text{fibres}$$ is the number of fibres in the block, $$k$$ is the spring constant and $$\Delta x$$ is the spring extension.
 
-How many fibres are there in the block of materials? We know $A$, the cross-section of the block of material. We also know the approximate cross-section of one fibre - $$a^2$$, so:
+How many fibres are there in the block of materials? We know $$A$$, the cross-section of the block of material. We also know the approximate cross-section of one fibre - $$a^2$$, so:
 
 $$
 N_\text{fibres} = \frac{A}{a^2}
@@ -564,7 +564,7 @@ $$
 Y = \frac{\text{stress}}{\text{strain}} = \frac{\frac{F}{A}}{\frac{\Delta x}{a}}=\frac{Fa}{A\Delta x} = \frac{Fa}{A\frac{F}{kN_\text{fibres}}}= k\frac{aN_\text{fibres}}{A}=k\frac{a\frac{A}{a^2}}{A}=\frac{k}{a}
 $$
 
-So Young's modulus has actually a neat micro-level interpretation. It a direct function of the interatomic spring constant $k$ and the distance between atoms in the material's lattice.
+So Young's modulus has actually a neat micro-level interpretation. It a direct function of the interatomic spring constant $$k$$ and the distance between atoms in the material's lattice.
 
 **Conclusion: Many physical processes contain a minimum-energy state where small deviations from the minimum require an energy proportional to the square of the deviation. This behavior is the essential characteristic of a spring. A spring is therefore not only a physical object but a transferable abstraction.**
 
