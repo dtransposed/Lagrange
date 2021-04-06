@@ -57,7 +57,7 @@ $$
 t_{mean} = \sqrt{t_{max} \cdot t_{min}}=\sqrt{5 \cdot 0.5} \approx 1.6s
 $$
 
-An average time to say a number out-loud is about $1.6$ second. Now, we can complete the assignment by calculating how much time it takes to say a number out-loud billion times!
+An average time to say a number out-loud is about $$1.6$$ second. Now, we can complete the assignment by calculating how much time it takes to say a number out-loud billion times!
 
 $$
 t_{tot} = t_{mean} \cdot 10^9 = 1.6s\cdot 10^9
