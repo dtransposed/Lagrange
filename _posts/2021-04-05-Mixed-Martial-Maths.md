@@ -49,7 +49,7 @@ I will be mentioning **divide-and-conquer** reasoning in conjunction with other 
 
 > How long would it take to count to a billion?
 
-The purpose of divide-and-conquer is to be break the problem into smaller, digestible pieces and than combine them into a full solution.
+The purpose of divide-and-conquer is to be break the problem into smaller, digestible pieces and then combine them into a full solution.
 
 First let's think about how long it takes to say a number out-loud. For relatively small numbers it takes me about $0.5$ second, while I need up to $5$ seconds to say: $999,999,999$. We can use the best- and worse-case scenario to compute an "average" time necessary to say a number. 
 
@@ -61,7 +61,7 @@ An average time to say a number out-loud is about $1.6$ second. Now, we can comp
 $$
 t_{tot} = t_{mean} \cdot 10^9 = 1.6s\cdot 10^9
 $$
-This equivalent to about $51$ years, quite some time!
+This is equivalent to about $51$ years, quite some time!
 
 We broke one, seemingly overwhelming problem into two, fairly easy ones. While the complexity of the example was pretty modest,  the usefulness of **divide-and-conquer** reasoning will be demonstrated later on in this write-up. 
 
@@ -160,7 +160,7 @@ Since multiplication is commutative ($x(-x+2) = (-x+2)x$) , we have found our sy
 
 Interestingly, I have also been recently reading completely unrelated book by Benoit Mandelbrot. It was interesting to stumble upon his testimony about invariants in the context of financial engineering:
 
-> Invariances make life easier. If you can find some [market] properties that remain constant over time and place, you can build better and more useful models and maker sounder [financial] decisions - Benoit B. Mandelbrot, "The (mis)Behaviour of Markets"
+> Invariance makes life easier. If you can find some [market] properties that remain constant over time and place, you can build better and more useful models and maker sounder [financial] decisions - Benoit B. Mandelbrot, "The (mis)Behaviour of Markets"
 
 **Conclusion: When approaching a problem look for things which don't change - the invariant or the conserved quantity. Finding it and taking advantage of the related symmetry often simplifies a complex problem.**
 
@@ -201,9 +201,9 @@ Our goal is to find out the ratio on the left hand side. We can do this by estim
 
 Rather than estimating air density at the cruising altitude (plane) and at sea level (car) separately, let's think about their ratio. Planes fly high - Mount Everest high. I know that climbers have difficulty breathing on the peak of the mountain due to lower oxygen density. This means that the density of the air decreases with altitude. Compared to the sea level, I am guessing the density ratio of $2$ (sea level to plane's cruising altitude). 
 
-##### Cross section 
+##### Cross-section 
 
-Once again, we shouldn't care much for each value separately. Let us directly estimate the ratio! How many car cross sections can "fit" into a cross section of a plane? I am pretty sure that in terms of width, plane's round fuselage cross-section (I am neglecting the wings) could be occluded by three cars parked next to each other. Probably the same thing applies in the vertical dimension. If we stacked three cars on top of each other they could "cover" the plane horizontally. This means that the cross-section ratio is about $3 \cdot 3 = 9$
+Once again, we shouldn't care much for each value separately. Let us directly estimate the ratio! How many car cross-sections can "fit" into a cross-section of a plane? I am pretty sure that in terms of width, plane's round fuselage cross-section (I am neglecting the wings) could be occluded by three cars parked next to each other. Probably the same thing applies in the vertical dimension. If we stacked three cars on top of each other they could "cover" the plane horizontally. This means that the cross-section ratio is about $3 \cdot 3 = 9$
 
 <img src="/Users/damian/Documents/blog posts/MMM/Untitled Diagram-3.png" alt="image2" style="zoom:60%;" />
 
@@ -279,7 +279,7 @@ Also, note that the dimensionless constant $C$ is universal. The same constant a
 
 ##### 4. Use physical knowledge to narrow down the possibilities
 
-The last element is finding the dimensionless constant. How? Sure, you can solve the pendulum differential equation, but how about a small experiment? Take something which resembles a simple pendulum (e.g. I used my keychain) and make it oscillate. Write down the length and the period and plug it into equation to estimate $C$. If the value is close to 6, well done! It is in fact $2\pi$!
+The last element is finding the dimensionless constant. How? Sure, you can solve the pendulum differential equation, but how about a small experiment? Take something which resembles a simple pendulum (e.g. I used my key chain) and make it oscillate. Write down the length and the period and plug it into equation to estimate $C$. If the value is close to 6, well done! It is in fact $2\pi$!
 
 
 
@@ -302,7 +302,7 @@ Which quantities matter when it comes to the blast energy estimation? Let's see 
 | energy      | $E$    | $\frac{kg \cdot m^2}{s^2}$ |
 | time        | $t$    | $s$                        |
 | radius      | $R$    | $m$                        |
-| air density | $rho$  | $\frac{kg}{m^3}$           |
+| air density | $\rho$ | $\frac{kg}{m^3}$           |
 
 Four quantities and three independent dimensions give us one independent dimensional group.
 
@@ -426,7 +426,7 @@ Indeed, this equation is correct for all three regimes.
 
 #### Clearing the Atmosphere
 
-Many phenomena around us are the result of the physical state of equilibrium achieved by the nature. An example of such a system, which is governed by the natural balance, is our atmosphere. We know that there are forces acting on the atmosphere, but since it is (approximately ) at rest, some physical equilibrium is present. 
+Many phenomena around us are the result of the physical state of equilibrium achieved by the nature. An example of such a system, which is governed by the natural balance, is our atmosphere. We know that there are forces acting on the atmosphere, but since it is (approximately) at rest, some physical equilibrium is present. 
 
 Let's test the usefulness of **easy-cases** method to answer the following question:
 
@@ -474,7 +474,7 @@ Young's modulus is a function of two values: stress (the force applied to a mate
 $$
 Y = \frac{\text{stress}}{\text{strain}}
 $$
-While stress is straightforward to compute (using force applied and the cross section of the block of material, $\text{stress} = \frac{F}{A}$), it can be quite difficult to compute material's strain. However, we can easily estimate it through modelling a block of material as a system of springs and masses. Imagine that a block of material is in fact a bundle of tiny, elastic fibres. 
+While stress is straightforward to compute (using force applied and the cross-section of the block of material, $\text{stress} = \frac{F}{A}$), it can be quite difficult to compute material's strain. However, we can easily estimate it through modelling a block of material as a system of springs and masses. Imagine that a block of material is in fact a bundle of tiny, elastic fibres. 
 
 <img src="/Users/damian/Documents/blog posts/MMM/image12.png" alt="image11" style="zoom:20%;" />
 
@@ -494,7 +494,7 @@ $$
 $$
 Where $F$ is the force acting on the block of material, $N_\text{fibres}$ is the number of fibres in the block, $k$ is the spring constant and $\Delta x$ is the spring extension.
 
-How many fibres are there in the block of materials? We know $A$, the cross section of the block of material. We also know the approximate cross section of one fibre - $a^2$, so:
+How many fibres are there in the block of materials? We know $A$, the cross-section of the block of material. We also know the approximate cross-section of one fibre - $a^2$, so:
 $$
 N_\text{fibres} = \frac{A}{a^2}
 $$
@@ -529,7 +529,7 @@ This is the result obtained from rough estimation. Now let's use **divide-and-co
 
 The height of Germany is a bit more than a distance between Hamburg and Munich. Having spent a lot of time travelling between those cities in the past, I know that it takes about $8$ hours by car to cross Germany north to south. This implies the distance of $1200$ kilometres. While I am not sure about the exact value, I think that it's not less than $800$, but not more than $1500$ kilometres. Once again, I attach probability of $P\approx 2/3$ to this statement.
 
-Germany is certainly longer than wider, so the width is less than the height. To travel from Hamburg to the Dutch boarder it takes about $5$ hours or so. I am not really sure, but I bet that it is not less than $300$, and not more than $600$ kilometres. 
+Germany is certainly longer than wider, so the width is less than the height. To travel from Hamburg to the Dutch border it takes about $5$ hours or so. I am not really sure, but I bet that it is not less than $300$, and not more than $600$ kilometres. 
 $$
 h_\text{divide-and-conquer} = 800...1500 \text{ }[\text{km}]
 $$
