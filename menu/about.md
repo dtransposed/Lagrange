@@ -1,5 +1,18 @@
 ---
 layout: page
 title: About
----
-Lagrange is a minimalist Jekyll. It is intended to have a clean, content focused interface for blog writing. For more information on how to install and use this theme, check out [the documentation]({{ site.github.url }}{% post_url 2016-01-01-welcome-to-lagrange %}).
+image: imageedit_6_6259696792.jpg
+--- 
+{:refdef: style="text-align: center;"}
+![My Image](/assets/me_blog.jpg){:height="400px" width="400px"}
+{: refdef}
+Computer scientist interested in various flavors of machine learning, psychology and financial markets. 
+
+I hold a M.Sc degree in Robotics, Cognition and Intelligence from Technical University of Munich, Germany. 
+
+I have experience in areas of predictive maintance, autonomous driving and robotics. 
+
+I am currently working as a research engineer at ARRIVAL. I am using deep reinforcement learning to to teach real robots how to assemble stuff. 
+
+This website is designed to be my personal testing grounds for various projects, assignments, observations and reflexions.   
+After hours, I am a lifelong learner, fitness enthusiast and self-proclaimed food aficionado.
